@@ -1,0 +1,12 @@
+.jumbotron{
+background-color: #161e45;
+color: #fff;
+max-height:200px;
+}
+#cab1,#cab2{
+display: inline-block;
+}
+#navSup{
+background-color: #fff;
+border-color: #fff;
+}
