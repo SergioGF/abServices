@@ -48,8 +48,15 @@ session_start();
 		<div class="jumbotron">
 				<div class="container">
 				<h2 id="cab2">Título de página correspondiente</h2> 
-				
-				<p>Explicación de página</p>
+				<p>  <?php 
+						if($_SESSION["tipo"] == 3)
+							echo "Administrador";
+						else if($_SESSION["tipo"] == 2)
+							echo "Trabajador";
+						else
+							echo "Cliente";
+					?>
+				</p>
 				</div>
 		</div>
 			

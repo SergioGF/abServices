@@ -29,6 +29,7 @@ function login($nombreUsuario, $password, &$error) {
 		  
 		  $_SESSION["usuario"] = $usuario['Usuario'];
 		  $_SESSION["password"] = $usuario['Password'];
+		  $_SESSION["tipo"] = $usuario['Tipo'];
 		// Rescatar tipo de usuario y ver donde situarlo.	
 		} else {
 		  $error = TRUE;
