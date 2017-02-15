@@ -41,31 +41,13 @@ if (session_status() == PHP_SESSION_NONE) {
 						<ul class="dropdown-menu">
 						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="#">Cambiar contraseña</a></li>
+						  <!--<li class="divider"></li>-->
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
 					</li>
 				</ul>
 			</div>
 		</nav>
-		<?php/* include 'headerUser.php'; */?>
-		<div class="jumbotron">
-				<div class="container">
-				<h2 id="cab2">Título de página correspondiente</h2> 
-				<p>  <?php 
-						if($_SESSION["tipo"] == 3)
-							echo "Administrador";
-						else if($_SESSION["tipo"] == 2)
-							echo "Trabajador";
-						else
-							echo "Cliente";
-					?>
-				</p>
-				</div>
-		</div>
-			
-		<div class="container-fluid">
-		<h3>Título de la primera acción </h3>	
-		</div>
 		
 		  
 		<script src="http://code.jquery.com/jquery.js"></script>
