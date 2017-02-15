@@ -15,10 +15,13 @@
 	<link rel="stylesheet" type="text/css" href="./includes/css/stylelogin.css"> 
 	<script type="text/javascript" src="./includes/jquery/jquery-3.1.1.js"></script>
   </head>
-  <?php 
+  <?php
 	require(__DIR__.'/includes/php/usuarios.php');
 		if(isset($_POST['formLogin'])) {
-			$result = formLogin($_POST);
+			$error = false;
+			$result = formLogin($_POST,$error);
+			if($error == false)
+				header('Location: ./principalUser.php');
 		}
 	?>
   <body>
@@ -39,7 +42,7 @@
 					<div class="panel panel-primary" >
 						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Entrar en abServices</strong></div></div>
 						<div class="panel-body">
-						<form method = "POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" autocomplete="on" class="form-horizontal" role="form">
+						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
 							<?php 
                                     if(isset($result)){
                                         echo '<ul>';
@@ -51,12 +54,12 @@
                             ?>
 							<div class="form-group">
 								<div class="container-fluid">
-								  <input id="usuario" type="text" required="required" class="form-control" placeholder="Usuario"/>
+								  <input id="usuario" type="text" name="usuario" required="required" class="form-control" placeholder="Usuario"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="container-fluid">
-								  <input id="password" type="password" required="required" class="form-control" placeholder="Contraseña"/>
+								  <input id="password" type="password" name="password" required="required" class="form-control" placeholder="Contraseña"/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -78,7 +81,7 @@
 		
 		  
 		<script src="http://code.jquery.com/jquery.js"></script>
-		<script src="/includes/js/bootstrap.min.js"></script>
+		<script src="./includes/js/bootstrap.min.js"></script>
   </body>
 </html>
 <?php require(__DIR__.'/includes/php/cleanup.php');?>

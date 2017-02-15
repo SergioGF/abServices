@@ -18,5 +18,12 @@ function getInfoUser($nick){
 	}
 	$pst->close();
 	return $info;
+}                                             
+function password_verify($passF, $passBD){
+	if($passF == $passBD)
+			$ok = TRUE;
+	else
+			$ok = false;
+	return $ok;
 }
 ?>

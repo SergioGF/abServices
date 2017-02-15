@@ -1,19 +1,20 @@
 <?php
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
+session_start();
 
-function formLogin($params) {
+function formLogin($params, &$error) {
 
   $name = $params['usuario'];
   $pass = $params['password'];
   $result = [];
   
-  $result = login($name, $pass);
+  $result = login($name, $pass, $error);
 
   return $result;
 }
 
-function login($nombreUsuario, $password) {
+function login($nombreUsuario, $password, &$error) {
  
   $ok = false;
   $usuario = getInfoUser($nombreUsuario);
@@ -21,15 +22,21 @@ function login($nombreUsuario, $password) {
   // Si existe el usuario
 	if ( $usuario ) {
 		$ok = password_verify($password, $usuario['Password']);
-		
 		//Si la contraseña es correcta
 		if($ok){
+			$ok = [];
+		  $ok[] = "Todo bien";
+		  
+		  $_SESSION["usuario"] = $usuario['Usuario'];
+		  $_SESSION["password"] = $usuario['Password'];
 		// Rescatar tipo de usuario y ver donde situarlo.	
 		} else {
+		  $error = TRUE;
 		  $ok = [];
 		  $ok[] = "Usuario o contraseña no válidos";
 		}
 	}else {
+		$error =  TRUE;
 		$ok = [];
 		$ok[] = "Usuario o contraseña no válidos";
 	}
