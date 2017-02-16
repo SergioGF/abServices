@@ -40,7 +40,7 @@ if (session_status() == PHP_SESSION_NONE) {
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
 						  <li><a href="#">Cambiar nombre</a></li>
-						  <li><a href="#">Cambiar contraseña</a></li>
+						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
 					</li>

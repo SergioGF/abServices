@@ -15,7 +15,16 @@ function formLogin($params, &$error) {
 
   return $result;
 }
+function formPass($params, &$error) {
 
+  $passV = $params['antPass'];
+  $passN = $params['newPass1'];
+  $result = [];
+  
+  $result = changePass($passV, $passN1, $error);
+
+  return $result;
+}
 function login($nombreUsuario, $password, &$error) {
  
   $ok = false;
@@ -47,4 +56,34 @@ function login($nombreUsuario, $password, &$error) {
   
 }
 
+function changePass($passV, $passN1, $error) {
+ 
+  $ok = false;
+  $usuario = getInfoUser($nombreUsuario);
+  
+  // Si existe el usuario
+	if ( $usuario ) {
+		$ok = password_verify($password, $usuario['Password']);
+		//Si la contraseña es correcta
+		if($ok){
+			$ok = [];
+		  $ok[] = "Todo bien";
+		  
+		  $_SESSION["usuario"] = $usuario['Usuario'];
+		  $_SESSION["password"] = $usuario['Password'];
+		  $_SESSION["tipo"] = $usuario['Tipo'];
+		// Rescatar tipo de usuario y ver donde situarlo.	
+		} else {
+		  $error = TRUE;
+		  $ok = [];
+		  $ok[] = "Usuario o contraseña no válidos";
+		}
+	}else {
+		$error =  TRUE;
+		$ok = [];
+		$ok[] = "Usuario o contraseña no válidos";
+	}
+  return $ok;
+  
+}
 ?>
