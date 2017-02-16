@@ -5,13 +5,13 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-function formLogin($params, &$error) {
+function formLogin($params) {
 
   $name = $params['usuario'];
   $pass = $params['password'];
   $result = [];
   
-  $result = login($name, $pass, $error);
+  $result = login($name, $pass);
 
   return $result;
 }
@@ -25,30 +25,24 @@ function formPass($params, &$error) {
 
   return $result;
 }
-function login($nombreUsuario, $password, &$error) {
+function login($nombreUsuario, $password) {
  
-  $ok = false;
   $usuario = getInfoUser($nombreUsuario);
   
   // Si existe el usuario
 	if ( $usuario ) {
-		$ok = password_verify($password, $usuario['Password']);
 		//Si la contraseña es correcta
-		if($ok){
-			$ok = [];
-		  $ok[] = "Todo bien";
-		  
+		if($password == $usuario['Password']){
+		// Rescatar tipo de usuario y ver donde situarlo.	
 		  $_SESSION["usuario"] = $usuario['Usuario'];
 		  $_SESSION["password"] = $usuario['Password'];
 		  $_SESSION["tipo"] = $usuario['Tipo'];
-		// Rescatar tipo de usuario y ver donde situarlo.	
+		  header('Location: ./principalUser.php');
 		} else {
-		  $error = TRUE;
 		  $ok = [];
 		  $ok[] = "Usuario o contraseña no válidos";
 		}
 	}else {
-		$error =  TRUE;
 		$ok = [];
 		$ok[] = "Usuario o contraseña no válidos";
 	}
@@ -56,7 +50,7 @@ function login($nombreUsuario, $password, &$error) {
   
 }
 
-function changePass($passV, $passN1, $error) {
+function changePass($passV, $passN1, &$error) {
  
   $ok = false;
   $usuario = getInfoUser($nombreUsuario);

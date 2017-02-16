@@ -19,3 +19,8 @@ color: #0d0d0d;
 #cab1,#cab2{
 display: inline-block;
 }
+
+li.errorLogin{
+	color: red;
+	font-weight: bold;
+}
