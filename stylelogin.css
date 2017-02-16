@@ -1,0 +1,26 @@
+.jumbotron{
+background-color: #161e45;
+color: #fff;
+max-height:200px;
+}
+.page-header{
+background-color: #161e45;
+color: #fff;
+}
+body{
+ background-image: url("fondo.jpg");
+color: #fff;
+}
+#zonaFormulario{
+color: #0d0d0d;
+}
+#panelF{
+}
+#cab1,#cab2{
+display: inline-block;
+}
+
+li.errorLogin{
+	color: red;
+	font-weight: bold;
+}

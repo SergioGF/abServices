@@ -18,10 +18,7 @@
   <?php
 	require(__DIR__.'/includes/php/usuarios.php');
 		if(isset($_POST['formLogin'])) {
-			$error = false;
-			$result = formLogin($_POST,$error);
-			if($error == false)
-				header('Location: ./principalUser.php');
+			$result = formLogin($_POST);
 		}
 	?>
   <body>
@@ -47,7 +44,7 @@
                                     if(isset($result)){
                                         echo '<ul>';
                                         foreach($result as $error){
-                                            echo '<li>'.$error.'</li>';
+                                            echo '<li class = "errorLogin">'.$error.'</li>';
                                         }
                                         echo '</ul>';
                                     }
