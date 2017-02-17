@@ -51,15 +51,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		<div class="jumbotron">
 				<div class="container">
 				<h2 id="cab2">Título de página correspondiente</h2> 
-				<p>  <?php 
-						if($_SESSION["tipo"] == 3)
-							echo "Administrador";
-						else if($_SESSION["tipo"] == 2)
-							echo "Trabajador";
-						else
-							echo "Cliente";
-					?>
-				</p>
+				<p>  Cliente </p>
 				</div>
 		</div>
 			

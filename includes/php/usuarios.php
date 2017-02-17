@@ -25,7 +25,12 @@ function login($nombreUsuario, $password) {
 		  $_SESSION["usuario"] = $usuario['Usuario'];
 		  $_SESSION["password"] = $usuario['Password'];
 		  $_SESSION["tipo"] = $usuario['Tipo'];
-		  header('Location: ./principalUser.php');
+		  if($usuario['Tipo'] == 3)
+		  header('Location: ./principalAdmin.php');
+		  else if($usuario['Tipo'] == 2)
+		  header('Location: ./principalTrabajador.php');
+		  else if($usuario['Tipo'] == 1)
+		  header('Location: ./principalCliente.php');
 		} else {
 		  $ok = [];
 		  $ok[] = "Usuario o contraseña no válidos";
