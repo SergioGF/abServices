@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 function formLogin($params) {
 
@@ -15,16 +12,7 @@ function formLogin($params) {
 
   return $result;
 }
-function formPass($params, &$error) {
 
-  $passV = $params['antPass'];
-  $passN = $params['newPass1'];
-  $result = [];
-  
-  $result = changePass($passV, $passN1, $error);
-
-  return $result;
-}
 function login($nombreUsuario, $password) {
  
   $usuario = getInfoUser($nombreUsuario);
@@ -50,34 +38,48 @@ function login($nombreUsuario, $password) {
   
 }
 
-function changePass($passV, $passN1, &$error) {
- 
+function formPass($params, $nick) {
+
+  $passV = $params['antPass'];
+  $passN = $params['newPass1'];
+  $result = [];
   $ok = false;
-  $usuario = getInfoUser($nombreUsuario);
   
-  // Si existe el usuario
-	if ( $usuario ) {
-		$ok = password_verify($password, $usuario['Password']);
-		//Si la contraseña es correcta
-		if($ok){
-			$ok = [];
-		  $ok[] = "Todo bien";
-		  
-		  $_SESSION["usuario"] = $usuario['Usuario'];
-		  $_SESSION["password"] = $usuario['Password'];
-		  $_SESSION["tipo"] = $usuario['Tipo'];
-		// Rescatar tipo de usuario y ver donde situarlo.	
-		} else {
-		  $error = TRUE;
-		  $ok = [];
-		  $ok[] = "Usuario o contraseña no válidos";
+   $usuario = getInfoUser($nick);
+
+   if($usuario['Password'] == $passV){ //Si las contraseñas son iguales
+	 $ok = editPass($nick,$passN);
+	
+		if($ok == false){
+			$result[] = "La contraseña no se ha podido actualizar con éxito.";
 		}
-	}else {
-		$error =  TRUE;
-		$ok = [];
-		$ok[] = "Usuario o contraseña no válidos";
-	}
-  return $ok;
-  
+		else {
+			$result[] = "La contraseña se ha actualizado con éxito.";
+		}
+   } else{
+	   $result[] = "La contraseña que ha introducido no coincide con la actual.";
+   }
+  return $result;
 }
+
+function formUser($params, $nick) {
+
+  $nickN = $params['nickNuevo'];
+  $result = [];
+  
+  $ok = false;
+ 
+	 $ok = editUser($nick,$nickN);
+	
+		if($ok == false){
+			$result[] = "El nombre de usuario que ha introducido ya se encuentra en uso.";
+		}
+		else {
+			$_SESSION["usuario"] = $nickN;
+			$result[] = "El nombre de usuario se ha actualizado correctamente.";
+		}
+  return $result;
+}
+
+
 ?>

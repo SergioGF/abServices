@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php require_once __DIR__.'/includes/php/config.php';?>
+<!DOCTYPE html>
 <?php 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -20,6 +21,12 @@ if (session_status() == PHP_SESSION_NONE) {
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
   </head>
+  <?php
+	require(__DIR__.'/includes/php/registros.php');
+		if(isset($_POST['formRUser'])) {
+			$result = formRegisterUser($_POST);
+		}
+	?>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
@@ -39,7 +46,7 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="cambiarUser.php">Cambiar nombre</a></li>
+						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -50,7 +57,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Título de página correspondiente</h2> 
+				<h2 id="cab2">Modificar permisos</h2> 
 				<p>  <?php 
 						if($_SESSION["tipo"] == 3)
 							echo "Administrador";
@@ -64,11 +71,52 @@ if (session_status() == PHP_SESSION_NONE) {
 		</div>
 			
 		<div class="container-fluid">
-		<h3>Título de la primera acción </h3>	
+			<div class="panel panel-primary" >
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar permisos</strong></div></div>
+						<div class="panel-body">
+							<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+								<?php 
+										if(isset($result)){
+											echo '<ul>';
+											foreach($result as $error){
+												echo '<li class = "errorLogin">'.$error.'</li>';
+											}
+											echo '</ul>';
+										}
+								?>
+								<div class="form-group">
+									<div class="container-fluid">
+									 <p> Tipo de usuario </p>
+										<select name="tipoUser">
+										  <option value="cliente">Cliente</option>
+										  <option value="trabajador">Trabajador</option>
+										  <option value="administrador">Administrador</option>
+										</select>
+									</div>
+								<div class="form-group">
+									<div class="container-fluid">
+									  abServices <input id="abservices" type="checkbox" name="abservices" class="form-control" value="abServices"/>
+									  <input id="abservices" type="hidden" name="abservices" class="form-control" value="abServicesNo"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="container-fluid">
+									  Euroico <input id="euroico" type="checkbox" name="euroico" class="form-control" value="Euroico"/> 
+									   <input id="euroico" type="hidden" name="euroico" class="form-control" value="EuroicoNo"/> 
+									</div>
+								</div>								
+								</div>								
+								<div class="form-group">
+									<div class="col-lg-offset-4 col-lg-11">
+									  <div class="center-block"><button type="submit" class="btn btn-primary" name="formRUser" value="Sign in"><strong>Iniciar sesión</strong></button></div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 		</div>
-		
-		  
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

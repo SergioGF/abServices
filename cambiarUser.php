@@ -23,8 +23,8 @@ if (session_status() == PHP_SESSION_NONE) {
   </head>
   <?php
 	require(__DIR__.'/includes/php/usuarios.php');
-		if(isset($_POST['formPass'])) {
-			$result = formPass($_POST,$_SESSION["usuario"]);
+		if(isset($_POST['formUser'])) {
+			$result = formUser($_POST,$_SESSION["usuario"]);
 		}
 	?>
   <body>
@@ -57,7 +57,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Cambiar contraseña</h2> 
+				<h2 id="cab2">Cambiar nombre</h2> 
 				<p>  <?php 
 						if($_SESSION["tipo"] == 3)
 							echo "Administrador";
@@ -83,58 +83,16 @@ if (session_status() == PHP_SESSION_NONE) {
                             ?>
 							<div class="form-group">
 								<div class="container-fluid">
-								  <input id="antPass" type="password" name="antPass" required="required" class="form-control" placeholder="Contraseña actual"/>
-								</div>
-							</div>
-							<div class="form-group" id="divPass1">
-								<div class="container-fluid">
-								  <input id="newPass1" type="password" name="newPass1" required="required" class="form-control" placeholder="Nueva contraseña"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="container-fluid">
-								  <input id="newPass2" type="password" name="newPass2" required="required" class="form-control" placeholder="Repite nueva contraseña"/>
+								  <input id="nickNuevo" type="text" name="nickNuevo" required="required" class="form-control" placeholder="Nuevo nombre"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-lg-offset-4 col-lg-11">
-								  <div class="center-block"><button type="submit" class="btn btn-primary" name="formPass" value="Sign in"><strong>Cambiar contraseña</strong></button></div>
+								  <div class="center-block"><button type="submit" class="btn btn-primary" name="formUser" value="Sign in"><strong>Cambiar nombre</strong></button></div>
 								</div>
 							</div>
 						</form>
 		</div>
-		<script type="text/javascript">
-				function validarPasswd() {
-				var p1 = document.getElementById("newPass1").value;
-				var p2 = document.getElementById("newPass2").value;
-				var espacios1 = false;
-				var cont = 0;
-				while (!espacios1 && (cont < p1.length)) {
-				  if (p1.charAt(cont) == " ")
-					espacios1 = true;
-				  cont++;
-				}
-				if (espacios1) {
-				  //alert ("La contraseña no puede contener espacios en blanco");
-				  document.getElementById("newPass1").value ="";
-				  document.getElementById("newPass1").placeholder ="La contraseña no puede contener espacios en blanco";
-				  document.getElementById("divPass1").className = "form-group has-error has-feedback";
-				  return false;
-				}
-				var espacios2 = false;
-				var cont = 0;
-				while (!espacios2 && (cont < p2.length)) {
-				  if (p2.charAt(cont) == " ")
-					espacios2 = true;
-				  cont++;
-				}
-				if (espacios2) {
-				  document.getElementById("newPass1").value ="";
-				  document.getElementById("newPass1").placeholder ="La contraseña no puede contener espacios en blanco";
-				  return false;
-				}
-				}
-		</script>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
