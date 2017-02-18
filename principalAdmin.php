@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php require_once __DIR__.'/includes/php/config.php';?>
+<!DOCTYPE html>
 <?php 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -19,7 +20,19 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="./includes/css/style.css"> 
 	<script type="text/javascript" src="./includes/jquery/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+	function eliminarUs(nombre) {
+	document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar a " + nombre + " ?";
+	document.getElementById("usuario").value=nombre;
+}
+	</script>
   </head>
+  <?php
+	require(__DIR__.'/includes/php/registros.php');
+		if(isset($_POST['formDelete'])) {
+			$result = deleteUser($_POST['usuario']);
+		}
+	?>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
@@ -58,6 +71,15 @@ if (session_status() == PHP_SESSION_NONE) {
 		<div class="container-fluid">
 		<h3>Usuarios </h3>	
 		<p> Desde este apartado se puede eliminar, modificar o añadir nuevos usuarios de cualquier tipo: administradores, trabajadores o clientes</p>
+		<?php 
+										if(isset($result)){
+											echo '<ul>';
+											foreach($result as $error){
+												echo '<li class = "errorLogin">'.$error.'</li>';
+											}
+											echo '</ul>';
+										}
+								?>
 		<div class="row">
 			<div class="col-md-6" > 
 				<ul class="list-group">
@@ -70,8 +92,7 @@ if (session_status() == PHP_SESSION_NONE) {
 					</li>
 					<li class="list-group-item" id="accionesU">
 						<span class="glyphicon glyphicon-pencil"></span>
-						<span class="glyphicon glyphicon-remove" style="float: right"></span>
-						
+						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('Administrador')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>						
 					</li>
 				</ul>
 				<ul class="list-group">
@@ -84,13 +105,12 @@ if (session_status() == PHP_SESSION_NONE) {
 					</li>
 					<li class="list-group-item" id="accionesU">
 						<span class="glyphicon glyphicon-pencil"></span>
-						<span class="glyphicon glyphicon-remove" style="float: right"></span>
-						
+						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('Trabajador 1')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>						
 					</li>
 				</ul>
 				<ul class="list-group">
 					<li class="list-group-item" id="nameU">
-						 <b>Trabajador 2</b>
+						 <b>ABC</b>
 					</li>
 					<li class="list-group-item" id="tipoU2">
 						<div id="tipoUs" class="text-center"> Trabajador </div>
@@ -98,8 +118,7 @@ if (session_status() == PHP_SESSION_NONE) {
 					</li>
 					<li class="list-group-item" id="accionesU">
 						<span class="glyphicon glyphicon-pencil"></span>
-						<span class="glyphicon glyphicon-remove" style="float: right"></span>
-						
+						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('ABC')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>						
 					</li>
 				</ul>
 				<ul class="list-group">
@@ -112,8 +131,7 @@ if (session_status() == PHP_SESSION_NONE) {
 					</li>
 					<li class="list-group-item" id="accionesU">
 						<span class="glyphicon glyphicon-pencil"></span>
-						<span class="glyphicon glyphicon-remove" style="float: right"></span>
-						
+						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('Cliente 1')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>
 					</li>
 				</ul>
 			</div>
@@ -122,11 +140,33 @@ if (session_status() == PHP_SESSION_NONE) {
 			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
 			</div>
 		<a class="btn btn-primary"  href="nuevoTrabajador.php"><strong>Crear nuevo usuario +</strong></a>
-		
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"></button>
+				<h4 class="modal-title">Eliminar Usuario</h4>
+			  </div>
+			  <div class="modal-body" id="bodyPop">
+				<p>¿Estás seguro de que deseas eliminar?</p>
+			  </div>
+			  <div class="modal-footer">
+				<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+					 <input id="usuario" type="text" name="usuario" class="form-control" placeholder="Usuario" value="" style="display: none"/>
+					<button class="btn btn-primary" style="float: right" type="submit" value="Sign in" name="formDelete">Si</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" style="float: left">No</button>
+				</form>
+			  </div>
+			</div>
+
+		  </div>
 		</div>
-		
-		  
+		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
 </html>
+<?php require(__DIR__.'/includes/php/cleanup.php');?>

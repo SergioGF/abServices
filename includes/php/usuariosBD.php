@@ -61,5 +61,20 @@ function buscarNick($nick){
 	$numregistros=$result->num_rows;
 	$pst->close();
 	return $numregistros;
-}                       
+}     
+
+function getUsers(){
+	global $mysqli;
+	$usuarios = null;
+	
+	$pst = $mysqli->prepare("SELECT * FROM users ;");
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$usuarios[] = $row;
+	}
+	
+	$pst->close();
+	return $usuarios;
+}                
 ?>

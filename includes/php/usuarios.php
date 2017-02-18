@@ -86,5 +86,12 @@ function formUser($params, $nick) {
   return $result;
 }
 
+function getUsuarios(){
+	
+	$users = getUsers();
+	
+	return $users;
+}
+
 
 ?>
