@@ -10,3 +10,32 @@ display: inline-block;
 background-color: #fff;
 border-color: #fff;
 }
+#nameU{
+width: 45%;
+}
+#tipoU{
+width: 30%;
+}
+#tipoU1{
+width: 30%;
+background-color: #161e45;
+color: #fff;
+}
+#tipoU2{
+width: 30%;
+background-color: #475dc4;
+color: #fff;
+}
+#tipoU3{
+width: 30%;
+background-color: #8190d7;
+color: #fff;
+}
+#accionesU{
+width: 15%;
+background-color: #ededed;
+height: 100%;
+}
+.list-group > li{
+display: inline-block;
+}

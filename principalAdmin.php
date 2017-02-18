@@ -17,8 +17,8 @@ if (session_status() == PHP_SESSION_NONE) {
  
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
-	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
-	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="./includes/css/style.css"> 
+	<script type="text/javascript" src="./includes/jquery/jquery-3.1.1.js"></script>
   </head>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
@@ -56,32 +56,72 @@ if (session_status() == PHP_SESSION_NONE) {
 		</div>
 			
 		<div class="container-fluid">
-		<h3>Trabajadores </h3>	
+		<h3>Usuarios </h3>	
+		<p> Desde este apartado se puede eliminar, modificar o añadir nuevos usuarios de cualquier tipo: administradores, trabajadores o clientes</p>
 		<div class="row">
-			<div class="col-md-4" > 
+			<div class="col-md-6" > 
 				<ul class="list-group">
-					<li class="list-group-item">
-						Trabajador 1
-						<span class="glyphicon glyphicon-remove" style="float: right"></span>
+					<li class="list-group-item" id="nameU">
+						 <b>Root</b>
+					</li>
+					<li class="list-group-item" id="tipoU1">
+						<div id="tipoUs" class="text-center"> Administrador </div>
 						
 					</li>
-					<li class="list-group-item">
-						Trabajador 2
-						<span class="glyphicon glyphicon-remove" style="float: right"></span>
-						
-					</li>
-					<li class="list-group-item">
-						Trabajador 3
+					<li class="list-group-item" id="accionesU">
+						<span class="glyphicon glyphicon-pencil"></span>
 						<span class="glyphicon glyphicon-remove" style="float: right"></span>
 						
 					</li>
 				</ul>
-			
+				<ul class="list-group">
+					<li class="list-group-item" id="nameU">
+						 <b>Trabajador 1</b>
+					</li>
+					<li class="list-group-item" id="tipoU2">
+						<div id="tipoUs" class="text-center"> Trabajador </div>
+						
+					</li>
+					<li class="list-group-item" id="accionesU">
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="glyphicon glyphicon-remove" style="float: right"></span>
+						
+					</li>
+				</ul>
+				<ul class="list-group">
+					<li class="list-group-item" id="nameU">
+						 <b>Trabajador 2</b>
+					</li>
+					<li class="list-group-item" id="tipoU2">
+						<div id="tipoUs" class="text-center"> Trabajador </div>
+						
+					</li>
+					<li class="list-group-item" id="accionesU">
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="glyphicon glyphicon-remove" style="float: right"></span>
+						
+					</li>
+				</ul>
+				<ul class="list-group">
+					<li class="list-group-item" id="nameU">
+						 <b>Cliente 1</b>
+					</li>
+					<li class="list-group-item" id="tipoU3">
+						<div id="tipoUs" class="text-center"> Cliente </div>
+						
+					</li>
+					<li class="list-group-item" id="accionesU">
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="glyphicon glyphicon-remove" style="float: right"></span>
+						
+					</li>
+				</ul>
 			</div>
-			<div class="col-md-5" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
-			<div class="col-md-3" > <div class="container-fluid"> <img src="./includes/css/workers.png" class="img-responsive"  alt="Imagen responsive"></div></div>
+			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
+			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/admin2.png" class="img-responsive"  alt="Imagen responsive"></div></div>
+			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
 			</div>
-		<a class="btn btn-primary"  href="nuevoTrabajador.php"><strong>+</strong></a>
+		<a class="btn btn-primary"  href="nuevoTrabajador.php"><strong>Crear nuevo usuario +</strong></a>
 		
 		</div>
 		
