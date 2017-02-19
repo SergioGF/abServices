@@ -40,23 +40,14 @@
 						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Entrar en abServices</strong></div></div>
 						<div class="panel-body">
 						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
-							<?php 
-                                    if(isset($result)){
-                                        echo '<ul>';
-                                        foreach($result as $error){
-                                            echo '<li class = "errorLogin">'.$error.'</li>';
-                                        }
-                                        echo '</ul>';
-                                    }
-                            ?>
-							<div class="form-group">
+							<div class="form-group" id="formUser">
 								<div class="container-fluid">
-								  <input id="usuario" type="text" name="usuario" required="required" class="form-control" placeholder="Usuario"/>
+								  <input id="usuario" type="text" name="usuario" required="required" class="form-control" placeholder="Usuario" maxlength="3"/>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" id="formPass">
 								<div class="container-fluid">
-								  <input id="password" type="password" name="password" required="required" class="form-control" placeholder="Contraseña"/>
+								  <input id="password" type="password" name="password" required="required" class="form-control" placeholder="Contraseña" maxlength="10"/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -65,6 +56,23 @@
 								</div>
 							</div>
 						</form>
+						<script type="text/javascript">
+							function failLogin() {
+							  document.getElementById("usuario").value ="";
+							  document.getElementById("usuario").placeholder ="Usuario o contraseña no validos";
+							  document.getElementById("formUser").className = "form-group has-error has-feedback";
+							  document.getElementById("password").value ="";
+							  document.getElementById("password").placeholder ="Usuario o contraseña no validos";
+							  document.getElementById("formPass").className = "form-group has-error has-feedback";
+							}
+						</script>
+						<?php 
+                                    if(isset($result)){
+                                        echo "<script>";
+										echo "failLogin();";
+										echo "</script>";
+                                    }
+                            ?>
 						</div>
 						<div class="panel-footer"><div class="text-center">¿Has olvidado la contraseña? <a href="olvidacontrasena"> Soluciónalo </a></div></div>
 					</div>
@@ -75,8 +83,6 @@
 				<div class="col-md-7"></div>
 			</div>
 			</div>
-		
-		  
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="./includes/js/bootstrap.min.js"></script>
   </body>

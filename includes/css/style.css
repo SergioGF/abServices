@@ -34,7 +34,6 @@ color: #fff;
 #accionesU{
 width: 15%;
 background-color: #ededed;
-height: 100%;
 }
 .list-group > li{
 display: inline-block;
@@ -43,4 +42,12 @@ display: inline-block;
 float: right;
 border-color: #ededed;
 background-color: #ededed;
+padding: 0px 0px;
+border-width: 0px;
+}
+#editUser{
+border-color: #ededed;
+background-color: #ededed;
+padding: 0px 0px;
+border-width: 0px;
 }

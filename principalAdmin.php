@@ -71,15 +71,21 @@ if (session_status() == PHP_SESSION_NONE) {
 		<div class="container-fluid">
 		<h3>Usuarios </h3>	
 		<p> Desde este apartado se puede eliminar, modificar o añadir nuevos usuarios de cualquier tipo: administradores, trabajadores o clientes</p>
+		<div class="alert alert-success" style="display: none" id="infoUserDelete">
+		<script type="text/javascript">
+							function succesDelete() {
+							  document.getElementById("infoUserDelete").style.display = 'block';
+							}
+		</script>
 		<?php 
 										if(isset($result)){
-											echo '<ul>';
-											foreach($result as $error){
-												echo '<li class = "errorLogin">'.$error.'</li>';
-											}
-											echo '</ul>';
+											echo "<script>";
+											echo "succesDelete();";
+											echo "</script>";
 										}
-								?>
+		?>
+		<strong>Exito!</strong> Has eliminado el usuario correctamente.
+		</div>
 		<div class="row">
 			<div class="col-md-6" > 
 				<ul class="list-group">
@@ -117,8 +123,8 @@ if (session_status() == PHP_SESSION_NONE) {
 						
 					</li>
 					<li class="list-group-item" id="accionesU">
-						<span class="glyphicon glyphicon-pencil"></span>
-						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('ABC')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>						
+					<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarPermisos.php?userToEdit=ABC';"></button>
+					<button class="glyphicon glyphicon-remove" onclick="eliminarUs('ABC')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>						
 					</li>
 				</ul>
 				<ul class="list-group">
@@ -130,7 +136,7 @@ if (session_status() == PHP_SESSION_NONE) {
 						
 					</li>
 					<li class="list-group-item" id="accionesU">
-						<span class="glyphicon glyphicon-pencil"></span>
+						<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarPermisos.php?userToEdit=ABC';"></button>
 						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('Cliente 1')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>
 					</li>
 				</ul>

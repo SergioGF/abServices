@@ -4,6 +4,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+$userEdit=$_GET['userToEdit'];
 ?>
 <html lang="en">
   <head>
@@ -72,9 +73,9 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar permisos</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar permisos de <?php  echo $userEdit?></strong></div></div>
+						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
 						<div class="panel-body">
-							<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
 								<?php 
 										if(isset($result)){
 											echo '<ul>';
@@ -86,34 +87,36 @@ if (session_status() == PHP_SESSION_NONE) {
 								?>
 								<div class="form-group">
 									<div class="container-fluid">
-									 <p> Tipo de usuario </p>
-										<select name="tipoUser">
+										<div class="text-center"> <p><strong> Tipo de usuario </strong></p></div>
+										<!--<select name="tipoUser">
 										  <option value="cliente">Cliente</option>
 										  <option value="trabajador">Trabajador</option>
 										  <option value="administrador">Administrador</option>
-										</select>
+										</select>-->
+										<div class="text-center"><div class="btn-group">
+										  <button type="button" class="btn btn-primary">Cliente</button>
+										  <button type="button" class="btn btn-primary">Trabajador</button>
+										  <button type="button" class="btn btn-primary">Administrador</button>
+										</div></div>
 									</div>
+								</div><hr />
 								<div class="form-group">
 									<div class="container-fluid">
-									  abServices <input id="abservices" type="checkbox" name="abservices" class="form-control" value="abServices"/>
-									  <input id="abservices" type="hidden" name="abservices" class="form-control" value="abServicesNo"/>
+										<div class="text-center"> <p><strong> Empresa </strong></p></div>
+										<div class="text-center"><div class="btn-group">
+										  <button type="button" class="btn btn-primary">abServices</button>
+										  <button type="button" class="btn btn-primary">Eurico</button>
+										</div></div>
 									</div>
-								</div>
-								<div class="form-group">
-									<div class="container-fluid">
-									  Euroico <input id="euroico" type="checkbox" name="euroico" class="form-control" value="Euroico"/> 
-									   <input id="euroico" type="hidden" name="euroico" class="form-control" value="EuroicoNo"/> 
-									</div>
-								</div>								
-								</div>								
-								<div class="form-group">
-									<div class="col-lg-offset-4 col-lg-11">
-									  <div class="center-block"><button type="submit" class="btn btn-primary" name="formRUser" value="Sign in"><strong>Iniciar sesión</strong></button></div>
-									</div>
-								</div>
-							</form>
+								</div><hr />													
+							
 						</div>
-					</div>
+						<div class="panel-footer">
+							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in"><strong>Guardar cambios</strong></button>
+							<button type="submit" class="btn btn-primary" name="formRUser" ><strong>Volver a los anteriores</strong></button>
+						</div>
+						</form>
+			</div>
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
