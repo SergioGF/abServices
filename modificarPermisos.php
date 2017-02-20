@@ -4,7 +4,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+require(__DIR__.'/includes/php/usuarios.php');
 $userEdit=$_GET['userToEdit'];
+$user = getUser($userEdit);
 ?>
 <html lang="en">
   <head>
@@ -21,11 +23,19 @@ $userEdit=$_GET['userToEdit'];
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+		function formTipo(t) {
+			document.getElementById("inputTipo").value=t;
+		}
+		function formEmpresa(e) {
+			document.getElementById("inputEmpresa").value=e;
+		}
+	</script>
   </head>
   <?php
 	require(__DIR__.'/includes/php/registros.php');
 		if(isset($_POST['formRUser'])) {
-			$result = formRegisterUser($_POST);
+			$result = changePermission($_POST, $userEdit);
 		}
 	?>
   <body>
@@ -94,9 +104,10 @@ $userEdit=$_GET['userToEdit'];
 										  <option value="administrador">Administrador</option>
 										</select>-->
 										<div class="text-center"><div class="btn-group">
-										  <button type="button" class="btn btn-primary">Cliente</button>
-										  <button type="button" class="btn btn-primary">Trabajador</button>
-										  <button type="button" class="btn btn-primary">Administrador</button>
+										  <button type="button" class="btn btn-primary" id="tipo1" onClick="formTipo('Cliente')">Cliente</button>
+										  <button type="button" class="btn btn-primary" id="tipo2" onClick="formTipo('Trabajador')">Trabajador</button>
+										  <button type="button" class="btn btn-primary" id="tipo3" onClick="formTipo('Administrador')">Administrador</button>
+										  <input id="inputTipo"  name="tipo" required="required" class="form-control" value="" style="display: none"/>
 										</div></div>
 									</div>
 								</div><hr />
@@ -104,16 +115,17 @@ $userEdit=$_GET['userToEdit'];
 									<div class="container-fluid">
 										<div class="text-center"> <p><strong> Empresa </strong></p></div>
 										<div class="text-center"><div class="btn-group">
-										  <button type="button" class="btn btn-primary">abServices</button>
-										  <button type="button" class="btn btn-primary">Eurico</button>
+										  <button type="button" class="btn btn-primary" id="e1" onClick="formEmpresa('abServices')">abServices</button>
+										  <button type="button" class="btn btn-primary" id="e2" onClick="formEmpresa('Euroico')">Eurico</button>
+  										  <input id="inputEmpresa"  name="empresa" required="required" class="form-control" value="" style="display: none"/>
+
 										</div></div>
 									</div>
-								</div><hr />													
-							
+								</div>												
 						</div>
 						<div class="panel-footer">
-							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in"><strong>Guardar cambios</strong></button>
-							<button type="submit" class="btn btn-primary" name="formRUser" ><strong>Volver a los anteriores</strong></button>
+							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Volver a los anteriores"></input>
+							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in" style="float: right"><strong>Guardar cambios</strong></button>
 						</div>
 						</form>
 			</div>

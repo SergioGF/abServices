@@ -73,9 +73,9 @@ if (session_status() == PHP_SESSION_NONE) {
 		<p> Desde este apartado se puede eliminar, modificar o añadir nuevos usuarios de cualquier tipo: administradores, trabajadores o clientes</p>
 		<div class="alert alert-success" style="display: none" id="infoUserDelete">
 		<script type="text/javascript">
-							function succesDelete() {
-							  document.getElementById("infoUserDelete").style.display = 'block';
-							}
+			function succesDelete() {
+			  document.getElementById("infoUserDelete").style.display = 'block';
+			}
 		</script>
 		<?php 
 			if(isset($result)){
@@ -85,6 +85,21 @@ if (session_status() == PHP_SESSION_NONE) {
 			}
 		?>
 		<strong>Exito!</strong> Has eliminado el usuario correctamente.
+		</div>
+		<div class="alert alert-success" style="display: none" id="infoUserEdit">
+		<script type="text/javascript">
+			function succesEdit() {
+			  document.getElementById("infoUserEdit").style.display = 'block';
+			}
+		</script>
+		<?php 
+			if($_GET['userEdit'] == 1){
+				echo "<script>";
+				echo "succesEdit();";
+				echo "</script>";
+			}
+		?>
+		<strong>Exito!</strong> Has editado el usuario correctamente.
 		</div>
 		<div class="row">
 			<div class="col-md-6" > 

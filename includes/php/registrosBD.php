@@ -33,7 +33,7 @@ function cambiarPermisos($nick, $tipo, $abserv, $euro){
 	global $mysqli;
 	$args = array($tipo,$abserv, $euro,$nick);
 	sanitizeArgs($args);	
-	$pst = $mysqli->prepare("UPDATE users SET Tipo = ? , Abservices = ? , Euroico = ? WHERE Usuario = ?");
+	$pst = $mysqli->prepare("UPDATE users SET Tipo = ? , abServices = ? , EUROICO = ? WHERE Usuario = ?");
 	$pst->bind_param("iiis", $args[0], $args[1], $args[2], $args[3]);
 	
 	$result = $pst->execute();

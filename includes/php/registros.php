@@ -58,17 +58,18 @@ function changePermission($params, $nick){
 		$abservices = 0; //false
 		$euroico = 0; // false;
 		
-		if($params['tipoUser'] == 'cliente') $tipo = 1;
-		else if ($params['tipoUser'] == 'trabajador') $tipo = 2;
-		else if($params['tipoUser'] == 'administrador')$tipo = 3; 
+		if($params['tipo'] == 'cliente') $tipo = 1;
+		else if ($params['tipo'] == 'trabajador') $tipo = 2;
+		else if($params['tipo'] == 'administrador')$tipo = 3; 
 		
-		if($params['abservices'] == 'abServices') $abservices = 1;
-		if($params['euroico'] == 'Euroico') $euroico = 1;
+		if($params['empresa'] == 'abServices') $abservices = 1;
+		else if($params['empresa'] == 'Euroico') $euroico = 1;
 		
-		$ok = cambiarPermisos($tipo,$abservices,$euroico,$nick);
+		$ok = cambiarPermisos($nick,$tipo,$abservices,$euroico);
 		
 		if($ok){
 			$result[] = "Los permisos han sido cambiados con éxito.";
+			 header('Location: ./principalAdmin.php?userEdit=1');
 		} else {
 			$result[] = "Los permisos no han podido ser modificados.";
 		}

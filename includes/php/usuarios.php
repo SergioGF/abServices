@@ -12,7 +12,10 @@ function formLogin($params) {
 
   return $result;
 }
-
+function getUser($nombreUsuario){
+$usuario = getInfoUser($nombreUsuario);
+return $usuario;
+}
 function login($nombreUsuario, $password) {
  
   $usuario = getInfoUser($nombreUsuario);
