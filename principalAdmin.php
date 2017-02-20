@@ -60,7 +60,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				</ul>
 			</div>
 		</nav>
-		<?php/*include 'headerUser.php'; */?>
+		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
 				<h2 id="cab2">Página Principal</h2> 
@@ -78,19 +78,11 @@ if (session_status() == PHP_SESSION_NONE) {
 							}
 		</script>
 		<?php 
-<<<<<<< HEAD
 			if(isset($result)){
 				echo "<script>";
 				echo "succesDelete();";
 				echo "</script>";
 			}
-=======
-										if(isset($result)){
-											echo "<script>";
-											echo "succesDelete();";
-											echo "</script>";
-										}
->>>>>>> origin/master
 		?>
 		<strong>Exito!</strong> Has eliminado el usuario correctamente.
 		</div>
@@ -114,19 +106,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					if($us["Tipo"] == 2){ ?>
 					<li class="list-group-item" id="tipoU2">
 						<div id="tipoUs" class="text-center"> Trabajador </div>
-<<<<<<< HEAD
-=======
-						
-					</li>
-					<li class="list-group-item" id="accionesU">
-					<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarPermisos.php?userToEdit=ABC';"></button>
-					<button class="glyphicon glyphicon-remove" onclick="eliminarUs('ABC')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>						
-					</li>
-				</ul>
-				<ul class="list-group">
-					<li class="list-group-item" id="nameU">
-						 <b>Cliente 1</b>
->>>>>>> origin/master
 					</li>
 					<?php } ?>
 					<?php
@@ -136,13 +115,8 @@ if (session_status() == PHP_SESSION_NONE) {
 					</li>
 					<?php } ?>
 					<li class="list-group-item" id="accionesU">
-<<<<<<< HEAD
 						<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarPermisos.php?userToEdit=<?php echo $us["Usuario"]?>';"></button>
 						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('<?php echo $us["Usuario"]?>')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>
-=======
-						<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarPermisos.php?userToEdit=ABC';"></button>
-						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('Cliente 1')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>
->>>>>>> origin/master
 					</li>
 				</ul>
 				<?php } ?>
