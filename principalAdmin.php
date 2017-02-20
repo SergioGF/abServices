@@ -101,6 +101,21 @@ if (session_status() == PHP_SESSION_NONE) {
 		?>
 		<strong>Exito!</strong> Has editado el usuario correctamente.
 		</div>
+		<div class="alert alert-success" style="display: none" id="infoUserNew">
+		<script type="text/javascript">
+			function succesNew() {
+			  document.getElementById("infoUserNew").style.display = 'block';
+			}
+		</script>
+		<?php 
+			if($_GET['userNew'] == 1){
+				echo "<script>";
+				echo "succesNew();";
+				echo "</script>";
+			}
+		?>
+		<strong>Exito!</strong> Has creado el usuario correctamente!.
+		</div>
 		<div class="row">
 			<div class="col-md-6" > 
 				<?php

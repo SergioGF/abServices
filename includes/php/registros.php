@@ -13,17 +13,18 @@ function formRegisterUser($params) {
 		$abservices = 0; //false
 		$euroico = 0; // false;
 		
-		if($params['tipoUser'] == 'cliente') $tipo = 1;
-		else if ($params['tipoUser'] == 'trabajador') $tipo = 2;
-		else if($params['tipoUser'] == 'administrador')$tipo = 3; 
+		if($params['tipo'] == 'Cliente') $tipo = 1;
+		else if ($params['tipo'] == 'Trabajador') $tipo = 2;
+		else if($params['tipo'] == 'Administrador')$tipo = 3; 
 		
-		if($params['abservices'] == 'abServices') $abservices = 1;
-		if($params['euroico'] == 'Euroico') $euroico = 1;
+		if($params['empresa'] == 'abServices') $abservices = 1;
+		if($params['empresa'] == 'Euroico') $euroico = 1;
 		
-		$ok = registrarUsuario($params['usuario'],$params['password'],$tipo,$abservices,$euroico);
+		$ok = registrarUsuario($params['usuario'],$params['pass'],$tipo,$abservices,$euroico);
 		
 		if($ok){
 			$result[] = "El registro se ha realizado con éxito.";
+			header('Location: ./principalAdmin.php?userNew=1');
 		} else {
 			$result[] = "El registro no se ha podido realizar con éxito.";
 		}

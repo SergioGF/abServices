@@ -84,7 +84,10 @@ $user = getUser($userEdit);
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
 						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar permisos de <?php  echo $userEdit?></strong></div></div>
-						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+						<div class="alert alert-danger" style="display: none" id="datosFail">
+						<strong>Error!</strong> Hay que señalar tipo de usuario y empresa
+						</div>
+						<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
 						<div class="panel-body">
 								<?php 
 										if(isset($result)){
@@ -130,6 +133,19 @@ $user = getUser($userEdit);
 						</form>
 			</div>
 		</div>
+		<script type="text/javascript">
+				function validarDatos() {
+				var p3 = document.getElementById("inputEmpresa").value;
+				if(p3 == " "){
+				 document.getElementById("datosFail").style.display = 'block';
+				}
+				var p4 = document.getElementById("inputTipo").value;
+				if(p4 == " "){
+				document.getElementById("datosFail").style.display = 'block';
+				return false;
+				}
+				}
+		</script>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>

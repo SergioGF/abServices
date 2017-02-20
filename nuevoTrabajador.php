@@ -20,6 +20,14 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+		function formTipo(t) {
+			document.getElementById("inputTipo").value=t;
+		}
+		function formEmpresa(e) {
+			document.getElementById("inputEmpresa").value=e;
+		}
+	</script>
   </head>
   <?php
 	require(__DIR__.'/includes/php/registros.php');
@@ -72,59 +80,109 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Registrar nuevo trabajador</strong></div></div>
-						<div class="panel-body">
-							<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
-								<?php 
-										if(isset($result)){
-											echo '<ul>';
-											foreach($result as $error){
-												echo '<li class = "errorLogin">'.$error.'</li>';
-											}
-											echo '</ul>';
-										}
-								?>
-								<div class="form-group">
-									<div class="container-fluid">
-									  <input id="usuario" type="text" name="usuario" required="required" class="form-control" placeholder="Usuario"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="container-fluid">
-									  <input id="password" type="password" name="password" required="required" class="form-control" placeholder="Contraseña"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="container-fluid">
-									 <p> Tipo de usuario </p>
-										<select name="tipoUser">
-										  <option value="cliente">Cliente</option>
-										  <option value="trabajador">Trabajador</option>
-										  <option value="administrador">Administrador</option>
-										</select>
-									</div>
-								<div class="form-group">
-									<div class="container-fluid">
-									  abServices <input id="abservices" type="checkbox" name="abservices" class="form-control" value="abServices"/>
-									  <input id="abservices" type="hidden" name="abservices" class="form-control" value="abServicesNo"/>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="container-fluid">
-									  Euroico <input id="euroico" type="checkbox" name="euroico" class="form-control" value="Euroico"/> 
-									   <input id="euroico" type="hidden" name="euroico" class="form-control" value="EuroicoNo"/> 
-									</div>
-								</div>								
-								</div>								
-								<div class="form-group">
-									<div class="col-lg-offset-4 col-lg-11">
-									  <div class="center-block"><button type="submit" class="btn btn-primary" name="formRUser" value="Sign in"><strong>Iniciar sesión</strong></button></div>
-									</div>
-								</div>
-							</form>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Crear nuevo usuario</strong></div></div>
+						<div class="alert alert-danger" style="display: none" id="datosFail">
+						<strong>Error!</strong> Hay que señalar tipo de usuario y empresa
 						</div>
-					</div>
+						<div class="alert alert-danger" style="display: none" id="infoDatosRepeat">
+						<script type="text/javascript">
+							function succesDelete() {
+							  document.getElementById("infoDatosRepeat").style.display = 'block';
+							}
+						</script>
+						<?php 
+							if(isset($result)){
+								echo "<script>";
+								echo "succesDelete();";
+								echo "</script>";
+							}
+						?>
+						<strong>Error!</strong> El usuario ya está cogido.
+						</div>
+						<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
+						<div class="panel-body">
+							<div class="form-group" id="divUser">
+								<div class="container-fluid">
+								 <input id="newUser"  name="usuario" required="required" class="form-control" placeholder="Nombre de Usuario" maxlength="3"/>
+								</div>
+							</div>
+							<div class="form-group" id="divPass">
+								<div class="container-fluid">
+								  <input id="newPass" type="password" name="pass" required="required" class="form-control" placeholder="Contraseña de usuario" maxlength="10"/>
+								</div>
+							</div>
+							<div class="form-group">
+									<div class="container-fluid">
+										<div class="text-center"> <p><strong> Tipo de usuario </strong></p></div>
+										<div class="text-center"><div class="btn-group">
+										  <button type="button" class="btn btn-primary" id="tipo1" onClick="formTipo('Cliente')">Cliente</button>
+										  <button type="button" class="btn btn-primary" id="tipo2" onClick="formTipo('Trabajador')">Trabajador</button>
+										  <button type="button" class="btn btn-primary" id="tipo3" onClick="formTipo('Administrador')">Administrador</button>
+										  <input id="inputTipo"  name="tipo" required="required" class="form-control" value=" " style="display: none"/>
+										</div></div>
+									</div>
+							</div><hr />
+							<div class="form-group">
+									<div class="container-fluid">
+										<div class="text-center"> <p><strong> Empresa </strong></p></div>
+										<div class="text-center"><div class="btn-group">
+										  <button type="button" class="btn btn-primary" id="e1" onClick="formEmpresa('abServices')">abServices</button>
+										  <button type="button" class="btn btn-primary" id="e2" onClick="formEmpresa('Euroico')">Eurico</button>
+  										  <input id="inputEmpresa"  name="empresa" required="required" class="form-control" value=" " style="display: none"/>
+
+										</div></div>
+									</div>
+							</div>												
+						</div>
+						<div class="panel-footer">
+							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Volver atrás"></input>
+							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in" style="float: right"><strong>Crear usuario</strong></button>
+						</div>
+						</form>
+			</div>
 		</div>
+		<script type="text/javascript">
+				function validarDatos() {
+				var p1 = document.getElementById("newPass").value;
+				var p2 = document.getElementById("newUser").value;
+				var espacios1 = false;
+				var cont = 0;
+				while (!espacios1 && (cont < p1.length)) {
+				  if (p1.charAt(cont) == " ")
+					espacios1 = true;
+				  cont++;
+				}
+				if (espacios1) {
+				  //alert ("La contraseña no puede contener espacios en blanco");
+				  document.getElementById("newPass").value ="";
+				  document.getElementById("newPass").placeholder ="La contraseña no puede contener espacios en blanco";
+				  document.getElementById("divPass").className = "form-group has-error has-feedback";
+				  return false;
+				}
+				var espacios2 = false;
+				var cont = 0;
+				while (!espacios2 && (cont < p2.length)) {
+				  if (p2.charAt(cont) == " ")
+					espacios2 = true;
+				  cont++;
+				}
+				if (espacios2) {
+				  document.getElementById("newUser").value ="";
+				  document.getElementById("newUser").placeholder ="El usuario no puede tener espacios en blanco";
+				  document.getElementById("divUser").className = "form-group has-error has-feedback";
+				  return false;
+				}
+				var p3 = document.getElementById("inputEmpresa").value;
+				if(p3 == " "){
+				 document.getElementById("datosFail").style.display = 'block';
+				}
+				var p4 = document.getElementById("inputTipo").value;
+				if(p4 == " "){
+				document.getElementById("datosFail").style.display = 'block';
+				return false;
+				}
+				}
+		</script>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
