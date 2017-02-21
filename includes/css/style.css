@@ -51,3 +51,7 @@ background-color: #ededed;
 padding: 0px 0px;
 border-width: 0px;
 }
+
+#botonCentrado{
+	margin-left: 130px !important;
+}

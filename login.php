@@ -74,7 +74,6 @@
                                     }
                             ?>
 						</div>
-						<div class="panel-footer"><div class="text-center">¿Has olvidado la contraseña? <a href="olvidacontrasena"> Soluciónalo </a></div></div>
 					</div>
 					</div>
 				</div>

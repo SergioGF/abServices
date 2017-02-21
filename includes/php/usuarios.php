@@ -29,11 +29,11 @@ function login($nombreUsuario, $password) {
 		  $_SESSION["password"] = $usuario['Password'];
 		  $_SESSION["tipo"] = $usuario['Tipo'];
 		  if($usuario['Tipo'] == 3)
-		  header('Location: ./principalAdmin.php');
+		  header('Location: ./homeClientes.php');
 		  else if($usuario['Tipo'] == 2)
-		  header('Location: ./principalTrabajador.php');
+		  header('Location: ./homeClientes.php');
 		  else if($usuario['Tipo'] == 1)
-		  header('Location: ./principalCliente.php');
+		  header('Location: ./homeClientes.php');
 		} else {
 		  $ok = [];
 		  $ok[] = "Usuario o contraseña no válidos";
