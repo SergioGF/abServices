@@ -16,7 +16,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
     <title>Usuario</title>
  
-    <!-- CSS de Bootstrap -->
+    <!-- CSS de Bootstrap  -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
