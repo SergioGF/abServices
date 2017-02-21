@@ -6,7 +6,7 @@ function getClientes(){
 	global $mysqli;
 	$clientes = null;
 	
-	$pst = $mysqli->prepare("SELECT * FROM clientes ;");
+	$pst = $mysqli->prepare("SELECT * FROM clientes ORDER BY Id;");
 	$pst->execute();
 	$result = $pst->get_result();
 	while($row = $result->fetch_array(MYSQLI_ASSOC)){

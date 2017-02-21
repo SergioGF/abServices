@@ -16,4 +16,52 @@ function deleteWorksClient($idCliente){
 	
 	return $result;
 }
+
+function getTrabajos($id){
+	
+	global $mysqli;
+	$trabajos = null;
+	
+	$args = array($id);
+	sanitizeArgs($args);
+	
+	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE IdCliente = ? ORDER BY FVisita DESC;");
+	$pst->bind_param("s",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$trabajos[] = $row;
+	}
+	
+	$pst->close();
+	return $trabajos;          
+}
+
+function getInfoWork($id){
+	
+	global $mysqli;
+	$args = array($id);
+	sanitizeArgs($args);
+	
+	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE Id = ?");
+	$pst->bind_param("i",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	
+	$pst->close();
+	return $result;     
+}
+
+function registrarTrabajo($cliente, $fVisita, $horaE, $horaS, $desc, $descM, $obs){
+	global $mysqli;
+	$args = array($cliente, $fVisita, $horaE, $horaS, $desc, $descM, $obs);
+	sanitizeArgs($args);
+	$pst = $mysqli->prepare("INSERT INTO trabajos VALUES (null,?,?,?,?,?,?,?);"); //null para el campo autoincrement
+	$pst->bind_param("sssssss",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
+	$result = $pst->execute();
+	
+	$pst->close();
+	
+	return $result;
+}
 ?>

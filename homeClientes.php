@@ -73,11 +73,11 @@ if (session_status() == PHP_SESSION_NONE) {
 						<div class="panel-body">
 								<?php 
 								
-								$clientes = conseguirClientes();
+								$clientes = conseguirClientes();				
+									foreach($clientes as $cliente){
+									echo '<div class="form-group"><div class="container-fluid"><a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div>';
+									}
 								
-								foreach($clientes as $cliente){
-								echo '<div class="form-group"><div class="container-fluid"><a href = "./trabajos.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div>';
-								}
 								?>	
 							<div class="form-group">
 								<div class="col-lg-offset-4 col-lg-11">
