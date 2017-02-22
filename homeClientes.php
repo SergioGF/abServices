@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
 
 
-    <title>Usuario</title>
+    <title>abServices</title>
  
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
@@ -34,7 +34,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="principalUser.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
+				<a class="navbar-brand" href="homeClientes.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse" id="navSupDerecha">
 			 
@@ -66,30 +66,26 @@ if (session_status() == PHP_SESSION_NONE) {
 				</p>
 				</div>
 		</div>
-			
+		<div class="row">
+		<div class="col-md-6" > 	
 		<div class="container-fluid">
-						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Listado de clientes</strong></div></div>
-						<div class="panel-body">
+						<div class="tamPanel panel panel-primary " >
+						<div class="tamPanel panel-heading" id="panelHead"><div class="text-center"><strong>Listado de clientes</strong></div></div>
 								<?php 
 								
 								$clientes = conseguirClientes();				
 									foreach($clientes as $cliente){
-									echo '<div class="form-group"><div class="container-fluid"><a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div>';
+									echo '<div class="form-group"><div class="container-fluid"><img id="margenIm" src="./includes/css/contacto.png"><a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div><hr id="lineas">';
 									}
 								
 								?>	
-							<div class="form-group">
-								<div class="col-lg-offset-4 col-lg-11">
-									<div class="center-block"><a href="nuevoCliente.php"><button type="button" class="btn btn-primary"  value="Anadir"><strong>Añadir cliente</strong></button></a></div>
-								</div>
-							</div>
-
-						</div>								
-							</form>
-						</div>
-					</div>
+						</div>	
 		</div>
+		</div>		
+		<br><br><br><br>
+			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
+			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/admin2.png" class="img-responsive"  alt="Imagen responsive"></div></div>
+			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>						
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>

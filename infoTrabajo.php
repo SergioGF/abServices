@@ -38,7 +38,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="principalUser.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
+				<a class="navbar-brand" href="homeClientes.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse" id="navSupDerecha">
 			 

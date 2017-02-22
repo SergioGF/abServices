@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
 
-    <title>AbServices</title>
+    <title>abServices</title>
  
     <!-- CSS de Bootstrap -->
     <link href="./includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 

@@ -37,7 +37,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="principalUser.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
+				<a class="navbar-brand" href="homeClientes.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse" id="navSupDerecha">
 			 
@@ -69,12 +69,12 @@ if (session_status() == PHP_SESSION_NONE) {
 								$trabajos = conseguirTrabajos($cliente);
 
 									foreach($trabajos as $trabajo){
-									echo '<div class="form-group"><div class="container-fluid"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'">'.$trabajo['Id'].'</a></div></div>';
+									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></div><hr id="lineas">';
 									}
 								?>	
 							<div class="form-group">
 								<div class="col-lg-offset-4 col-lg-11">
-									<div class="center-block"><a href="nuevoTrabajo.php?cliente=MACRIS"><button type="button" class="btn btn-primary"  value="Anadir"><strong>Añadir trabajo</strong></button></a></div>
+									<div class="center-block"><a href="nuevoTrabajo.php?cliente=<?php echo $cliente ?>"><button id="botonCentrado" type="button" class="btn btn-primary"  value="Anadir"><strong>Añadir trabajo</strong></button></a></div>
 								</div>
 							</div>
 
