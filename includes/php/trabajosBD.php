@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/config.php");
 
-function deleteWorksClient($idCliente){
+function deleteWorksClient($id){
 	
 	global $mysqli;
 

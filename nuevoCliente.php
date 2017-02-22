@@ -64,7 +64,7 @@ if (session_status() == PHP_SESSION_NONE) {
 						else if($_SESSION["tipo"] == 2)
 							echo "Trabajador";
 						else
-							echo "Cliente";
+							echo "Trabajador";
 					?>
 				</p>
 				</div>
@@ -72,33 +72,55 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Registrar nuevo cliente</strong></div></div>
-						<div class="panel-body">
-							<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
-								<?php 
-										if(isset($result)){
-											echo '<ul>';
-											foreach($result as $error){
-												echo '<li class = "errorLogin">'.$error.'</li>';
-											}
-											echo '</ul>';
-										}
-								?>
-								<div class="form-group">
-									<div class="container-fluid">
-									  <input id="cliente" type="text" name="cliente" required="required" class="form-control" placeholder="Id del cliente"/>
-									</div>
-								</div>
-								<br>
-								<div class="form-group">
-									<div class="col-lg-offset-4 col-lg-11">
-									  <button type="submit" class="btn btn-primary" name="formRClient" value="Sign in"><strong>Registrar cliente</strong></button>
-									</div>
-								</div>
-							</form>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Crear nuevo Cliente</strong></div></div>
+						<div class="alert alert-danger" style="display: none" id="infoDatosRepeat">
+						<script type="text/javascript">
+							function succesDelete() {
+							  document.getElementById("infoDatosRepeat").style.display = 'block';
+							}
+						</script>
+						<?php 
+							if(isset($result)){
+								echo "<script>";
+								echo "succesDelete();";
+								echo "</script>";
+							}
+						?>
+						<strong>Error!</strong> El Id ya está cogido.
 						</div>
-					</div>
+						<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
+						<div class="panel-body">
+							<div class="form-group" id="divUser">
+								<div class="container-fluid">
+								 <input id="newCliente"  name="cliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<input  class="btn btn-primary" type="button" onClick="location.href='./gestionClientes.php'" value="Volver atrás"></input>
+							<button type="submit" class="btn btn-primary" name="formRClient" value="Sign in" style="float: right"><strong>Crear cliente</strong></button>
+						</div>
+						</form>
+			</div>
 		</div>
+		<script type="text/javascript">
+				function validarDatos() {
+				var p1 = document.getElementById("newCliente").value;
+				var espacios1 = false;
+				var cont = 0;
+				while (!espacios1 && (cont < p1.length)) {
+				  if (p1.charAt(cont) == " ")
+					espacios1 = true;
+				  cont++;
+				}
+				if (espacios1) {
+				  document.getElementById("newCliente").value ="";
+				  document.getElementById("newCliente").placeholder ="El Id no puede contener espacios en blanco";
+				  document.getElementById("divUser").className = "form-group has-error has-feedback";
+				  return false;
+				}
+				}
+		</script>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>

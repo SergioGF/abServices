@@ -21,6 +21,7 @@ function formRegisterClient($params) {
 		
 		if($ok){
 			$result[] = "El registro se ha realizado con éxito.";
+			header('Location: ./gestionClientes.php?clienteNew=1');
 		} else {
 			$result[] = "El registro no se ha podido realizar con éxito.";
 		}
@@ -36,11 +37,11 @@ function deleteClient($id){
   $ok = false;
   $ok2 = false;
   // Si existe el cliente
-	if(buscarClient($params['cliente']) > 0) { // Siempre va a existir porque sale en la lista, aunque se realiza la comprobación por si acaso.
+	if(buscarClient($id) > 0) { // Siempre va a existir porque sale en la lista, aunque se realiza la comprobación por si acaso.
 		$ok = eliminarCliente($id);
 		$ok2 = borrarTrabajosCliente($id); // Se borran los trabajos asociados a dicho cliente.
 		
-		if(ok && ok2){
+		if($ok && $ok2){
 			$result[] = "El cliente ha sido eliminado con éxito.";
 		} else {
 			$result[] = "El cliente no se ha podido eliminar.";

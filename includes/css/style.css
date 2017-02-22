@@ -55,3 +55,10 @@ border-width: 0px;
 #botonCentrado{
 	margin-left: 130px !important;
 }
+#accionesC{
+width: 25%;
+background-color: #ededed;
+}
+#nameC{
+width: 55%;
+}

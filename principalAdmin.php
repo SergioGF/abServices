@@ -24,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	function eliminarUs(nombre) {
 	document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar a " + nombre + " ?";
 	document.getElementById("usuario").value=nombre;
-}
+	}
 	</script>
   </head>
   <?php
