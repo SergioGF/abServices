@@ -23,9 +23,32 @@ if (session_status() == PHP_SESSION_NONE) {
 	<script type="text/javascript">
 		function formTipo(t) {
 			document.getElementById("inputTipo").value=t;
+			if(t == "Administrador"){
+			document.getElementById("tipo3").style.backgroundColor = "#161e45";
+			document.getElementById("tipo2").style.backgroundColor = "#286090";
+			document.getElementById("tipo1").style.backgroundColor = "#286090";
+			}
+			else if(t == "Trabajador"){
+			document.getElementById("tipo2").style.backgroundColor = "#161e45";
+			document.getElementById("tipo1").style.backgroundColor = "#286090";
+			document.getElementById("tipo3").style.backgroundColor = "#286090";
+			}
+			else{
+			document.getElementById("tipo1").style.backgroundColor = "#161e45";
+			document.getElementById("tipo2").style.backgroundColor = "#286090";
+			document.getElementById("tipo3").style.backgroundColor = "#286090";
+			}
 		}
 		function formEmpresa(e) {
 			document.getElementById("inputEmpresa").value=e;
+			if(e == "abServices"){
+			document.getElementById("e1").style.backgroundColor = "#161e45";
+			document.getElementById("e2").style.backgroundColor = "#286090";
+			}
+			else{
+			document.getElementById("e2").style.backgroundColor = "#161e45";
+			document.getElementById("e1").style.backgroundColor = "#286090";
+			}
 		}
 	</script>
   </head>
@@ -72,7 +95,7 @@ if (session_status() == PHP_SESSION_NONE) {
 						else if($_SESSION["tipo"] == 2)
 							echo "Trabajador";
 						else
-							echo "Cliente";
+							echo "Trabajador";
 					?>
 				</p>
 				</div>
@@ -115,7 +138,7 @@ if (session_status() == PHP_SESSION_NONE) {
 									<div class="container-fluid">
 										<div class="text-center"> <p><strong> Tipo de usuario </strong></p></div>
 										<div class="text-center"><div class="btn-group">
-										  <button type="button" class="btn btn-primary" id="tipo1" onClick="formTipo('Cliente')">Cliente</button>
+										  <button type="button" class="btn btn-primary" id="tipo1" onClick="formTipo('TrabajadorL')">Trabajador Lectura</button>
 										  <button type="button" class="btn btn-primary" id="tipo2" onClick="formTipo('Trabajador')">Trabajador</button>
 										  <button type="button" class="btn btn-primary" id="tipo3" onClick="formTipo('Administrador')">Administrador</button>
 										  <input id="inputTipo"  name="tipo" required="required" class="form-control" value=" " style="display: none"/>
@@ -175,6 +198,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				var p3 = document.getElementById("inputEmpresa").value;
 				if(p3 == " "){
 				 document.getElementById("datosFail").style.display = 'block';
+				 return false;
 				}
 				var p4 = document.getElementById("inputTipo").value;
 				if(p4 == " "){

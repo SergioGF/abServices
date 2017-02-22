@@ -13,7 +13,7 @@ function formRegisterUser($params) {
 		$abservices = 0; //false
 		$euroico = 0; // false;
 		
-		if($params['tipo'] == 'Cliente') $tipo = 1;
+		if($params['tipo'] == 'TrabajadorL') $tipo = 1;
 		else if ($params['tipo'] == 'Trabajador') $tipo = 2;
 		else if($params['tipo'] == 'Administrador')$tipo = 3; 
 		
@@ -37,11 +37,11 @@ function formRegisterUser($params) {
 
 function deleteUser($nick){
   $usuario = getInfoUser($nick);
-  $ok = false;
+  //$ok = false;
   // Si existe el usuario
 	if ( $usuario ) { // Siempre va a existir porque sale en la lista, aunque se realiza la comprobación por si acaso.
 		$ok = eliminarUsuario($nick);
-		if(ok){
+		if($ok){
 			$result[] = "El usuario ha sido eliminado con éxito.";
 		} else {
 			$result[] = "El usuario no se ha podido eliminar.";
@@ -59,9 +59,9 @@ function changePermission($params, $nick){
 		$abservices = 0; //false
 		$euroico = 0; // false;
 		
-		if($params['tipo'] == 'cliente') $tipo = 1;
-		else if ($params['tipo'] == 'trabajador') $tipo = 2;
-		else if($params['tipo'] == 'administrador')$tipo = 3; 
+		if($params['tipo'] == 'TrabajadorL') $tipo = 1;
+		else if ($params['tipo'] == 'Trabajador') $tipo = 2;
+		else if($params['tipo'] == 'Administrador')$tipo = 3; 
 		
 		if($params['empresa'] == 'abServices') $abservices = 1;
 		else if($params['empresa'] == 'Euroico') $euroico = 1;

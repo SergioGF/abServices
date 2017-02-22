@@ -70,7 +70,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 		<h3>Usuarios </h3>	
-		<p> Desde este apartado se puede eliminar, modificar o añadir nuevos usuarios de cualquier tipo: administradores, trabajadores o clientes</p>
+		<p> Desde este apartado se puede eliminar, modificar o añadir nuevos usuarios de cualquier tipo: administradores, trabajadores o trabajadores lectura</p>
 		<div class="alert alert-success" style="display: none" id="infoUserDelete">
 		<script type="text/javascript">
 			function succesDelete() {
@@ -141,7 +141,7 @@ if (session_status() == PHP_SESSION_NONE) {
 					<?php
 					if($us["Tipo"] == 1){ ?>
 					<li class="list-group-item" id="tipoU3">
-						<div id="tipoUs" class="text-center"> Cliente </div>
+						<div id="tipoUs" class="text-center"> Trabajador Lectura </div>
 					</li>
 					<?php } ?>
 					<li class="list-group-item" id="accionesU">

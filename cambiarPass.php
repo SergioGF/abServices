@@ -64,7 +64,7 @@ if (session_status() == PHP_SESSION_NONE) {
 						else if($_SESSION["tipo"] == 2)
 							echo "Trabajador";
 						else
-							echo "Cliente";
+							echo "Trabajador";
 					?>
 				</p>
 				</div>
