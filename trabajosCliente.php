@@ -71,7 +71,7 @@ if (session_status() == PHP_SESSION_NONE) {
 									foreach($trabajos as $trabajo){
 									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></div><hr id="lineas">';
 									}
-								?>	
+								?>	<br>
 							<div class="form-group">
 								<div class="col-lg-offset-4 col-lg-11">
 									<div class="center-block"><a href="nuevoTrabajo.php?cliente=<?php echo $cliente ?>"><button id="botonCentrado" type="button" class="btn btn-primary"  value="Anadir"><strong>Añadir trabajo</strong></button></a></div>

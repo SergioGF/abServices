@@ -23,26 +23,45 @@ function conseguirInfoTrabajo($id){
 	return $result;
 }
 
-function formRegisterTrabajo($params, $cliente) {
+function formRegisterTrabajo($params, $cliente, $usuario) {
 	
 	$ok = false;
 	
-	$descMat = $params['DescripcionMat'];
-	$obs = $params['Observaciones']; // Estos 2 campos pueden ser null.
+	$descMat = $params['descmat'];
+	$obs = $params['observaciones']; // Estos 2 campos pueden ser null.
 	
-	if($params['DescripcionMat'] == null) $descMat = null;
-	if($params['Observaciones'] == null) $obs = null;
+	if($params['descmat'] == null) $descMat = null;
+	if($params['observaciones'] == null) $obs = null;
 		
-		$ok = registrarTrabajo($cliente,$params['fechaVisita'],$params['horaEntrada'], $params['horaSalida'], $params['Descripcion'],
+		$ok = registrarTrabajo($cliente, $usuario, $params['fvisita'],$params['horae'], $params['horas'], $params['descripcion'],
 								$descMat, $obs); //Campo ID autocompletable.
 		
 		if($ok){
 			$result[] = "El registro se ha realizado con éxito.";
-			header('Location: ./trabajosCliente.php?cliente=$cliente'); //Esto no se si funcionará.
+			header('Location: ./trabajosCliente.php?cliente='.$cliente.'');
 		} else {
 			$result[] = "El registro no se ha podido realizar con éxito.";
 		}
 
   return $result;
+}
+
+function deleteWork($id){
+	$ok = false;
+	
+	$ok = eliminarTrabajo($id);
+	
+	if($ok){
+			$result[] = "El trabajo ha sido eliminado con éxito.";
+		} else {
+			$result[] = "El trabajo no se ha podido eliminar.";
+	}
+	return $result;
+}
+
+function modificarTrabajosCliente($idCliente, $idClienteN){
+	
+	$result = updateWorksClient($idCliente, $idClienteN);
+
 }
 ?>

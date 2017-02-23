@@ -59,4 +59,18 @@ function eliminarCliente($id){
 	
 	return $result;
 }
+
+function editClient($idV, $idN){
+	global $mysqli;
+	$args = array($idN, $idV);
+	sanitizeArgs($args);	
+	$pst = $mysqli->prepare("UPDATE clientes SET Id = ? WHERE Id = ?");
+	$pst->bind_param("ss", $args[0], $args[1]);
+	
+	$result = $pst->execute();
+	
+	$pst->close();
+	
+	return $result;
+}       
 ?>

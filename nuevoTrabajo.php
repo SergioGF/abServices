@@ -13,28 +13,33 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
 
-
+	<?php
+	$cliente= $_GET['cliente']; 
+	?>
+	
     <title>abServices</title>
  
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
-	<script type="text/javascript">
-		function formTipo(t) {
-			document.getElementById("inputTipo").value=t;
-		}
-		function formEmpresa(e) {
-			document.getElementById("inputEmpresa").value=e;
-		}
-	</script>
   </head>
   <?php
-	require(__DIR__.'/includes/php/registros.php');
-		if(isset($_POST['formRUser'])) {
-			$result = formRegisterUser($_POST);
+	require(__DIR__.'/includes/php/trabajos.php');
+		if(isset($_POST['formRTrabajo'])) {
+			$result = formRegisterTrabajo($_POST,$cliente,$_SESSION["usuario"]);
 		}
 	?>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+			if ($("#mat").attr("checked")){
+				$("#oculto").css("display", "none");
+			}else{
+				$("#oculto").css("display", "block");
+			}
+	});
+	</script>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
@@ -65,124 +70,52 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Registrar nuevo trabajo</h2> 
-				<p>  <?php 
-						if($_SESSION["tipo"] == 3)
-							echo "Administrador";
-						else if($_SESSION["tipo"] == 2)
-							echo "Trabajador";
-						else
-							echo "Cliente";
-					?>
-				</p>
+				<h2 id="cab2">Registrar nuevo trabajo a <?php echo $cliente?></h2> 
 				</div>
 		</div>
 			
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Crear nuevo trabajo</strong></div></div>
-						<div class="alert alert-danger" style="display: none" id="datosFail">
-						<strong>Error!</strong> Hay que señalar tipo de usuario y empresa
-						</div>
-						<div class="alert alert-danger" style="display: none" id="infoDatosRepeat">
-						<script type="text/javascript">
-							function succesDelete() {
-							  document.getElementById("infoDatosRepeat").style.display = 'block';
-							}
-						</script>
-						<?php 
-							if(isset($result)){
-								echo "<script>";
-								echo "succesDelete();";
-								echo "</script>";
-							}
-						?>
-						<strong>Error!</strong> El usuario ya está cogido.
-						</div>
-						<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-						<div class="panel-body">
-							<div class="form-group" id="divUser">
-								<div class="container-fluid">
-								 <input id="newUser"  name="usuario" required="required" class="form-control" placeholder="Nombre de Usuario" maxlength="3"/>
-								</div>
-							</div>
-							<div class="form-group" id="divPass">
-								<div class="container-fluid">
-								  <input id="newPass" type="password" name="pass" required="required" class="form-control" placeholder="Contraseña de usuario" maxlength="10"/>
-								</div>
-							</div>
-							<div class="form-group">
-									<div class="container-fluid">
-										<div class="text-center"> <p><strong> Tipo de usuario </strong></p></div>
-										<div class="text-center"><div class="btn-group">
-										  <button type="button" class="btn btn-primary" id="tipo1" onClick="formTipo('Cliente')">Cliente</button>
-										  <button type="button" class="btn btn-primary" id="tipo2" onClick="formTipo('Trabajador')">Trabajador</button>
-										  <button type="button" class="btn btn-primary" id="tipo3" onClick="formTipo('Administrador')">Administrador</button>
-										  <input id="inputTipo"  name="tipo" required="required" class="form-control" value=" " style="display: none"/>
-										</div></div>
-									</div>
-							</div><hr />
-							<div class="form-group">
-									<div class="container-fluid">
-										<div class="text-center"> <p><strong> Empresa </strong></p></div>
-										<div class="text-center"><div class="btn-group">
-										  <button type="button" class="btn btn-primary" id="e1" onClick="formEmpresa('abServices')">abServices</button>
-										  <button type="button" class="btn btn-primary" id="e2" onClick="formEmpresa('Euroico')">Eurico</button>
-  										  <input id="inputEmpresa"  name="empresa" required="required" class="form-control" value=" " style="display: none"/>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Añadir nuevo trabajo</strong></div></div>
 
-										</div></div>
-									</div>
-							</div>												
+						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+					
+						<div class="panel-body">
+							<div class="form-group">
+							<center>
+								<div class="container-fluid">
+								 <strong>Descripción:</strong> <textarea id="descripcion" name="descripcion" required="required" rows="5" cols="35"></textarea>
+								</div><br>
+								<div class="container-fluid">
+								 <strong>Fecha visita:</strong> <input id="fvisita" name="fvisita" type="date" required="required"/>
+								</div><br>
+								<div class="container-fluid">
+								 <strong>Hora entrada:</strong> <input id="horae" name="horae" type="time" required="required"/>
+								</div><br>
+								<div class="container-fluid">
+								 <strong>Hora salida:</strong> <input id="horas" name="horas" type="time" required="required"/>
+								</div><br>
+								<div class="container-fluid">
+								 <strong>¿Se utilizó algun material?:</strong> <input id="mat" name="mat" type="checkbox"/>
+								</div><br>
+								<div class="container-fluid">
+									<div class ="oculto" id="oculto" style="display: none;"> 
+									 <strong>Descripción material:</strong><textarea id="descmat" name="descmat" rows="5" cols="35"></textarea>
+									</div> 
+								</div>
+								<div class="container-fluid">
+								 <strong>Observaciones:</strong> <textarea id="observaciones" name="observaciones" rows="5" cols="35"></textarea>
+								</div><br>
+							</center>
+							</div>
 						</div>
 						<div class="panel-footer">
-							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Volver atrás"></input>
-							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in" style="float: right"><strong>Crear usuario</strong></button>
+							<input  class="btn btn-primary" type="button" onClick="location.href='./trabajosCliente.php?cliente=<?php echo $cliente ?>'" value="Volver atrás"></input>
+							<button type="submit" class="btn btn-primary" name="formRTrabajo" value="Sign in" style="float: right"><strong>Crear trabajo</strong></button>
 						</div>
 						</form>
 			</div>
 		</div>
-		<script type="text/javascript">
-				function validarDatos() {
-				var p1 = document.getElementById("newPass").value;
-				var p2 = document.getElementById("newUser").value;
-				var espacios1 = false;
-				var cont = 0;
-				while (!espacios1 && (cont < p1.length)) {
-				  if (p1.charAt(cont) == " ")
-					espacios1 = true;
-				  cont++;
-				}
-				if (espacios1) {
-				  //alert ("La contraseña no puede contener espacios en blanco");
-				  document.getElementById("newPass").value ="";
-				  document.getElementById("newPass").placeholder ="La contraseña no puede contener espacios en blanco";
-				  document.getElementById("divPass").className = "form-group has-error has-feedback";
-				  return false;
-				}
-				var espacios2 = false;
-				var cont = 0;
-				while (!espacios2 && (cont < p2.length)) {
-				  if (p2.charAt(cont) == " ")
-					espacios2 = true;
-				  cont++;
-				}
-				if (espacios2) {
-				  document.getElementById("newUser").value ="";
-				  document.getElementById("newUser").placeholder ="El usuario no puede tener espacios en blanco";
-				  document.getElementById("divUser").className = "form-group has-error has-feedback";
-				  return false;
-				}
-				var p3 = document.getElementById("inputEmpresa").value;
-				if(p3 == " "){
-				 document.getElementById("datosFail").style.display = 'block';
-				}
-				var p4 = document.getElementById("inputTipo").value;
-				if(p4 == " "){
-				document.getElementById("datosFail").style.display = 'block';
-				return false;
-				}
-				}
-		</script>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>

@@ -62,3 +62,33 @@ background-color: #ededed;
 #nameC{
 width: 55%;
 }
+
+.tamPanel{
+	width: 630px !important;
+	margin-bottom: 10px;
+}
+
+#lineas{
+	margin-top: -10px !important;
+    margin-bottom: 10px !important; 
+	background-color: #337ab7;
+	height: 2px;
+}
+
+#margenIm{
+	margin-right: 5px;
+	margin-left: -5px !important;
+}
+
+#derecha{
+	text-align:right;
+}
+
+#negrita{
+	font-weight: bold;
+}
+
+.oculto{
+	margin-top: 5px;
+    margin-bottom: 5px;
+}

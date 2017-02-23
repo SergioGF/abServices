@@ -58,28 +58,42 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Trabajo</h2> 
+				<h2 id="cab2">Trabajo hecho a <?php echo $client ?></h2> 
 				</div>
 		</div>
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Trabajo</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong><img id="margenIm" src="./includes/css/trabajo.png">Trabajo Nº <?php echo $id ?></strong></div></div>
 						<div class="panel-body">
 								<?php 
 								$trabajos = conseguirInfoTrabajo($id);
 									
 									foreach($trabajos as $trabajo){ //Si no se pone el for, no deja sacar la información.
-									echo '<div class="form-group"><div class="container-fluid">'.$trabajo['Descripcion'].'</div></div>';
+									echo '<div class="form-group"><div class="container-fluid">
+										<ul>
+										<li> <span id="negrita">Hecho por:</span> '.$trabajo['Trabajador'].'</li><br>
+										<li> <span id="negrita">Descripción:</span> '.$trabajo['Descripcion'].'</li><br>
+										<li> <span id="negrita">Fecha visita:</span> '.$trabajo['FVisita'].'</li><br>
+										<li> <span id="negrita">Hora entrada:</span> '.$trabajo['HoraE'].'</li><br>
+										<li> <span id="negrita">Hora salida:</span> '.$trabajo['HoraS'].'</li><br>
+										<li> <span id="negrita">Materiales:</span> '.$trabajo['DescripcionMat'].'</li><br>
+										<li> <span id="negrita">Observaciones:</span> '.$trabajo['Observaciones'].'</li><br>
+										</ul>
+										</div></div>';
 									}
 								?>	
 							<div class="form-group">
-								<div class="col-lg-offset-4 col-lg-11">
-									<div class="center-block"><a href="trabajosCliente.php?cliente=MACRIS"><button type="button" class="btn btn-primary"  value="Anadir"><strong>Volver a la lista de trabajos</strong></button></a></div>
-								</div>
+									</div>
 							</div>
 
-						</div>								
+							
+						<div class="panel-footer">
+							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Modificar"></input>
+							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Eliminar"></input>
+							<a href="trabajosCliente.php?cliente=<?php echo $client ?>"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Volver a la lista de trabajos</strong></button></a>
+						</div>	
+						</div>
 							</form>
 						</div>
 					</div>

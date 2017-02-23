@@ -53,4 +53,27 @@ function deleteClient($id){
 	return $result;
 }
 
+function modificarCliente($params, $id){
+	
+	$idN = $params['idNuevo']; //El name que le pongas en el formulario.
+	
+	$result = [];
+  
+	$ok = false;
+ 
+	 $ok = editClient($id,$idN);
+	
+		if($ok == false){
+			$result[] = "El nombre del cliente que ha introducido ya se encuentra en uso.";
+			
+		}
+		else {
+			modificarTrabajosCliente($id, $idN);
+			$result[] = "El nombre del cliente se ha actualizado correctamente.";
+			
+		}
+  return $result;
+	
+}
+
 ?>
