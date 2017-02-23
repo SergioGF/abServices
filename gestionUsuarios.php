@@ -60,11 +60,40 @@ if (session_status() == PHP_SESSION_NONE) {
 				</ul>
 			</div>
 		</nav>
-		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
-				<div class="container">
-				<h2 id="cab2">Página Principal</h2> 
-				<p>  Administrador  </p>
+				<div class="row">
+					<div class="col-md-1" ></div>
+					<div class="col-md-4" >
+					<div class="container">
+					<h2 id="cab2">Gestión de usuarios</h2> 
+					<p>  <?php 
+							if($_SESSION["tipo"] == 3)
+								echo "Administrador";
+							else if($_SESSION["tipo"] == 2)
+								echo "Trabajador";
+							else
+								echo "Cliente";
+						?>
+					</p>
+					</div>
+					</div>
+					<div class="col-md-2" ></div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionClientes.php'">
+						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Gestión clientes
+						</button>
+					<?php } ?>
+					</div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionUsuarios.php'">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"id="userGestion"></span> <span class="glyphicon glyphicon-user" id="userGestion" aria-hidden="true"></span> <br>Gestión usuarios
+						</button>
+					<?php } ?>
+					</div>
 				</div>
 		</div>
 			
@@ -151,11 +180,11 @@ if (session_status() == PHP_SESSION_NONE) {
 				</ul>
 				<?php } ?>
 			</div>
-			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
 			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/admin2.png" class="img-responsive"  alt="Imagen responsive"></div></div>
 			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
+			<div class="col-md-1" id="vacio"> <div class="container-fluid"> <div class="pull-right"><button onClick="location.href='./nuevoTrabajador.php'" id="botonCrearC" class="btn btn-primary" ><strong>+ Usuario</strong></button> </div></div></div>
 			</div>
-		<a class="btn btn-primary"  href="nuevoTrabajador.php"><strong>Crear nuevo usuario +</strong></a>
+		<!--<a class="btn btn-primary"  href="nuevoTrabajador.php"><strong>Crear nuevo usuario +</strong></a>-->
 		<!-- Modal -->
 		<div id="myModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">

@@ -84,7 +84,7 @@ function updateWorksClient($idCliente, $idClienteN){
 	global $mysqli;
 	$args = array($idClienteN,$idCliente);
 	sanitizeArgs($args);	
-	$pst = $mysqli->prepare("UPDATE trabajos SET IdCliente = ? WHERE Usuario = ?");
+	$pst = $mysqli->prepare("UPDATE trabajos SET IdCliente = ? WHERE IdCliente = ?");
 	$pst->bind_param("ss", $args[0], $args[1]);
 	
 	$result = $pst->execute();

@@ -65,6 +65,36 @@ if (session_status() == PHP_SESSION_NONE) {
 						<div class="panel panel-primary" >
 						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Listado de trabajos</strong></div></div>
 						<div class="panel-body">
+							<div class="alert alert-success" style="display: none" id="infoNewTrabajo">
+								<script type="text/javascript">
+									function succesNew() {
+									  document.getElementById("infoNewTrabajo").style.display = 'block';
+									}
+								</script>
+								<?php 
+									if($_GET['newTrabajo'] == 1){
+										echo "<script>";
+										echo "succesNew();";
+										echo "</script>";
+									}
+								?>
+								<strong>Exito!</strong> Has creado el trabajo correctamente.
+							</div>
+							<div class="alert alert-success" style="display: none" id="infoDeleteTrabajo">
+								<script type="text/javascript">
+									function succesDelete() {
+									  document.getElementById("infoDeleteTrabajo").style.display = 'block';
+									}
+								</script>
+								<?php 
+									if($_GET['deleteTrabajo'] == 1){
+										echo "<script>";
+										echo "succesDelete();";
+										echo "</script>";
+									}
+								?>
+								<strong>Exito!</strong> Has eliminado el trabajo correctamente.
+							</div>
 								<?php 
 								$trabajos = conseguirTrabajos($cliente);
 

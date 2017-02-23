@@ -63,17 +63,40 @@ if (session_status() == PHP_SESSION_NONE) {
 		</nav>
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
-				<div class="container">
-				<h2 id="cab2">Gestión de clientes</h2> 
-				<p>  <?php 
-						if($_SESSION["tipo"] == 3)
-							echo "Administrador";
-						else if($_SESSION["tipo"] == 2)
-							echo "Trabajador";
-						else
-							echo "Trabajador";
-					?>
-				</p>
+				<div class="row">
+					<div class="col-md-1" ></div>
+					<div class="col-md-4" >
+					<div class="container">
+					<h2 id="cab2">Gestión de clientes</h2> 
+					<p>  <?php 
+							if($_SESSION["tipo"] == 3)
+								echo "Administrador";
+							else if($_SESSION["tipo"] == 2)
+								echo "Trabajador";
+							else
+								echo "Cliente";
+						?>
+					</p>
+					</div>
+					</div>
+					<div class="col-md-2" ></div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionClientes.php'">
+						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Gestión clientes
+						</button>
+					<?php } ?>
+					</div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionUsuarios.php'">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"id="userGestion"></span> <span class="glyphicon glyphicon-user" id="userGestion" aria-hidden="true"></span> <br>Gestión usuarios
+						</button>
+					<?php } ?>
+					</div>
+					<div class="col-md-1" ></div>
 				</div>
 		</div>
 			
@@ -103,7 +126,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				}
 			</script>
 			<?php 
-				if($_GET['ClienteEdit'] == 1){
+				if($_GET['clienteEdit'] == 1){
 					echo "<script>";
 					echo "succesEdit();";
 					echo "</script>";
@@ -136,17 +159,17 @@ if (session_status() == PHP_SESSION_NONE) {
 							<?php echo '<a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a>'; ?>
 						</li>
 						<li class="list-group-item" id="accionesC">
-							<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarCliente.php?clienteToEdit=<?php echo $cliente["Id"]?>';"></button>
-							<button class="glyphicon glyphicon-remove" onclick="eliminarCliente('<?php echo $cliente["Id"]?>')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>
+							<button class="glyphicon glyphicon-pencil" id="editC" onclick="location.href='./modificarCliente.php?clienteToEdit=<?php echo $cliente["Id"]?>';"></button>
+							<button class="glyphicon glyphicon-remove" onclick="eliminarCliente('<?php echo $cliente["Id"]?>')" data-toggle="modal" data-target="#myModal" id="deleteC"></button>
 						</li>
 					</ul>
 					<?php } ?>
 				</div>
-				<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
 				<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/admin2.png" class="img-responsive"  alt="Imagen responsive"></div></div>
 				<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
+				<div class="col-md-1" id="vacio"> <div class="container-fluid"> <div class="pull-right"><button onClick="location.href='./nuevoCliente.php'" id="botonCrearC" class="btn btn-primary" ><strong>+ Cliente</strong></button> </div></div></div>
 				</div>
-			<a class="btn btn-primary"  href="nuevoCliente.php"><strong>Crear nuevo cliente +</strong></a> 
+			<!--<a class="btn btn-primary"  href="nuevoCliente.php"><strong>Crear nuevo cliente +</strong></a> -->
 			<!-- Modal -->
 			<div id="myModal" class="modal fade" role="dialog">
 			  <div class="modal-dialog">

@@ -90,17 +90,40 @@ $user = getUser($userEdit);
 		</nav>
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
-				<div class="container">
-				<h2 id="cab2">Modificar permisos</h2> 
-				<p>  <?php 
-						if($_SESSION["tipo"] == 3)
-							echo "Administrador";
-						else if($_SESSION["tipo"] == 2)
-							echo "Trabajador";
-						else
-							echo "Trabajador";
-					?>
-				</p>
+				<div class="row">
+					<div class="col-md-1" ></div>
+					<div class="col-md-4" >
+					<div class="container">
+					<h2 id="cab2">Listado de clientes</h2> 
+					<p>  <?php 
+							if($_SESSION["tipo"] == 3)
+								echo "Administrador";
+							else if($_SESSION["tipo"] == 2)
+								echo "Trabajador";
+							else
+								echo "Cliente";
+						?>
+					</p>
+					</div>
+					</div>
+					<div class="col-md-2" ></div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionClientes.php'">
+						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Gestión clientes
+						</button>
+					<?php } ?>
+					</div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionUsuarios.php'">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"id="userGestion"></span> <span class="glyphicon glyphicon-user" id="userGestion" aria-hidden="true"></span> <br>Gestión usuarios
+						</button>
+					<?php } ?>
+					</div>
+					<div class="col-md-1" ></div>
 				</div>
 		</div>
 			
@@ -145,7 +168,7 @@ $user = getUser($userEdit);
 								</div>												
 						</div>
 						<div class="panel-footer">
-							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Volver a los anteriores"></input>
+							<input  class="btn btn-primary" type="button" onClick="location.href='./gestionUsuarios.php'" value="Volver a los anteriores"></input>
 							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in" style="float: right"><strong>Guardar cambios</strong></button>
 						</div>
 						</form>

@@ -38,7 +38,7 @@ function formRegisterTrabajo($params, $cliente, $usuario) {
 		
 		if($ok){
 			$result[] = "El registro se ha realizado con éxito.";
-			header('Location: ./trabajosCliente.php?cliente='.$cliente.'');
+			header('Location: ./trabajosCliente.php?cliente='.$cliente.'&newTrabajo=1');
 		} else {
 			$result[] = "El registro no se ha podido realizar con éxito.";
 		}
@@ -53,15 +53,15 @@ function deleteWork($id){
 	
 	if($ok){
 			$result[] = "El trabajo ha sido eliminado con éxito.";
+			header('Location: ./trabajosCliente.php?cliente='.$cliente.'&deleteTrabajo=1');
 		} else {
 			$result[] = "El trabajo no se ha podido eliminar.";
 	}
 	return $result;
 }
 
-function modificarTrabajosCliente($idCliente, $idClienteN){
-	
-	$result = updateWorksClient($idCliente, $idClienteN);
-
+function actualizarTrabajosCliente($oldId, $newId){
+	$result = updateWorksClient($oldId, $newId);
+	return $result;
 }
 ?>

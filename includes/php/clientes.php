@@ -53,27 +53,22 @@ function deleteClient($id){
 	return $result;
 }
 
-function modificarCliente($params, $id){
-	
-	$idN = $params['idNuevo']; //El name que le pongas en el formulario.
-	
-	$result = [];
-  
-	$ok = false;
- 
-	 $ok = editClient($id,$idN);
-	
-		if($ok == false){
-			$result[] = "El nombre del cliente que ha introducido ya se encuentra en uso.";
-			
+function editClient($oldId, $newId){
+	if(buscarClient($oldId) > 0) { // Siempre va a existir porque sale en la lista, aunque se realiza la comprobación por si acaso.
+		$ok = actualizarCliente($oldId, $newId);
+		$ok2 = actualizarTrabajosCliente($oldId, $newId); 
+		
+		if($ok && $ok2){
+			$result[] = "El cliente ha sido editado con éxito.";
+			header('Location: ./gestionClientes.php?clienteEdit=1');
+		} else {
+			$result[] = "El cliente no se ha podido editar.";
 		}
-		else {
-			modificarTrabajosCliente($id, $idN);
-			$result[] = "El nombre del cliente se ha actualizado correctamente.";
-			
-		}
-  return $result;
-	
+	}
+	else{
+		$result[] = "El cliente no se ha podido editar.";
+	}
+	return $result;
 }
 
 ?>
