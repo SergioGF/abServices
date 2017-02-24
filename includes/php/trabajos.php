@@ -46,7 +46,7 @@ function formRegisterTrabajo($params, $cliente, $usuario) {
   return $result;
 }
 
-function deleteWork($id){
+function deleteWork($id, $cliente){
 	$ok = false;
 	
 	$ok = eliminarTrabajo($id);

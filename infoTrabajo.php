@@ -15,7 +15,11 @@ if (session_status() == PHP_SESSION_NONE) {
 
 	<?php
 	$client = $_GET['cliente']; 
-	$id = $_GET['id']; 
+	$id = $_GET['id'];
+require(__DIR__.'/includes/php/trabajos.php');	
+	if(isset($_POST['formDelete'])) {
+	$result = deleteWork($_POST['trabajo'], $client);
+	}
 	?>
 
     <title>Trabajo</title>
@@ -25,15 +29,12 @@ if (session_status() == PHP_SESSION_NONE) {
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
 	<script type="text/javascript">
-	function eliminarUs(nombre) {
-		document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar a " + nombre + " ?";
-		document.getElementById("trabajo").value=nombre;
+	function eliminarWk(trabajo) {
+		document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar al trabajo Nº " + trabajo + " ?";
+		document.getElementById("trabajo").value=trabajo;
 	}
 	</script>
   </head>
-  <?php 
-    require(__DIR__.'/includes/php/trabajos.php');
-?>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
@@ -92,7 +93,8 @@ if (session_status() == PHP_SESSION_NONE) {
 						</div>
 						<div class="panel-footer">
 							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Modificar"></input>
-							<input  class="btn btn-primary" type="button" onClick="eliminarUs('<?php echo $trabajo["Id"]?>')" value="Eliminar" ></input>
+							<!--<button class="glyphicon glyphicon-remove" onclick="eliminarUs('<?php echo $us["Usuario"]?>')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>-->
+							<input  class="btn btn-primary" type="button" onClick="eliminarWk('<?php echo $trabajo["Id"]?>')" value="Eliminar" data-toggle="modal" data-target="#myModal" id="deleteTrabajo" ></input>
 							<a href="trabajosCliente.php?cliente=<?php echo $client ?>"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Volver a la lista de trabajos</strong></button></a>
 						</div>	
 						</div>
@@ -100,6 +102,30 @@ if (session_status() == PHP_SESSION_NONE) {
 						</div>
 					</div>
 		</div>
+		
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"></button>
+				<h4 class="modal-title">Eliminar Trabajo</h4>
+			  </div>
+			  <div class="modal-body" id="bodyPop">
+				<p>¿Estás seguro de que deseas eliminar?</p>
+			  </div>
+			  <div class="modal-footer">
+				<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+					 <input id="trabajo" type="text" name="trabajo" class="form-control" placeholder="Trabajo" value="" style="display: none"/>
+					<button class="btn btn-primary" style="float: right" type="submit" value="Sign in" name="formDelete">Si</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" style="float: left">No</button>
+				</form>
+			  </div>
+			</div>
+
+		  </div>
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
