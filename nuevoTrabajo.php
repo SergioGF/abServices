@@ -81,33 +81,33 @@ if (session_status() == PHP_SESSION_NONE) {
 						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
 					
 						<div class="panel-body">
-							<div class="form-group">
 							<center>
-								<div class="container-fluid">
-								 <strong>Descripción:</strong> <textarea id="descripcion" name="descripcion" required="required" rows="5" cols="35"></textarea>
-								</div><br>
-								<div class="container-fluid">
-								 <strong>Fecha visita:</strong> <input id="fvisita" name="fvisita" type="date" required="required"/>
-								</div><br>
-								<div class="container-fluid">
-								 <strong>Hora entrada:</strong> <input id="horae" name="horae" type="time" required="required"/>
-								</div><br>
-								<div class="container-fluid">
-								 <strong>Hora salida:</strong> <input id="horas" name="horas" type="time" required="required"/>
-								</div><br>
-								<div class="container-fluid">
-								 <strong>¿Se utilizó algun material?:</strong> <input id="mat" name="mat" type="checkbox"/>
-								</div><br>
-								<div class="container-fluid">
+							<table border="0" cellpadding="0" cellspacing="2" width="50%">
+								<tr>
+								  <td width="70%"><strong id="nombresForm">Descripción:</strong></td> <td width="30%"><textarea id="cajas" name="descripcion" required="required" rows="5" cols="35"></textarea></td>
+								</tr>
+								<tr>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" name="fvisita" type="date" required="required"/></td>
+								</tr>
+								<tr>
+								 <td width="70%"><strong>Hora entrada:</strong></td><td width="30%"><input id="cajas" name="horae" type="time" required="required"/></td>
+								</tr>
+								<tr>
+								  <td width="70%"><strong>Hora salida:</strong></td><td width="30%"><input id="cajas" name="horas" type="time" required="required"/></td>
+								</tr>
+								<tr>
+								<td width="70%"><strong>¿Se utilizó algun material?:</strong></td><td width="30%"><input id="cajas" name="mat" type="checkbox"/></td>
+								</tr>
+								<tr>
 									<div class ="oculto" id="oculto" style="display: none;"> 
-									 <strong>Descripción material:</strong><textarea id="descmat" name="descmat" rows="5" cols="35"></textarea>
+								<td width="70%"><strong>Descripción material:</strong></td><td width="30%"><textarea id="cajas" name="descmat" rows="5" cols="35"></textarea></td>
 									</div> 
-								</div>
-								<div class="container-fluid">
-								 <strong>Observaciones:</strong> <textarea id="observaciones" name="observaciones" rows="5" cols="35"></textarea>
-								</div><br>
+								</tr>
+								<tr>
+								 <td width="70%"><strong>Observaciones:</strong></td><td width="30%"><textarea id="cajas" name="observaciones" rows="5" cols="35"></textarea></td>
+								</tr>
+							</table>
 							</center>
-							</div>
 						</div>
 						<div class="panel-footer">
 							<input  class="btn btn-primary" type="button" onClick="location.href='./trabajosCliente.php?cliente=<?php echo $cliente ?>'" value="Volver atrás"></input>

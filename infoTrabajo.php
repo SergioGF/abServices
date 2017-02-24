@@ -24,6 +24,12 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+	function eliminarUs(nombre) {
+		document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar a " + nombre + " ?";
+		document.getElementById("trabajo").value=nombre;
+	}
+	</script>
   </head>
   <?php 
     require(__DIR__.'/includes/php/trabajos.php');
@@ -83,14 +89,10 @@ if (session_status() == PHP_SESSION_NONE) {
 										</div></div>';
 									}
 								?>	
-							<div class="form-group">
-									</div>
-							</div>
-
-							
+						</div>
 						<div class="panel-footer">
 							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Modificar"></input>
-							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Eliminar"></input>
+							<input  class="btn btn-primary" type="button" onClick="eliminarUs('<?php echo $trabajo["Id"]?>')" value="Eliminar" ></input>
 							<a href="trabajosCliente.php?cliente=<?php echo $client ?>"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Volver a la lista de trabajos</strong></button></a>
 						</div>	
 						</div>

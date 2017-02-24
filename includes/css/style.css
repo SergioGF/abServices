@@ -137,3 +137,10 @@ background-color: #161e45;
 #panelFooter{
 background-color: #ededed;
 }
+
+#cajas{
+	border: 2px solid #CED5D7;
+	resize: none;
+	box-shadow:0 0 0 3px #EEF5F7;
+	margin-bottom: 3px;
+}
