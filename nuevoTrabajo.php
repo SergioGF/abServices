@@ -23,6 +23,18 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element.style.display='table-row';
+        }
+        else {
+            element.style.display='none';
+        }
+    }
+</script>
   </head>
   <?php
 	require(__DIR__.'/includes/php/trabajos.php');
@@ -31,15 +43,6 @@ if (session_status() == PHP_SESSION_NONE) {
 		}
 	?>
 	
-	<script type="text/javascript">
-	$(document).ready(function(){
-			if ($("#mat").attr("checked")){
-				$("#oculto").css("display", "none");
-			}else{
-				$("#oculto").css("display", "block");
-			}
-	});
-	</script>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
@@ -96,12 +99,10 @@ if (session_status() == PHP_SESSION_NONE) {
 								  <td width="70%"><strong>Hora salida:</strong></td><td width="30%"><input id="cajas" name="horas" type="time" required="required"/></td>
 								</tr>
 								<tr>
-								<td width="70%"><strong>¿Se utilizó algun material?:</strong></td><td width="30%"><input id="cajas" name="mat" type="checkbox"/></td>
+								<td width="70%"><strong>¿Se utilizó algun material?:</strong></td><td width="30%"><input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" /></td>
 								</tr>
-								<tr>
-									<div class ="oculto" id="oculto" style="display: none;"> 
+								<tr id="content" style="display: none;">
 								<td width="70%"><strong>Descripción material:</strong></td><td width="30%"><textarea id="cajas" name="descmat" rows="5" cols="35"></textarea></td>
-									</div> 
 								</tr>
 								<tr>
 								 <td width="70%"><strong>Observaciones:</strong></td><td width="30%"><textarea id="cajas" name="observaciones" rows="5" cols="35"></textarea></td>

@@ -182,7 +182,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			</div>
 			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/admin2.png" class="img-responsive"  alt="Imagen responsive"></div></div>
 			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
-			<div class="col-md-1" id="vacio"> <div class="container-fluid"> <div class="pull-right"><button onClick="location.href='./nuevoTrabajador.php'" id="botonCrearC" class="btn btn-primary" ><strong>+ Usuario</strong></button> </div></div></div>
+			<div class="col-md-1" id="vacio"> <div class="container-fluid"> <div class="pull-right"><button onClick="location.href='./nuevoTrabajador.php'" id="botonCrearC" class="btn btn-primary" ><strong>Añadir Usuario</strong></button> </div></div></div>
 			</div>
 		<!--<a class="btn btn-primary"  href="nuevoTrabajador.php"><strong>Crear nuevo usuario +</strong></a>-->
 		<!-- Modal -->
