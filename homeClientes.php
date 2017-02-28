@@ -68,7 +68,14 @@ if (session_status() == PHP_SESSION_NONE) {
 					</p>
 					</div>
 					</div>
-					<div class="col-md-2" ></div>
+					<div class="col-md-2" >
+					<?php
+						if($_SESSION["tipo"] == 3){ ?>
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./homeConsultas.php'">
+						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Consultas
+						</button>
+					<?php } ?>
+					</div>
 					<div class="col-md-2" >
 					<?php
 						if($_SESSION["tipo"] == 3){ ?>

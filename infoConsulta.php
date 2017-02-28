@@ -12,12 +12,22 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
-
+	
 	<?php
-	$cliente= $_GET['cliente']; 
+	$tipo= $_GET['tipo']; 
+	
+	if($tipo == 1){
+		$cliente = $_GET['cliente']; 
+	} else if($tipo == 2){
+		$cliente = $_GET['cliente'];
+		$fIni = $_GET['fIni'];
+		$fFin = $_GET['fFin'];
+	} else{
+		$tecnico = $_GET['tecnico'];
+	}
 	?>
 
-    <title>Cliente <?php echo $cliente?> </title>
+    <title>abServices</title>
  
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
@@ -25,7 +35,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
   </head>
   <?php 
-    require(__DIR__.'/includes/php/trabajos.php');
+    require(__DIR__.'/includes/php/consultas.php');
 ?>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
@@ -57,58 +67,36 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Cliente <?php echo $cliente?></h2> 
+				<h2 id="cab2">Consulta</h2> 
 				</div>
 		</div>
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Listado de trabajos</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo <?php if($tipo == 1) echo 'Cliente'; else if($tipo == 2)  echo 'Fecha y cliente'; else echo 'Técnico'?></strong></div></div>
 						<div class="panel-body">
-							<div class="alert alert-success" style="display: none" id="infoNewTrabajo">
-								<script type="text/javascript">
-									function succesNew() {
-									  document.getElementById("infoNewTrabajo").style.display = 'block';
-									}
-								</script>
-								<?php 
-									if($_GET['newTrabajo'] == 1){
-										echo "<script>";
-										echo "succesNew();";
-										echo "</script>";
-									}
-								?>
-								<strong>Exito!</strong> Has creado el trabajo correctamente.
-							</div>
-							<div class="alert alert-success" style="display: none" id="infoDeleteTrabajo">
-								<script type="text/javascript">
-									function succesDelete() {
-									  document.getElementById("infoDeleteTrabajo").style.display = 'block';
-									}
-								</script>
-								<?php 
-									if($_GET['deleteTrabajo'] == 1){
-										echo "<script>";
-										echo "succesDelete();";
-										echo "</script>";
-									}
-								?>
-								<strong>Exito!</strong> Has eliminado el trabajo correctamente.
-							</div>
-								<?php 
-								$trabajos = conseguirTrabajos($cliente);
+							<?php 
+								$trabajos = [];
+								
+								if($tipo == 1){
+									$trabajos = consByClient($cliente);
+								} else if($tipo == 2){
+									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
+								} else{
+									$trabajos = consByTechnician($tecnico);
+								}
 
 									foreach($trabajos as $trabajo){
-									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd-m-Y').'</div></strong><div id="derecha">'.$trabajo['Descripcion'].'</div></a></div><hr id="lineas">';
+									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></div><hr id="lineas">';
 									}
-								?>	<br>
-							<div class="form-group">
-								<div class="col-lg-offset-4 col-lg-11">
-									<div class="center-block"><a href="nuevoTrabajo.php?cliente=<?php echo $cliente ?>"><button id="botonCentrado" type="button" class="btn btn-primary"  value="Anadir"><strong>Añadir trabajo</strong></button></a></div>
-								</div>
-							</div>
+							?>	
+						</div>	
+							<div class="panel-footer">
+							<input  class="btn btn-primary" type="button" onClick="" value="Generar informe"></input>
+							<a href="location.href='./homeConsultas.php'"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Hacer otra consulta</strong></button></a>
+						</div>	
 
-						</div>								
+													
 							</form>
 						</div>
 					</div>
