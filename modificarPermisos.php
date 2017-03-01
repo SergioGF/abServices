@@ -138,7 +138,7 @@ $user = getUser($userEdit);
 								<?php 
 										if(isset($result)){
 											echo '<ul>';
-											foreach($result as $error){
+											foreach((array)$result as $error){
 												echo '<li class = "errorLogin">'.$error.'</li>';
 											}
 											echo '</ul>';

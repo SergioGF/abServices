@@ -76,7 +76,7 @@ require(__DIR__.'/includes/php/trabajos.php');
 								<?php 
 								$trabajos = conseguirInfoTrabajo($id);
 									
-									foreach($trabajos as $trabajo){ //Si no se pone el for, no deja sacar la información.
+									foreach((array)$trabajos as $trabajo){ //Si no se pone el for, no deja sacar la información.
 									echo '<div class="form-group"><div class="container-fluid">
 										<ul>
 										<li> <span id="negrita">Hecho por:</span> '.$trabajo['Trabajador'].'</li><br>

@@ -73,7 +73,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo <?php if($tipo == 1) echo 'Cliente'; else if($tipo == 2)  echo 'Fecha y cliente'; else echo 'Técnico'?></strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Cliente'; else if($tipo == 2)  echo 'Fecha y cliente'; else echo 'Técnico'?>'</strong></div></div>
 						<div class="panel-body">
 							<?php 
 								$trabajos = [];
@@ -86,14 +86,14 @@ if (session_status() == PHP_SESSION_NONE) {
 									$trabajos = consByTechnician($tecnico);
 								}
 
-									foreach($trabajos as $trabajo){
+									foreach((array)$trabajos as $trabajo){
 									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></div><hr id="lineas">';
 									}
 							?>	
 						</div>	
 							<div class="panel-footer">
 							<input  class="btn btn-primary" type="button" onClick="" value="Generar informe"></input>
-							<a href="location.href='./homeConsultas.php'"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Hacer otra consulta</strong></button></a>
+							<a href="homeConsultas.php"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Hacer otra consulta</strong></button></a>
 						</div>	
 
 													

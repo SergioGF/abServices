@@ -153,7 +153,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				<div class="col-md-6" > 
 					<?php
 					$clientes = conseguirClientes();				
-					foreach($clientes as $cliente){?>
+					foreach((array)$clientes as $cliente){?>
 					<ul class="list-group">
 						<li class="list-group-item" id="nameC">
 							<?php echo '<a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a>'; ?>

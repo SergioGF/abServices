@@ -98,7 +98,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								<?php 
 								$trabajos = conseguirTrabajos($cliente);
 
-									foreach($trabajos as $trabajo){
+									foreach((array)$trabajos as $trabajo){
 									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd-m-Y').'</div></strong><div id="derecha">'.$trabajo['Descripcion'].'</div></a></div><hr id="lineas">';
 									}
 								?>	<br>

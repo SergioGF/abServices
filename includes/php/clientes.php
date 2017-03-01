@@ -71,4 +71,15 @@ function editClient($oldId, $newId){
 	return $result;
 }
 
+function getCliente($id){
+	
+	$ok = false;
+	
+	if(buscarClient($id) > 0){
+		$ok = true;
+	}
+	
+	return $ok;
+}
+
 ?>

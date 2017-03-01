@@ -103,7 +103,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								<?php 
 								
 								$clientes = conseguirClientes();				
-									foreach($clientes as $cliente){
+									foreach((array)$clientes as $cliente){
 									echo '<div class="form-group"><div class="container-fluid"><img id="margenIm" src="./includes/css/contacto.png"><a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div><hr id="lineas">';
 									}
 								

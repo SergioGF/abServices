@@ -96,5 +96,15 @@ function getUsuarios(){
 	return $users;
 }
 
+function getTecnico($nick){
+	$ok = false;
+	
+	if(buscarNick($nick) > 0){
+		$ok = true;
+	}
+	
+	return $ok;
+}
+
 
 ?>

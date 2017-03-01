@@ -35,14 +35,22 @@ if (session_status() == PHP_SESSION_NONE) {
   </head>
   <?php
 	require(__DIR__.'/includes/php/consultas.php');
+	require(__DIR__.'/includes/php/clientes.php');
+	require(__DIR__.'/includes/php/usuarios.php');
 		if(isset($_POST['formConsCliente'])) { //Habrá que comprobar primero si existe el cliente.
+			if(getCliente($_POST['conscliente'])){
 			  header('Location: ./infoConsulta.php?cliente='.$_POST['conscliente'].'&tipo=1');
+			}  
 		}
 		if(isset($_POST['formConsFyC'])) { //Habrá que comprobar primero si existe el cliente.
+			if(getCliente($_POST['conscliente'])){
 			  header('Location: ./infoConsulta.php?cliente='.$_POST['conscliente'].'&fIni='.$_POST['consf1'].'&fFin='.$_POST['consf2'].'&tipo=2');
+			}
 		}
 		if(isset($_POST['formTecnico'])) { //Habrá que comprobar primero si existe el técnico.
+			if(getTecnico($_POST['constecnico'])){
 			  header('Location: ./infoConsulta.php?tecnico='.$_POST['constecnico'].'&tipo=3');
+			}
 		}
 	?>
   <body>
@@ -64,7 +72,7 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
+						  <li><a href="cambiarUser.php">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -81,15 +89,15 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong><img id="margenIm" src="./includes/css/lupa.png">Consultas de trabajos</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong><img id="margenIm" src="./includes/css/lupa.png">Consultas de trabajos</strong></div></div><br>
 						<div class="panel-body">
 							<center>
 								<a href=""><button name="b1" class="btn btn-primary" onclick="showContent()"><strong>Cliente</strong></button></a>
 								<a href=""><button name="b2" class="btn btn-primary" onclick="showContent2()"><strong>Fecha y cliente</strong></button></a>
-								<a href=""><button name="b3" class="btn btn-primary" onclick="showContent3()"><strong>Técnico</strong></button></a>
+								<a href=""><button name="b3" class="btn btn-primary" onclick="showContent3()"><strong>Técnico</strong></button></a><br><br>
 								<div id="content1" style="display: none;">
 									<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
-										 <input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/>
+										 <input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/><br>
 										 <button type="submit" class="btn btn-primary" name="formConsCliente" value="Sign in"><strong>Buscar</strong></button>
 									</form>
 								</div>
@@ -97,13 +105,13 @@ if (session_status() == PHP_SESSION_NONE) {
 									<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
 										<input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/>
 										Fecha inicial: <input id="consf1" type="date"  name="consf1" required="required" class="form-control" placeholder="Fecha inicial"/>
-										Fecha final: <input id="consf2" type="date"  name="consf2" required="required" class="form-control" placeholder="Fecha final"/>
+										Fecha final: <input id="consf2" type="date"  name="consf2" required="required" class="form-control" placeholder="Fecha final"/><br>
 										<button type="submit" class="btn btn-primary" name="formConsFyC" value="Sign in"><strong>Buscar</strong></button>
 									</form>
 								</div>
 								<div id="content3" style="display: none;">
 									<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
-										 <input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/>
+										 <input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/><br>
 										 <button type="submit" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 									</form>								
 								</div>

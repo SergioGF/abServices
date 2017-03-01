@@ -150,7 +150,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				<?php
 				require(__DIR__.'/includes/php/usuarios.php');
 				$users = getUsuarios();
-				foreach ($users as $us){ ?>
+				foreach ((array)$users as $us){ ?>
 				<ul class="list-group">
 					<li class="list-group-item" id="nameU">
 						 <b> <?php echo $us["Usuario"]?></b>
