@@ -85,14 +85,18 @@ if (session_status() == PHP_SESSION_NONE) {
 								} else{
 									$trabajos = consByTechnician($tecnico);
 								}
-
 									foreach((array)$trabajos as $trabajo){
 									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></div><hr id="lineas">';
 									}
-							?>	
+									
+									//Hay que hacer esto para poder pasar un array por URL.
+										$tr = serialize($trabajos); 
+										$tr = urlencode($tr);  
+									
+							?>
 						</div>	
 							<div class="panel-footer">
-							<input  class="btn btn-primary" type="button" onClick="" value="Generar informe"></input>
+							<a href="pdf.php?trabajos=<?php echo $tr?>"><input  class="btn btn-primary" type="button" value="Generar informe"></input></a>
 							<a href="homeConsultas.php"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Hacer otra consulta</strong></button></a>
 						</div>	
 
@@ -106,4 +110,5 @@ if (session_status() == PHP_SESSION_NONE) {
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
 </html>
+
 <?php require(__DIR__.'/includes/php/cleanup.php');?>
