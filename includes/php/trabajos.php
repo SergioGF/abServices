@@ -45,6 +45,29 @@ function formRegisterTrabajo($params, $cliente, $usuario) {
 
   return $result;
 }
+function formModTrabajo($params, $cliente, $id) {
+	
+	$ok = false;
+	
+	$descMat = $params['descmat'];
+	$obs = $params['observaciones']; // Estos 2 campos pueden ser null.
+	
+	if($params['descmat'] == null) $descMat = null;
+	if($params['observaciones'] == null) $obs = null;
+		
+		$ok = modificarTrabajo($cliente, $params['fvisita'],$params['horae'], $params['horas'], $params['descripcion'],
+								$descMat, $obs, $id); 
+		
+		if($ok){
+			$result[] = "El registro se ha realizado con éxito.";
+			//header('Location: ./trabajosCliente.php?cliente='.$cliente.'&newTrabajo=1');
+			header('Location: ./infoTrabajo.php?id='.$id.'&cliente='.$cliente.'&mod=1');
+		} else {
+			$result[] = "El registro no se ha podido realizar con éxito.";
+		}
+
+  return $result;
+}
 
 function deleteWork($id, $cliente){
 	$ok = false;

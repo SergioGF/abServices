@@ -14,7 +14,8 @@ if (session_status() == PHP_SESSION_NONE) {
 	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
 
 	<?php
-	$cliente= $_GET['cliente']; 
+	$id=$_GET['idTrabajo']; 
+	$cliente =$_GET['cliente']; 
 	?>
 	
     <title>abServices</title>
@@ -39,7 +40,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <?php
 	require(__DIR__.'/includes/php/trabajos.php');
 		if(isset($_POST['formRTrabajo'])) {
-			$result = formRegisterTrabajo($_POST,$cliente,$_SESSION["usuario"]);
+			$result = formModTrabajo($_POST,$cliente,$id);
 		}
 	?>
 	
@@ -72,13 +73,15 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Registrar nuevo trabajo a <?php echo $cliente?></h2> 
+				<h2 id="cab2">Modificar trabajo a <?php echo $cliente?></h2> 
 				</div>
 		</div>
-			
+		<?php 
+		$trabajo = conseguirInfoTrabajo($id);
+		?>
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Añadir nuevo trabajo</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar trabajo</strong></div></div>
 
 						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
 					
@@ -86,32 +89,32 @@ if (session_status() == PHP_SESSION_NONE) {
 							<center>
 							<table border="0" cellpadding="0" cellspacing="2" width="50%">
 								<tr>
-								  <td width="70%"><strong id="nombresForm">Descripción:</strong></td> <td width="30%"><textarea id="cajas" name="descripcion" required="required" rows="5" cols="35"></textarea></td>
+								  <td width="70%"><strong id="nombresForm">Descripción:</strong></td> <td width="30%"><textarea id="cajas" name="descripcion" required="required" rows="5" cols="35"> <?php echo $trabajo["Descripcion"]?></textarea></td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" name="fvisita" type="date" required="required"/></td>
+								  <td width="70%"><strong id="nombresForm">Trabajo realizado por:</strong></td> <td width="30%"><p id="cajas" name="tecnico" rows="5" cols="35"> <?php echo $trabajo["Trabajador"]?></a></td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Hora entrada:</strong></td><td width="30%"><input id="cajas" name="horae" type="time" required="required"/></td>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" value="<?php echo $trabajo["FVisita"]?>" name="fvisita" type="date" required="required"/></td>
 								</tr>
 								<tr>
-								  <td width="70%"><strong>Hora salida:</strong></td><td width="30%"><input id="cajas" name="horas" type="time" required="required"/></td>
+								 <td width="70%"><strong>Hora entrada:</strong></td><td width="30%"><input id="cajas" value="<?php echo $trabajo["HoraE"]?>" name="horae" type="time" required="required"/></td>
 								</tr>
 								<tr>
-								<td width="70%"><strong>¿Se utilizó algun material?:</strong></td><td width="30%"><input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" /></td>
+								  <td width="70%"><strong>Hora salida:</strong></td><td width="30%"><input id="cajas" value="<?php echo $trabajo["HoraS"]?>" name="horas" type="time" required="required"/></td>
 								</tr>
-								<tr id="content" style="display: none;">
-								<td width="70%"><strong>Descripción material:</strong></td><td width="30%"><textarea id="cajas" name="descmat" rows="5" cols="35"></textarea></td>
+								<tr id="content" style="display: in-line;">
+								<td width="70%"><strong>Descripción material:</strong></td><td width="30%"><textarea id="cajas" name="descmat" rows="5" cols="35"><?php echo $trabajo["DescripcionMat"]?></textarea></td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Observaciones:</strong></td><td width="30%"><textarea id="cajas" name="observaciones" rows="5" cols="35"></textarea></td>
+								 <td width="70%"><strong>Observaciones:</strong></td><td width="30%"><textarea id="cajas" name="observaciones" rows="5" cols="35"><?php echo $trabajo["Observaciones"]?></textarea></td>
 								</tr>
 							</table>
 							</center>
 						</div>
 						<div class="panel-footer">
-							<input  class="btn btn-primary" type="button" onClick="location.href='./trabajosCliente.php?cliente=<?php echo $cliente ?>'" value="Volver atrás"></input>
-							<button type="submit" class="btn btn-primary" name="formRTrabajo" value="Sign in" style="float: right"><strong>Crear trabajo</strong></button>
+							<input  class="btn btn-primary" type="button" onClick="location.href='./infoTrabajo.php?id=<?php echo $id ?>&cliente=<?php echo $cliente ?>'" value="Volver atrás"></input>
+							<button type="submit" class="btn btn-primary" name="formRTrabajo" value="Sign in" style="float: right"><strong>Guardar</strong></button>
 						</div>
 						</form>
 			</div>

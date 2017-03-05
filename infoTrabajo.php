@@ -54,7 +54,6 @@ require(__DIR__.'/includes/php/trabajos.php');
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -71,35 +70,46 @@ require(__DIR__.'/includes/php/trabajos.php');
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong><img id="margenIm" src="./includes/css/trabajo.png">Trabajo Nº <?php echo $id ?></strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong><span class="glyphicon glyphicon-list-alt"></span> Trabajo Nº <?php echo $id ?></strong></div></div>
+						<div class="alert alert-success" style="display: none" id="infoUserEdit">
+							<script type="text/javascript">
+								function succesEdit() {
+								  document.getElementById("infoUserEdit").style.display = 'block';
+								}
+							</script>
+							<?php 
+								if($_GET['mod'] == 1){
+									echo "<script>";
+									echo "succesEdit();";
+									echo "</script>";
+								}
+							?>
+							<strong>Exito!</strong> Has editado el trabajo correctamente.
+						</div>
 						<div class="panel-body">
 								<?php 
 								$trabajos = conseguirInfoTrabajo($id);
-									
-									foreach((array)$trabajos as $trabajo){ //Si no se pone el for, no deja sacar la información.
-									echo '<div class="form-group"><div class="container-fluid">
+								 ?>
+									<div class="form-group"><div class="container-fluid">
 										<ul>
-										<li> <span id="negrita">Hecho por:</span> '.$trabajo['Trabajador'].'</li><br>
-										<li> <span id="negrita">Descripción:</span> '.$trabajo['Descripcion'].'</li><br>
-										<li> <span id="negrita">Fecha visita:</span> '.$trabajo['FVisita'].'</li><br>
-										<li> <span id="negrita">Hora entrada:</span> '.$trabajo['HoraE'].'</li><br>
-										<li> <span id="negrita">Hora salida:</span> '.$trabajo['HoraS'].'</li><br>
-										<li> <span id="negrita">Materiales:</span> '.$trabajo['DescripcionMat'].'</li><br>
-										<li> <span id="negrita">Observaciones:</span> '.$trabajo['Observaciones'].'</li><br>
+										<li> <span id="negrita">Hecho por:</span> <?php echo $trabajos["Trabajador"]?></li><br>
+										<li> <span id="negrita">Descripción:</span> <?php echo $trabajos["Descripcion"]?></li><br>
+										<li> <span id="negrita">Fecha visita:</span> <?php echo $trabajos["FVisita"]?></li><br>
+										<li> <span id="negrita">Hora entrada:</span> <?php echo $trabajos["HoraE"]?></li><br>
+										<li> <span id="negrita">Hora salida:</span> <?php echo $trabajos["HoraS"]?></li><br>
+										<li> <span id="negrita">Materiales:</span> <?php echo $trabajos["DescripcionMat"]?></li><br>
+										<li> <span id="negrita">Observaciones:</span> <?php echo $trabajos["Observaciones"]?></li><br>
 										</ul>
-										</div></div>';
-									}
-								?>	
+										</div></div>
 						</div>
 						<div class="panel-footer">
-							<input  class="btn btn-primary" type="button" onClick="location.href='./principalAdmin.php'" value="Modificar"></input>
+							<input  class="btn btn-primary" type="button" onclick="location.href='./modificarTrabajo.php?idTrabajo=<?php echo $id?>&cliente=<?php echo $client?>';" value="Modificar"></input>
 							<!--<button class="glyphicon glyphicon-remove" onclick="eliminarUs('<?php echo $us["Usuario"]?>')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>-->
-							<input  class="btn btn-primary" type="button" onClick="eliminarWk('<?php echo $trabajo["Id"]?>')" value="Eliminar" data-toggle="modal" data-target="#myModal" id="deleteTrabajo" ></input>
+							<input  class="btn btn-primary" type="button" onClick="eliminarWk('<?php echo $id?>')" value="Eliminar" data-toggle="modal" data-target="#myModal" id="deleteTrabajo" ></input>
 							<a href="trabajosCliente.php?cliente=<?php echo $client ?>"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Volver a la lista de trabajos</strong></button></a>
 						</div>	
 						</div>
-							</form>
-						</div>
+		</div>
 					</div>
 		</div>
 		

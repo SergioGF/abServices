@@ -63,6 +63,7 @@ function formPass($params, $nick) {
 		}
 		else {
 			$result[] = "La contraseña se ha actualizado con éxito.";
+			header('Location: ./homeClientes.php?passNew=1');
 		}
    } else{
 	   $result[] = "La contraseña que ha introducido no coincide con la actual.";

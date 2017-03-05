@@ -47,7 +47,6 @@ $cliente = $userEdit;
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -57,40 +56,8 @@ $cliente = $userEdit;
 		</nav>
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
-				<div class="row">
-					<div class="col-md-1" ></div>
-					<div class="col-md-4" >
-					<div class="container">
-					<h2 id="cab2">Modificar cliente</h2> 
-					<p>  <?php 
-							if($_SESSION["tipo"] == 3)
-								echo "Administrador";
-							else if($_SESSION["tipo"] == 2)
-								echo "Trabajador";
-							else
-								echo "Cliente";
-						?>
-					</p>
-					</div>
-					</div>
-					<div class="col-md-2" ></div>
-					<div class="col-md-2" >
-					<?php
-						if($_SESSION["tipo"] == 3){ ?>
-						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionClientes.php'">
-						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Gestión clientes
-						</button>
-					<?php } ?>
-					</div>
-					<div class="col-md-2" >
-					<?php
-						if($_SESSION["tipo"] == 3){ ?>
-						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionUsuarios.php'">
-						<span class="glyphicon glyphicon-user" aria-hidden="true"id="userGestion"></span> <span class="glyphicon glyphicon-user" id="userGestion" aria-hidden="true"></span> <br>Gestión usuarios
-						</button>
-					<?php } ?>
-					</div>
-					<div class="col-md-1" ></div>
+				<div class="container">
+				<h2 id="cab2">Modificar Cliente</h2> 
 				</div>
 		</div>
 			

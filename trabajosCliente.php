@@ -46,7 +46,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -99,7 +98,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								$trabajos = conseguirTrabajos($cliente);
 
 									foreach((array)$trabajos as $trabajo){
-									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd-m-Y').'</div></strong><div id="derecha">'.$trabajo['Descripcion'].'</div></a></div><hr id="lineas">';
+									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd-m-Y').'</div></strong><div id="derecha">'.$trabajo['Descripcion'].'</div></a></h4></div><hr id="lineas">';
 									}
 								?>	<br>
 							<div class="form-group">

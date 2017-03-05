@@ -56,7 +56,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -86,7 +85,7 @@ if (session_status() == PHP_SESSION_NONE) {
 									$trabajos = consByTechnician($tecnico);
 								}
 									foreach((array)$trabajos as $trabajo){
-									echo '<div class="form-group"><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></div><hr id="lineas">';
+									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
 									}
 									
 									//Hay que hacer esto para poder pasar un array por URL.

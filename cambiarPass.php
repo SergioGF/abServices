@@ -46,7 +46,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -54,57 +53,54 @@ if (session_status() == PHP_SESSION_NONE) {
 				</ul>
 			</div>
 		</nav>
-		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
-				<h2 id="cab2">Cambiar contraseña</h2> 
-				<p>  <?php 
-						if($_SESSION["tipo"] == 3)
-							echo "Administrador";
-						else if($_SESSION["tipo"] == 2)
-							echo "Trabajador";
-						else
-							echo "Trabajador";
-					?>
-				</p>
+				<h2 id="cab2">Cambio de contraseña</h2> 
 				</div>
 		</div>
 			
 		<div class="container-fluid">
+			<div class="alert alert-danger" style="display: none" id="infoDatosRepeat">
+						<script type="text/javascript">
+							function succesDelete() {
+							  document.getElementById("infoDatosRepeat").style.display = 'block';
+							}
+						</script>
+						<?php 
+							if(isset($result)){
+								echo "<script>";
+								echo "succesDelete();";
+								echo "</script>";
+							}
+						?>
+						<strong>Error!</strong> La contraseña actual no coincide con la introducida.
+			</div>
 			<form method = "POST" action="" autocomplete="on" onSubmit="return validarPasswd()" class="form-horizontal" role="form">
-							<?php 
-                                    if(isset($result)){
-                                        echo '<ul>';
-                                        foreach($result as $error){
-                                            echo '<li class="resultError">'.$error.'</li>';
-                                        }
-                                        echo '</ul>';
-                                    }
-                            ?>
-							<div class="form-group">
+							<div class="form-group" id="divPass">
 								<div class="container-fluid">
-								  <input id="antPass" type="password" name="antPass" required="required" class="form-control" placeholder="Contraseña actual"/>
+								  <input id="antPass" type="password" name="antPass" required="required" class="form-control" placeholder="Contraseña actual" maxlength="20"/>
 								</div>
 							</div>
 							<div class="form-group" id="divPass1">
 								<div class="container-fluid">
-								  <input id="newPass1" type="password" name="newPass1" required="required" class="form-control" placeholder="Nueva contraseña"/>
+								  <input id="newPass1" type="password" name="newPass1" required="required" class="form-control" placeholder="Nueva contraseña" maxlength="20"/>
+								</div>
+							</div>
+							<div class="form-group" id="divPass2">
+								<div class="container-fluid">
+								  <input id="newPass2" type="password" name="newPass2" required="required" class="form-control" placeholder="Repite nueva contraseña" maxlength="20"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="container-fluid">
-								  <input id="newPass2" type="password" name="newPass2" required="required" class="form-control" placeholder="Repite nueva contraseña"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-lg-offset-4 col-lg-11">
-								  <div class="center-block"><button type="submit" class="btn btn-primary" name="formPass" value="Sign in"><strong>Cambiar contraseña</strong></button></div>
+								  <div class="center-block"><button type="submit" style="float:right" class="btn btn-primary" name="formPass" value="Sign in"><strong>Cambiar contraseña</strong></button></div>
 								</div>
 							</div>
 						</form>
 		</div>
 		<script type="text/javascript">
 				function validarPasswd() {
+				var p = document.getElementById("antPass").value;
 				var p1 = document.getElementById("newPass1").value;
 				var p2 = document.getElementById("newPass2").value;
 				var espacios1 = false;
@@ -129,8 +125,31 @@ if (session_status() == PHP_SESSION_NONE) {
 				  cont++;
 				}
 				if (espacios2) {
+				  document.getElementById("newPass2").value ="";
+				  document.getElementById("newPass2").placeholder ="La contraseña no puede contener espacios en blanco";
+				  document.getElementById("divPass2").className = "form-group has-error has-feedback";
+				  return false;
+				}
+				var espacios = false;
+				var cont = 0;
+				while (!espacios && (cont < p.length)) {
+				  if (p.charAt(cont) == " ")
+					espacios = true;
+				  cont++;
+				}
+				if (espacios) {
+				  document.getElementById("antPass").value ="";
+				  document.getElementById("antPass").placeholder ="La contraseña no puede contener espacios en blanco";
+				  document.getElementById("divPass").className = "form-group has-error has-feedback";
+				  return false;
+				}
+				if(p1 != p2){
+				  document.getElementById("newPass2").value ="";
+				  document.getElementById("newPass2").placeholder ="Las contraseñas deben coincidir";
+				  document.getElementById("divPass2").className = "form-group has-error has-feedback"
 				  document.getElementById("newPass1").value ="";
-				  document.getElementById("newPass1").placeholder ="La contraseña no puede contener espacios en blanco";
+				  document.getElementById("newPass1").placeholder ="Las contraseñas deben coincidir";
+				  document.getElementById("divPass1").className = "form-group has-error has-feedback"
 				  return false;
 				}
 				}

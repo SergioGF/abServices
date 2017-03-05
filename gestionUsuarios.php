@@ -52,7 +52,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="cambiarUser.php">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -61,40 +60,9 @@ if (session_status() == PHP_SESSION_NONE) {
 			</div>
 		</nav>
 		<div class="jumbotron">
-				<div class="row">
-					<div class="col-md-1" ></div>
-					<div class="col-md-4" >
-					<div class="container">
-					<h2 id="cab2">Gestión de usuarios</h2> 
-					<p>  <?php 
-							if($_SESSION["tipo"] == 3)
-								echo "Administrador";
-							else if($_SESSION["tipo"] == 2)
-								echo "Trabajador";
-							else
-								echo "Cliente";
-						?>
-					</p>
-					</div>
-					</div>
-					<div class="col-md-2" ></div>
-					<div class="col-md-2" >
-					<?php
-						if($_SESSION["tipo"] == 3){ ?>
-						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionClientes.php'">
-						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Gestión clientes
-						</button>
-					<?php } ?>
-					</div>
-					<div class="col-md-2" >
-					<?php
-						if($_SESSION["tipo"] == 3){ ?>
-						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionUsuarios.php'">
-						<span class="glyphicon glyphicon-user" aria-hidden="true"id="userGestion"></span> <span class="glyphicon glyphicon-user" id="userGestion" aria-hidden="true"></span> <br>Gestión usuarios
-						</button>
-					<?php } ?>
-					</div>
-				</div>
+				<div class="container">
+				<h2 id="cab2">Gestión de Usuarios</h2> 
+		</div>
 		</div>
 			
 		<div class="container-fluid">
@@ -173,10 +141,13 @@ if (session_status() == PHP_SESSION_NONE) {
 						<div id="tipoUs" class="text-center"> Trabajador Lectura </div>
 					</li>
 					<?php } ?>
+					<?php
+					if($us["Usuario"] != $_SESSION["usuario"]){ ?>
 					<li class="list-group-item" id="accionesU">
 						<button class="glyphicon glyphicon-pencil" id="editUser" onclick="location.href='./modificarPermisos.php?userToEdit=<?php echo $us["Usuario"]?>';"></button>
 						<button class="glyphicon glyphicon-remove" onclick="eliminarUs('<?php echo $us["Usuario"]?>')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>
 					</li>
+					<?php } ?>
 				</ul>
 				<?php } ?>
 			</div>

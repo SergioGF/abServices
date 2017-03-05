@@ -47,9 +47,11 @@ function getInfoWork($id){
 	$pst->bind_param("i",$args[0]);
 	$pst->execute();
 	$result = $pst->get_result();
-	
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$info = $row;
+	}
 	$pst->close();
-	return $result;     
+	return $info;     
 }
 
 function registrarTrabajo($cliente, $usuario, $fVisita, $horaE, $horaS, $desc, $descM, $obs){
@@ -65,6 +67,18 @@ function registrarTrabajo($cliente, $usuario, $fVisita, $horaE, $horaS, $desc, $
 	return $result;
 }
 
+function modificarTrabajo($cliente, $fVisita, $horaE, $horaS, $desc, $descM, $obs, $id){
+	global $mysqli;
+	$args = array($cliente,$fVisita, $horaE, $horaS, $desc, $descM, $obs, $id);
+	sanitizeArgs($args);
+	$pst = $mysqli->prepare("UPDATE trabajos SET IdCliente = ?, FVisita = ?, HoraE = ?, HoraS = ?, Descripcion = ?, DescripcionMat = ?, Observaciones = ? WHERE Id = ?"); //null para el campo autoincrement
+	$pst->bind_param("ssssssss",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7]);
+	$result = $pst->execute();
+	
+	$pst->close();
+	
+	return $result;
+}
 function eliminarTrabajo($id){
 	global $mysqli;
 

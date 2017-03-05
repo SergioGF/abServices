@@ -43,7 +43,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Configuración <span class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<ul class="dropdown-menu">
-						  <li><a href="#">Cambiar nombre</a></li>
 						  <li><a href="cambiarPass.php">Cambiar contraseña</a></li>
 						  <li><a href="login.php">Cerrar Sesión </a></li>
 						</ul>
@@ -63,18 +62,15 @@ if (session_status() == PHP_SESSION_NONE) {
 							else if($_SESSION["tipo"] == 2)
 								echo "Trabajador";
 							else
-								echo "Cliente";
+								echo "Trabajador";
 						?>
 					</p>
 					</div>
 					</div>
 					<div class="col-md-2" >
-					<?php
-						if($_SESSION["tipo"] == 3){ ?>
 						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./homeConsultas.php'">
-						<span class="glyphicon glyphicon-briefcase" aria-hidden="true" id="userGestion"></span> <br>Consultas
+						<span class="glyphicon glyphicon-search" aria-hidden="true" id="userGestion"></span> <br>Consultas
 						</button>
-					<?php } ?>
 					</div>
 					<div class="col-md-2" >
 					<?php
@@ -95,6 +91,23 @@ if (session_status() == PHP_SESSION_NONE) {
 					<div class="col-md-1" ></div>
 				</div>
 		</div>
+		<div class="alert alert-success" style="display: none" id="infoClienteEdit">
+			<div class="container-fluid">
+			<script type="text/javascript">
+				function succesEdit() {
+				  document.getElementById("infoClienteEdit").style.display = 'block';
+				}
+			</script>
+			<?php 
+				if($_GET['passNew'] == 1){
+					echo "<script>";
+					echo "succesEdit();";
+					echo "</script>";
+				}
+			?>
+			<strong>Exito!</strong> Has editado tu contraseña correctamente.
+			</div>
+		</div>
 		<div class="row">
 		<div class="col-md-6" > 	
 		<div class="container-fluid">
@@ -113,7 +126,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		</div>		
 		<br><br><br><br>
 			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
-			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/admin2.png" class="img-responsive"  alt="Imagen responsive"></div></div>
+			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/cliente.png" class="img-responsive"  alt="Imagen responsive"></div></div>
 			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>						
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
