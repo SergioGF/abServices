@@ -9,7 +9,9 @@ function consByClient($cliente){
 }
 
 function consByDateAndClient($cliente, $fIni, $fFin){
-	$result = consultaPorClienteyFecha($cliente, $fIni, $fFin);
+	
+	if($fIni == null & $fFin == null) $result = consultaPorCliente($cliente);
+	else $result = consultaPorClienteyFecha($cliente, $fIni, $fFin);
 	
 	return $result;
 }
@@ -19,5 +21,14 @@ function consByTechnician($tecnico){
 	
 	return $result;
 }
+
+function consByDateAndTechnician($tecnico, $fIni, $fFin){
+	
+	if($fIni == null & $fFin == null) $result = consultaPorTecnico($tecnico);
+	else $result = consultaPorTecnicoyFecha($tecnico, $fIni, $fFin);
+	
+	return $result;
+}
+
 
 ?>

@@ -46,7 +46,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		}
 		else if(isset($_POST['formTecnico'])) { //Habrá que comprobar primero si existe el técnico.
 			if(getTecnico($_POST['constecnico'])){
-			  header('Location: ./infoConsulta.php?tecnico='.$_POST['constecnico'].'&tipo=3');
+			  header('Location: ./infoConsulta.php?tecnico='.$_POST['constecnico'].'&fIni='.$_POST['consf1'].'&fFin='.$_POST['consf2'].'&tipo=3');
 			}
 			else{
 				$ws3 = true;
@@ -95,9 +95,9 @@ if (session_status() == PHP_SESSION_NONE) {
 								<p> <strong>Consulta por: </strong></p>
 							</div>
 							<div class="col-md-3">
-								<a ><button name="b1" class="btn btn-primary" id="b1" onclick="showContent()"><strong>Cliente</strong></button></a></br></br>
-								<a ><button name="b2" class="btn btn-primary" id="b2" onclick="showContent2()"><strong>Fecha y cliente</strong></button></a> </br></br>
-								<a ><button name="b3" class="btn btn-primary" id="b3" onclick="showContent3()"><strong>Técnico</strong></button></a><br><br>
+								<a ><button name="b1" class="btn btn-primary" id="b1" onclick="showContent()"><strong>Acumulado de horas</strong></button></a></br></br>
+								<a ><button name="b2" class="btn btn-primary" id="b2" onclick="showContent2()"><strong>Cliente y fecha</strong></button></a> </br></br>
+								<a ><button name="b3" class="btn btn-primary" id="b3" onclick="showContent3()"><strong>Técnico y fecha</strong></button></a><br><br>
 							</div>
 							<div class="col-md-7">
 								<div class="alert alert-danger" style="display: none" id="infoWrongSearch1">
@@ -129,21 +129,23 @@ if (session_status() == PHP_SESSION_NONE) {
 								</div>
 									<div id="content1" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-											 <div id="divUser"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/><br></div>
+											 <div id="divUser"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/><br></div>
 											 <button type="submit" id="sub1" style="float:right" class="btn btn-primary" name="formConsCliente" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>
 									<div id="content2" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos2()" class="form-horizontal" role="form">
 											<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/></div> </br>
-											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" required="required" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" required="required" class="form-control" placeholder="Fecha final"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control"/></div></div>
+											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											<button type="submit" id="sub2" style="float:right" class="btn btn-primary" name="formConsFyC" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>
 									<div id="content3" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos3()" class="form-horizontal" role="form">
 											<div id="divTec"> <input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/><br></div>
+											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub3" style="float:right" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>

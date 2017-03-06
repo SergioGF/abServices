@@ -84,6 +84,11 @@ if (session_status() == PHP_SESSION_NONE) {
 								 <input id="newCliente"  name="cliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/>
 								</div>
 							</div>
+							<div class="form-group" id="divUser">
+								<div class="container-fluid">
+								 <input id="newCliente"  type="number" name="horas" required="required" class="form-control" placeholder="Horas contratadas" maxlength="30"/>
+								</div>
+							</div>
 						</div>
 						<div class="panel-footer">
 							<input  class="btn btn-primary" type="button" onClick="location.href='./gestionClientes.php'" value="Volver atrás"></input>

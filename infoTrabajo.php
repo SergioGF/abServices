@@ -94,7 +94,7 @@ require(__DIR__.'/includes/php/trabajos.php');
 										<ul>
 										<li> <span id="negrita">Hecho por:</span> <?php echo $trabajos["Trabajador"]?></li><br>
 										<li> <span id="negrita">Descripción:</span> <?php echo $trabajos["Descripcion"]?></li><br>
-										<li> <span id="negrita">Fecha visita:</span> <?php echo $trabajos["FVisita"]?></li><br>
+										<li> <span id="negrita">Fecha visita:</span> <?php echo  date_format(new DateTime($trabajos["FVisita"]), 'd-m-Y')?></li><br>
 										<li> <span id="negrita">Hora entrada:</span> <?php echo $trabajos["HoraE"]?></li><br>
 										<li> <span id="negrita">Hora salida:</span> <?php echo $trabajos["HoraS"]?></li><br>
 										<li> <span id="negrita">Materiales:</span> <?php echo $trabajos["DescripcionMat"]?></li><br>

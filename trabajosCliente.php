@@ -26,8 +26,9 @@ if (session_status() == PHP_SESSION_NONE) {
   </head>
   <?php 
     require(__DIR__.'/includes/php/trabajos.php');
+	require(__DIR__.'/includes/php/clientes.php');
 ?>
-  <body>
+  <body id="scroll">
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -56,7 +57,13 @@ if (session_status() == PHP_SESSION_NONE) {
 		<?php/* include 'headerUser.php'; */?>
 		<div class="jumbotron">
 				<div class="container">
+				<div class="col-md-4" >
 				<h2 id="cab2">Cliente <?php echo $cliente?></h2> 
+				</div>
+				<div class="col-md-5" ></div>
+				<div class="col-md-3" ><strong><span> Horas contratadas: <?php echo conseguirHoras($cliente)?> horas</span></br>
+				<span> Horas usadas: <?php echo horasUsadas($cliente)?> horas</span></strong>
+				</div>
 				</div>
 		</div>
 			

@@ -17,7 +17,7 @@ function formRegisterClient($params) {
 	if(buscarClient($params['cliente']) < 1){ // Si no hay algun cliente con ese nombre
   
 		
-		$ok = registrarCliente($params['cliente']);
+		$ok = registrarCliente($params['cliente'], $params['horas']);
 		
 		if($ok){
 			$result[] = "El registro se ha realizado con éxito.";
@@ -80,6 +80,12 @@ function getCliente($id){
 	}
 	
 	return $ok;
+}
+
+function conseguirHoras($id){
+	$horas = getHoras($id);
+	
+	return $horas;
 }
 
 ?>

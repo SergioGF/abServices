@@ -87,4 +87,11 @@ function actualizarTrabajosCliente($oldId, $newId){
 	$result = updateWorksClient($oldId, $newId);
 	return $result;
 }
+
+function horasUsadas($cliente){
+	
+	$result = getHorasTrabajos($cliente);
+	
+	return $result;
+}
 ?>

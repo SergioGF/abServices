@@ -22,8 +22,22 @@ if (session_status() == PHP_SESSION_NONE) {
 		$cliente = $_GET['cliente'];
 		$fIni = $_GET['fIni'];
 		$fFin = $_GET['fFin'];
+		
+		if($fIni == null){
+			$fIni = 'X';
+		} else {
+			$fIni = date_format(new DateTime($fIni), 'd-m-Y');
+		}
 	} else{
 		$tecnico = $_GET['tecnico'];
+		$fIni = $_GET['fIni'];
+		$fFin = $_GET['fFin'];
+		
+		if($fIni == null){
+			$fIni = 'X';
+		} else {
+			$fIni = date_format(new DateTime($fIni), 'd-m-Y');
+		}
 	}
 	?>
 
@@ -72,7 +86,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Cliente'; else if($tipo == 2)  echo 'Fecha y cliente'; else echo 'Técnico'?>'</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Cliente'; else if($tipo == 2)  echo 'Fecha y Cliente (' .$cliente.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else echo 'Fecha y Técnico (' .$tecnico.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')';?>'</strong></div></div>
 						<div class="panel-body">
 							<?php 
 								$trabajos = [];
@@ -82,7 +96,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								} else if($tipo == 2){
 									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
 								} else{
-									$trabajos = consByTechnician($tecnico);
+									$trabajos = consByDateAndTechnician($tecnico, $fIni, $fFin);
 								}
 									foreach((array)$trabajos as $trabajo){
 									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';

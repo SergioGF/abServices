@@ -27,6 +27,8 @@ $cliente = $userEdit;
 		if(isset($_POST['formRClient'])) {
 			$result = editClient($cliente, $_POST['cliente']);
 		}
+		
+		$horas = conseguirHoras($cliente);
 	?>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
@@ -63,7 +65,7 @@ $cliente = $userEdit;
 			
 		<div class="container-fluid">
 			<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar Id del cliente <?php echo $cliente ?></strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Modificar Cliente <?php echo $cliente ?></strong></div></div>
 						<div class="alert alert-danger" style="display: none" id="infoDatosRepeat">
 						<script type="text/javascript">
 							function succesDelete() {
@@ -83,7 +85,12 @@ $cliente = $userEdit;
 						<div class="panel-body">
 							<div class="form-group" id="divUser">
 								<div class="container-fluid">
-								 <input id="newCliente"  name="cliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/>
+								 <input id="newCliente"  name="cliente" required="required" class="form-control" value="<?php echo $cliente ?>" maxlength="30"/>
+								</div>
+							</div>
+							<div class="form-group" id="divUser">
+								<div class="container-fluid">
+								 <input id="newCliente"  type="number" name="horas" required="required" class="form-control" value="<?php echo $horas ?>" maxlength="30"/>
 								</div>
 							</div>
 						</div>

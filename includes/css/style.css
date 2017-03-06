@@ -144,3 +144,5 @@ background-color: #ededed;
 	box-shadow:0 0 0 3px #EEF5F7;
 	margin-bottom: 3px;
 }
+
+#scroll{overflow-x:hidden;}

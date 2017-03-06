@@ -32,12 +32,12 @@ function buscarClient($id){
 	return $numregistros;
 }  
 
-function registrarCliente($id){
+function registrarCliente($id, $horas){
 	global $mysqli;
-	$args = array($id);
+	$args = array($id, $horas);
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("INSERT INTO clientes VALUES (?);");
-	$pst->bind_param("s",$args[0]);
+	$pst = $mysqli->prepare("INSERT INTO clientes VALUES (?,?);");
+	$pst->bind_param("si",$args[0], $args[1]);
 	$result = $pst->execute();
 	
 	$pst->close();
@@ -72,5 +72,23 @@ function actualizarCliente($oldId, $newId){
 	$pst->close();
 	
 	return $result;
+}
+
+function getHoras($id){
+	global $mysqli;
+	$err = 0;
+	$args = array($id);
+	sanitizeArgs($args);
+	$info = null;
+	$pst = $mysqli->prepare("SELECT Horas FROM clientes WHERE Id = ?");
+	$pst->bind_param("s",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$horas = $row['Horas'];
+	}
+	$pst->close();
+
+	return $horas;
 }
 ?>

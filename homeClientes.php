@@ -24,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <?php 
     require(__DIR__.'/includes/php/clientes.php');
 ?>
-  <body>
+  <body id="scroll">
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
 			<div class="navbar-header" id="navSupHeader">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -127,7 +127,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		<br><br><br><br>
 			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>
 			<div class="col-md-4" > <div class="container-fluid"> <img src="./includes/css/cliente.png" class="img-responsive"  alt="Imagen responsive"></div></div>
-			<div class="col-md-1" id="vacio"><h3> <div class="container-fluid"> </div> </h3></div>						
+				
 		</div>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
