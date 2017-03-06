@@ -18,6 +18,8 @@ if (session_status() == PHP_SESSION_NONE) {
 	
 	if($tipo == 1){
 		$cliente = $_GET['cliente']; 
+		$mes = $_GET['mes']; 
+		$anyo = $_GET['anyo']; 
 	} else if($tipo == 2){
 		$cliente = $_GET['cliente'];
 		$fIni = $_GET['fIni'];
@@ -50,6 +52,7 @@ if (session_status() == PHP_SESSION_NONE) {
   </head>
   <?php 
     require(__DIR__.'/includes/php/consultas.php');
+	require(__DIR__.'/includes/php/clientes.php');
 ?>
   <body>
 		<nav class="navbar navbar-default" role="navigation" id="navSup">
@@ -86,21 +89,28 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Cliente'; else if($tipo == 2)  echo 'Fecha y Cliente (' .$cliente.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else echo 'Fecha y Técnico (' .$tecnico.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')';?>'</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Acumulados ('.$cliente.': '.$mes.'-'.$anyo.')'; else if($tipo == 2)  echo 'Fecha y Cliente (' .$cliente.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else echo 'Fecha y Técnico (' .$tecnico.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')';?>'</strong></div></div>
 						<div class="panel-body">
 							<?php 
 								$trabajos = [];
 								
 								if($tipo == 1){
-									$trabajos = consByClient($cliente);
+									$horasCliente = conseguirHoras($cliente);
+									$horasUsadas = consAcumulados($cliente,$mes,$anyo);
+									
+									echo '<div class="form-group"><strong><span>Horas contratadas: '.$horasCliente.' horas</span><br><span>Horas usadas: '.$horasUsadas.' horas</span></strong></div></br>';
+									
 								} else if($tipo == 2){
 									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
+									foreach((array)$trabajos as $trabajo){
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
+									}
 								} else{
 									$trabajos = consByDateAndTechnician($tecnico, $fIni, $fFin);
-								}
 									foreach((array)$trabajos as $trabajo){
-									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
 									}
+								}
 									
 									//Hay que hacer esto para poder pasar un array por URL.
 										$tr = serialize($trabajos); 

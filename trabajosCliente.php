@@ -61,8 +61,11 @@ if (session_status() == PHP_SESSION_NONE) {
 				<h2 id="cab2">Cliente <?php echo $cliente?></h2> 
 				</div>
 				<div class="col-md-5" ></div>
-				<div class="col-md-3" ><strong><span> Horas contratadas: <?php echo conseguirHoras($cliente)?> horas</span></br>
-				<span> Horas usadas: <?php echo horasUsadas($cliente)?> horas</span></strong>
+				<div class="col-md-3" id="derecha">
+				<center><h4>Mes actual</h4></center>
+				<strong><span> Horas contratadas: <?php echo $a = number_format(conseguirHoras($cliente),2)?> horas</span></br>
+				<span> Horas usadas: <?php echo $b = horasUsadas($cliente)?> horas</span><hr style="margin-top: 10px; margin-bottom: 10px;">
+				<span> Horas disponibles: <?php echo number_format(($a - $b),2)?> horas</span></strong>
 				</div>
 				</div>
 		</div>

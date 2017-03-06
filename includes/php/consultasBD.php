@@ -76,4 +76,41 @@ function consultaPorTecnicoyFecha($tecnico, $fIni, $fFin){
 	$pst->close();
 	return $trabajos;  
 }
+
+function getAcumulados($id,$mes, $anyo){
+	
+	global $mysqli;
+	$fecha = $anyo.'-'.$mes;
+	$args = array($id);
+	sanitizeArgs($args);
+	
+	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE (IdCliente = ?)");
+	$pst->bind_param("s",$args[0]);
+	$pst->execute();
+	$result = $pst->get_result();
+	$duracion = 0.0;
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$horas = $row;
+		$pos = strpos($horas['FVisita'],$fecha);
+		if($pos !== false){
+			$horai=substr($horas['HoraE'],0,2);
+			$mini=substr($horas['HoraE'],3,2);
+			$segi=substr($horas['HoraE'],6,2);
+		 
+			$horaf=substr($horas['HoraS'],0,2);
+			$minf=substr($horas['HoraS'],3,2);
+			$segf=substr($horas['HoraS'],6,2);
+		 
+			$ini=((($horai*60)*60)+($mini*60)+$segi);
+			$fin=((($horaf*60)*60)+($minf*60)+$segf);
+			
+			$duracion+=abs($fin-$ini);
+			}
+	}
+	$duracion = conversorSegundosHoras($duracion);
+	
+	$pst->close();
+	return $duracion;   
+}	
+
 ?>

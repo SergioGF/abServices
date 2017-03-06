@@ -28,9 +28,9 @@ if (session_status() == PHP_SESSION_NONE) {
 	$ws1 = false;
 	$ws2 = false;
 	$ws3 = false;
-		if(isset($_POST['formConsCliente'])) { //Habrá que comprobar primero si existe el cliente.
+		if(isset($_POST['formAcumulados'])) { //Habrá que comprobar primero si existe el cliente.
 			if(getCliente($_POST['conscliente'])){
-			  header('Location: ./infoConsulta.php?cliente='.$_POST['conscliente'].'&tipo=1');
+			  header('Location: ./infoConsulta.php?cliente='.$_POST['conscliente'].'&mes='.$_POST['mes'].'&anyo='.$_POST['anyo'].'&tipo=1');
 			}
 			else{
 				$ws1 = true;
@@ -95,9 +95,9 @@ if (session_status() == PHP_SESSION_NONE) {
 								<p> <strong>Consulta por: </strong></p>
 							</div>
 							<div class="col-md-3">
-								<a ><button name="b1" class="btn btn-primary" id="b1" onclick="showContent()"><strong>Acumulado de horas</strong></button></a></br></br>
 								<a ><button name="b2" class="btn btn-primary" id="b2" onclick="showContent2()"><strong>Cliente y fecha</strong></button></a> </br></br>
 								<a ><button name="b3" class="btn btn-primary" id="b3" onclick="showContent3()"><strong>Técnico y fecha</strong></button></a><br><br>
+								<a ><button name="b1" class="btn btn-primary" id="b1" onclick="showContent()"><strong>Acumulado de horas</strong></button></a></br></br>
 							</div>
 							<div class="col-md-7">
 								<div class="alert alert-danger" style="display: none" id="infoWrongSearch1">
@@ -107,7 +107,7 @@ if (session_status() == PHP_SESSION_NONE) {
 										  document.getElementById("b1").click();
 										}
 									</script>
-									<strong>Error!</strong> No existe ningún cliente con ese Id en su consulta por Cliente.
+									<strong>Error!</strong> No existe ningún cliente con ese Id en su consulta por Acumulados.
 								</div>
 								<div class="alert alert-danger" style="display: none" id="infoWrongSearch2">
 									<script type="text/javascript">
@@ -127,12 +127,6 @@ if (session_status() == PHP_SESSION_NONE) {
 									</script>
 									<strong>Error!</strong> No existe ningún técnico con ese Id.
 								</div>
-									<div id="content1" style="display: none;">
-										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-											 <div id="divUser"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/><br></div>
-											 <button type="submit" id="sub1" style="float:right" class="btn btn-primary" name="formConsCliente" value="Sign in"><strong>Buscar</strong></button>
-										</form>
-									</div>
 									<div id="content2" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos2()" class="form-horizontal" role="form">
 											<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/></div> </br>
@@ -149,7 +143,33 @@ if (session_status() == PHP_SESSION_NONE) {
 											 <button type="submit" id="sub3" style="float:right" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
-								
+									<div id="content1" style="display: none;">
+										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
+											 <div id="divUser"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/><br></div>
+											<div class="form-group">
+												<label class="col-xs-2 control-label">Mes</label>
+												<div class="col-xs-5 selectContainer">
+													<select class="form-control" name="mes" required="required">
+														<option value="00">Elige un mes</option>
+														<option value="01">Enero</option>
+														<option value="02">Febrero</option>
+														<option value="03">Marzo</option>
+														<option value="04">Abril</option>
+														<option value="05">Mayo</option>
+														<option value="06">Junio</option>
+														<option value="07">Julio</option>
+														<option value="08">Agosto</option>
+														<option value="09">Septiembre</option>
+														<option value="10">Octubre</option>
+														<option value="11">Noviembre</option>
+														<option value="12">Diciembre</option>
+													</select>
+												</div>
+												<div id="divUser"><input  class="form-control" id="anyo"  name="anyo" type="number" required="required" placeholder="Año" maxlength="30"/><br></div>
+											</div>
+											 <button type="submit" id="sub1" style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
+										</form>
+									</div>								
 							</div>
 							</div>
 						</div>

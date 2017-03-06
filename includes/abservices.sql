@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-02-2017 a las 13:13:05
+-- Tiempo de generación: 06-03-2017 a las 18:11:33
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -27,30 +27,31 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `clientes` (
-  `Id` varchar(30) NOT NULL
+  `Id` varchar(30) NOT NULL,
+  `Horas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`Id`) VALUES
-('MACRIS'),
-('CONSULTORES'),
-('REMAR'),
-('ALFONSOXII'),
-('MONASTERIO'),
-('DILUS_SISTEM '),
-('INACON'),
-('SANGAR'),
-('UXAMA'),
-('PATRONES'),
-('DOMOTECH'),
-('M&N'),
-('URBINGES'),
-('DILUS_CLIMA'),
-('FASPA'),
-('VALDELUZ');
+INSERT INTO `clientes` (`Id`, `Horas`) VALUES
+('MACRIS', 20),
+('CONSULTORES', 20),
+('REMAR', 20),
+('ALFONSOXII', 20),
+('MONASTERIO', 20),
+('DILUS_SISTEM ', 20),
+('INACON', 20),
+('SANGAR', 20),
+('UXAMA', 20),
+('PATRONES', 20),
+('DOMOTECH', 20),
+('M&N', 20),
+('URBINGES', 20),
+('DILUS_CLIMA', 20),
+('FASPA', 20),
+('VALDELUZ', 20);
 
 -- --------------------------------------------------------
 
@@ -75,9 +76,8 @@ CREATE TABLE `trabajos` (
 --
 
 INSERT INTO `trabajos` (`Id`, `IdCliente`, `Trabajador`, `FVisita`, `HoraE`, `HoraS`, `Descripcion`, `DescripcionMat`, `Observaciones`) VALUES
-(1, 'ALFONSOXII', 'FGB', '2017-02-21', '13:00:00', '14:00:00', 'Reparación de ordenadores', NULL, NULL),
-(2, 'ALFONSOXII', 'FGB', '2017-02-19', '17:00:00', '19:00:00', 'Consultas.', NULL, NULL),
-(3, 'ALFONSOXII', 'FGB', '2017-02-02', '15:25:00', '15:45:00', 'hgfh', '', '');
+(2, 'ALFONSOXII', 'FGB', '2017-02-19', '17:00:00', '19:00:00', 'Consultas', '', ''),
+(3, 'ALFONSOXII', 'FGB', '2017-02-02', '15:25:00', '15:45:00', 'Arreglo de dominios', '', '');
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`Usuario`, `Password`, `Tipo`, `abServices`, `EUROICO`) VALUES
 ('FGB', 'fgb', 3, 1, 1),
 ('RPR', 'rpr', 3, 1, 1),
-('RS', 'rs', 3, 1, 1);
+('RS', 'rs', 3, 1, 1),
+('RRR', 'rrr', 1, 1, 0),
+('eee', 'eee', 2, 0, 1);
 
 --
 -- Índices para tablas volcadas

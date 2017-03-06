@@ -136,9 +136,16 @@ function getHorasTrabajos($id){
 	
 	$duracion+=abs($fin-$ini);
 	}
-	$duracion = number_format($duracion/3600,2);
+	$duracion = conversorSegundosHoras($duracion);
 	
 	$pst->close();
 	return $duracion;          
+}
+
+function conversorSegundosHoras($tiempo_en_segundos) {
+	$horas = floor($tiempo_en_segundos / 3600);
+	$minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
+ 
+	return $horas . '.' . $minutos;
 }
 ?>

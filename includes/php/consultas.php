@@ -30,5 +30,11 @@ function consByDateAndTechnician($tecnico, $fIni, $fFin){
 	return $result;
 }
 
+function consAcumulados($cliente,$mes,$anyo){
+	
+	$result = getAcumulados($cliente,$mes,$anyo);
+	
+	return $result;
+}
 
 ?>
