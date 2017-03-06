@@ -140,7 +140,7 @@ if (session_status() == PHP_SESSION_NONE) {
 										<div class="text-center"> <p><strong> Empresa </strong></p></div>
 										<div class="text-center"><div class="btn-group">
 										  <button type="button" class="btn btn-primary" id="e1" onClick="formEmpresa('abServices')">abServices</button>
-										  <button type="button" class="btn btn-primary" id="e2" onClick="formEmpresa('Euroico')">Eurico</button>
+										  <button type="button" class="btn btn-primary" id="e2" onClick="formEmpresa('Euroico')">Euroico</button>
   										  <input id="inputEmpresa"  name="empresa" required="required" class="form-control" value=" " style="display: none"/>
 
 										</div></div>

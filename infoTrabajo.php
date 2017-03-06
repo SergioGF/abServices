@@ -30,7 +30,7 @@ require(__DIR__.'/includes/php/trabajos.php');
 	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
 	<script type="text/javascript">
 	function eliminarWk(trabajo) {
-		document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar al trabajo Nº " + trabajo + " ?";
+		document.getElementById("bodyPop").innerHTML = "¿Estás seguro de que deseas eliminar el trabajo Nº " + trabajo + " ?";
 		document.getElementById("trabajo").value=trabajo;
 	}
 	</script>

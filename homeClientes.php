@@ -68,11 +68,6 @@ if (session_status() == PHP_SESSION_NONE) {
 					</div>
 					</div>
 					<div class="col-md-2" >
-						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./homeConsultas.php'">
-						<span class="glyphicon glyphicon-search" aria-hidden="true" id="userGestion"></span> <br>Consultas
-						</button>
-					</div>
-					<div class="col-md-2" >
 					<?php
 						if($_SESSION["tipo"] == 3){ ?>
 						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./gestionClientes.php'">
@@ -88,6 +83,11 @@ if (session_status() == PHP_SESSION_NONE) {
 						</button>
 					<?php } ?>
 					</div>
+					<div class="col-md-2" >
+						<button type="button" class="btn btn-default btn-lg" id="botonJum" onClick="location.href='./homeConsultas.php'">
+						<span class="glyphicon glyphicon-search" aria-hidden="true" id="userGestion"></span> <br>Consultas
+						</button>
+					</div>					
 					<div class="col-md-1" ></div>
 				</div>
 		</div>
@@ -117,7 +117,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								
 								$clientes = conseguirClientes();				
 									foreach((array)$clientes as $cliente){
-									echo '<div class="form-group"><div class="container-fluid"><img id="margenIm" src="./includes/css/contacto.png"><a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div><hr id="lineas">';
+									echo '<hr id="lineas"><div class="form-group"><div class="container-fluid"><img id="margenIm" src="./includes/css/contacto.png"><a href = "./trabajosCliente.php?cliente='.$cliente['Id'].'">'.$cliente['Id'].'</a></div></div>';
 									}
 								
 								?>	

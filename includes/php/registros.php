@@ -24,7 +24,7 @@ function formRegisterUser($params) {
 		
 		if($ok){
 			$result[] = "El registro se ha realizado con éxito.";
-			header('Location: ./principalAdmin.php?userNew=1');
+			header('Location: ./gestionUsuarios.php?userNew=1');
 		} else {
 			$result[] = "El registro no se ha podido realizar con éxito.";
 		}
