@@ -30,7 +30,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	$ws3 = false;
 		if(isset($_POST['formAcumulados'])) { //Habrá que comprobar primero si existe el cliente.
 			if(getCliente($_POST['conscliente'])){
-			  header('Location: ./infoConsulta.php?cliente='.$_POST['conscliente'].'&mes='.$_POST['mes'].'&anyo='.$_POST['anyo'].'&tipo=1');
+			  header('Location: ./infoConsulta.php?cliente='.$_POST['conscliente'].'&fIni='.$_POST['consf1'].'&fFin='.$_POST['consf2'].'&tipo=1');
 			}
 			else{
 				$ws1 = true;
@@ -146,27 +146,8 @@ if (session_status() == PHP_SESSION_NONE) {
 									<div id="content1" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
 											 <div id="divUser"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/><br></div>
-											<div class="form-group">
-												<label class="col-xs-2 control-label">Mes</label>
-												<div class="col-xs-5 selectContainer">
-													<select class="form-control" name="mes" required="required">
-														<option value="00">Elige un mes</option>
-														<option value="01">Enero</option>
-														<option value="02">Febrero</option>
-														<option value="03">Marzo</option>
-														<option value="04">Abril</option>
-														<option value="05">Mayo</option>
-														<option value="06">Junio</option>
-														<option value="07">Julio</option>
-														<option value="08">Agosto</option>
-														<option value="09">Septiembre</option>
-														<option value="10">Octubre</option>
-														<option value="11">Noviembre</option>
-														<option value="12">Diciembre</option>
-													</select>
-												</div>
-												<div id="divUser"><input  class="form-control" id="anyo"  name="anyo" type="number" required="required" placeholder="Año" maxlength="30"/><br></div>
-											</div>
+											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub1" style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>								

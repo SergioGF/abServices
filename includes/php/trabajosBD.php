@@ -111,13 +111,15 @@ function updateWorksClient($idCliente, $idClienteN){
 function getHorasTrabajos($id){
 	
 	global $mysqli;
-	$trabajos = null;
 	
-	$args = array($id);
+	$fIni = date("Y").'-'.date("m").'-01';
+	$fFin = date("Y").'-'.date("m").'-31';
+	
+	$args = array($id, $fIni, $fFin);
 	sanitizeArgs($args);
 	
-	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE IdCliente = ?");
-	$pst->bind_param("s",$args[0]);
+	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE IdCliente = ? AND (FVisita BETWEEN ? AND ?)");
+	$pst->bind_param("sss",$args[0],$args[1],$args[2]);
 	$pst->execute();
 	$result = $pst->get_result();
 	$duracion = 0.0;

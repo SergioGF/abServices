@@ -89,7 +89,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								  <td width="70%"><strong id="nombresForm">Descripción:</strong></td> <td width="30%"><textarea id="cajas" name="descripcion" required="required" rows="5" cols="35"></textarea></td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" name="fvisita" type="date" required="required"/></td>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" name="fvisita" type="date" required="required" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></td>
 								</tr>
 								<tr>
 								 <td width="70%"><strong>Hora entrada:</strong></td><td width="30%"><input id="cajas" name="horae" type="time" required="required"/></td>

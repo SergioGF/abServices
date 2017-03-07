@@ -18,17 +18,23 @@ if (session_status() == PHP_SESSION_NONE) {
 	
 	if($tipo == 1){
 		$cliente = $_GET['cliente']; 
-		$mes = $_GET['mes']; 
-		$anyo = $_GET['anyo']; 
+		$fIni = $_GET['fIni']; 
+		$fFin = $_GET['fFin']; 
+		
+		if($fIni == null){
+			$fIn = 'X';
+		} else {
+			$fIn = date_format(new DateTime($fIni), 'd-m-Y');
+		}
 	} else if($tipo == 2){
 		$cliente = $_GET['cliente'];
 		$fIni = $_GET['fIni'];
 		$fFin = $_GET['fFin'];
 		
 		if($fIni == null){
-			$fIni = 'X';
+			$fIn = 'X';
 		} else {
-			$fIni = date_format(new DateTime($fIni), 'd-m-Y');
+			$fIn = date_format(new DateTime($fIni), 'd-m-Y');
 		}
 	} else{
 		$tecnico = $_GET['tecnico'];
@@ -36,9 +42,9 @@ if (session_status() == PHP_SESSION_NONE) {
 		$fFin = $_GET['fFin'];
 		
 		if($fIni == null){
-			$fIni = 'X';
+			$fIn = 'X';
 		} else {
-			$fIni = date_format(new DateTime($fIni), 'd-m-Y');
+			$fIn = date_format(new DateTime($fIni), 'd-m-Y');
 		}
 	}
 	?>
@@ -89,16 +95,16 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Acumulados ('.$cliente.': '.$mes.'-'.$anyo.')'; else if($tipo == 2)  echo 'Fecha y Cliente (' .$cliente.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else echo 'Fecha y Técnico (' .$tecnico.': '.$fIni.' - '.date_format(new DateTime($fFin), 'd-m-Y').')';?>'</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Acumulados ('.$cliente.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else if($tipo == 2)  echo 'Fecha y Cliente (' .$cliente.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else echo 'Fecha y Técnico (' .$tecnico.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd-m-Y').')';?>'</strong></div></div>
 						<div class="panel-body">
 							<?php 
 								$trabajos = [];
 								
 								if($tipo == 1){
 									$horasCliente = conseguirHoras($cliente);
-									$horasUsadas = consAcumulados($cliente,$mes,$anyo);
+									$horasUsadas = consAcumulados($cliente,$fIni,$fFin);
 									
-									echo '<div class="form-group"><strong><span>Horas contratadas: '.$horasCliente.' horas</span><br><span>Horas usadas: '.$horasUsadas.' horas</span></strong></div></br>';
+									echo '<center><div class="form-group"><strong><span>Horas contratadas: '.$horasCliente.' horas</span><br><span>Horas usadas: '.$horasUsadas.' horas</span></strong></div></center></br>';
 									
 								} else if($tipo == 2){
 									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
@@ -119,9 +125,15 @@ if (session_status() == PHP_SESSION_NONE) {
 							?>
 						</div>	
 							<div class="panel-footer">
-							<a href="pdf.php?trabajos=<?php echo $tr?>"><input  class="btn btn-primary" type="button" value="Generar informe"></input></a>
-							<a href="homeConsultas.php"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Hacer otra consulta</strong></button></a>
-						</div>	
+							<?php
+							if($tipo == 2 || $tipo == 3){
+								echo '<a href="excel.php?trabajos='.$tr.'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
+							} else {
+								
+							}
+							?>
+							<strong><a href="homeConsultas.php"><input style="float:right" id="botonCentrado" class="btn btn-primary"  value="Hacer otra consulta"></input></a></strong>
+							</div>	
 
 													
 							</form>
