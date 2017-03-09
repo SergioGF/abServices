@@ -147,7 +147,11 @@ function getHorasTrabajos($id){
 function conversorSegundosHoras($tiempo_en_segundos) {
 	$horas = floor($tiempo_en_segundos / 3600);
 	$minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
- 
-	return $horas . '.' . $minutos;
+	
+	if($minutos == 0) $minutos = $minutos.'0';
+	
+	return $horas . ':' . $minutos;
 }
+
+
 ?>

@@ -101,7 +101,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								$trabajos = [];
 								
 								if($tipo == 1){
-									$horasCliente = conseguirHoras($cliente);
+									$horasCliente = conseguirHoras($cliente).':00';
 									$horasUsadas = consAcumulados($cliente,$fIni,$fFin);
 									
 									echo '<center><div class="form-group"><strong><span>Horas contratadas: '.$horasCliente.' horas</span><br><span>Horas usadas: '.$horasUsadas.' horas</span></strong></div></center></br>';
@@ -126,10 +126,10 @@ if (session_status() == PHP_SESSION_NONE) {
 						</div>	
 							<div class="panel-footer">
 							<?php
-							if($tipo == 2 || $tipo == 3){
-								echo '<a href="excel.php?trabajos='.$tr.'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
-							} else {
-								
+							if($tipo == 2){
+								echo '<a href="excel.php?trabajos='.$tr.'&cliente='.$cliente.'&tipo='.$tipo.'&fIni='.$fIn.'&fFin='.date_format(new DateTime($fFin), 'd-m-Y').'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
+							} else if($tipo == 3){
+								echo '<a href="excel.php?trabajos='.$tr.'&tecnico='.$tecnico.'&tipo='.$tipo.'&fIni='.$fIn.'&fFin='.date_format(new DateTime($fFin), 'd-m-Y').'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
 							}
 							?>
 							<strong><a href="homeConsultas.php"><input style="float:right" id="botonCentrado" class="btn btn-primary"  value="Hacer otra consulta"></input></a></strong>

@@ -96,4 +96,15 @@ function horasUsadas($cliente){
 }
 
 
+function conversorHorasSegundos($tiempo_en_horas) {
+	$decimales = explode(":",$tiempo_en_horas);
+	
+	$horas = $decimales[0] * 3600;
+	$minutos = $decimales[1] * 60;
+ 
+	$segundos = $horas + $minutos;
+	return $segundos;
+}
+
+
 ?>

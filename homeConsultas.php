@@ -129,7 +129,7 @@ if (session_status() == PHP_SESSION_NONE) {
 								</div>
 									<div id="content2" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos2()" class="form-horizontal" role="form">
-											<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id de cliente" maxlength="30"/></div> </br>
+											<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div> </br>
 											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control"/></div></div>
 											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											<button type="submit" id="sub2" style="float:right" class="btn btn-primary" name="formConsFyC" value="Sign in"><strong>Buscar</strong></button>
