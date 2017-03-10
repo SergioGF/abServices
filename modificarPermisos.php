@@ -4,6 +4,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION["tipo"] != 3)
+		header('Location: ./login.php');
 require(__DIR__.'/includes/php/usuarios.php');
 $userEdit=$_GET['userToEdit'];
 $user = getUser($userEdit);
@@ -134,6 +136,33 @@ $user = getUser($userEdit);
 									</div>
 								</div>												
 						</div>
+						<?php
+							if($user["Tipo"] == 3){
+								echo "<script>";
+								echo "formTipo('Administrador');";
+								echo "</script>";
+							}
+							else if($user["Tipo"] == 2){
+								echo "<script>";
+								echo "formTipo('Trabajador');";
+								echo "</script>";
+							}
+							else if ($user["Tipo"] == 1){
+								echo "<script>";
+								echo "formTipo('TrabajadorL');";
+								echo "</script>";
+							}
+							if($user["abServices"] == 1){
+								echo "<script>";
+								echo "formEmpresa('abServices');";
+								echo "</script>";
+							}
+							else if($user["EUROICO"] == 1){
+								echo "<script>";
+								echo "formEmpresa('Euroico');";
+								echo "</script>";
+							}
+						?>
 						<div class="panel-footer">
 							<input  class="btn btn-primary" type="button" onClick="location.href='./gestionUsuarios.php'" value="Volver a los anteriores"></input>
 							<button type="submit" class="btn btn-primary" name="formRUser" value="Sign in" style="float: right"><strong>Guardar cambios</strong></button>

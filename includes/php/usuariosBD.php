@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__."/config.php");
+require_once __DIR__.'/password.php';
 
 function getInfoUser($nick){
 	global $mysqli;
@@ -22,7 +23,8 @@ function getInfoUser($nick){
 
 function editPass($nick, $passN){
 	global $mysqli;
-	$args = array($passN, $nick);
+	$passHash = password_hash($passN, PASSWORD_BCRYPT);
+	$args = array($passHash, $nick);
 	sanitizeArgs($args);	
 	$pst = $mysqli->prepare("UPDATE users SET Password = ? WHERE Usuario = ?");
 	$pst->bind_param("ss", $args[0], $args[1]);

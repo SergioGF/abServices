@@ -132,7 +132,14 @@ if (session_status() == PHP_SESSION_NONE) {
 								echo '<a href="excel.php?trabajos='.$tr.'&tecnico='.$tecnico.'&tipo='.$tipo.'&fIni='.$fIn.'&fFin='.date_format(new DateTime($fFin), 'd-m-Y').'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
 							}
 							?>
-							<strong><a href="homeConsultas.php"><input style="float:right" id="botonCentrado" class="btn btn-primary"  value="Hacer otra consulta"></input></a></strong>
+							<?php
+							if($tipo == 1){ ?>
+							<button  class="btn btn-primary" onClick="location.href='./homeConsultas.php'">Hacer otra consulta</button>
+							<?php } 
+							else {
+							?>
+							<button  class="btn btn-primary" style="float:right" onClick="location.href='./homeConsultas.php'">Hacer otra consulta</button>
+							<?php } ?>
 							</div>	
 
 													

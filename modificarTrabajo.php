@@ -4,6 +4,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION["tipo"] == 1)
+		header('Location: ./login.php');
 ?>
 <html lang="en">
   <head>

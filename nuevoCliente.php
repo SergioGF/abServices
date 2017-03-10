@@ -4,6 +4,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION["tipo"] != 3)
+		header('Location: ./login.php');
 ?>
 <html lang="en">
   <head>
@@ -110,6 +112,21 @@ if (session_status() == PHP_SESSION_NONE) {
 				if (espacios1) {
 				  document.getElementById("newCliente").value ="";
 				  document.getElementById("newCliente").placeholder ="El Id no puede contener espacios en blanco";
+				  document.getElementById("divUser").className = "form-group has-error has-feedback";
+				  return false;
+				}
+				
+				var p2 = document.getElementById("newCliente").value;
+				var caracter = false;
+				var cont = 0;
+				while (!caracter && (cont < p2.length)) {
+				  if (p2.charAt(cont) == "&")
+					caracter = true;
+				  cont++;
+				}
+				if (caracter) {
+				  document.getElementById("newCliente").value ="";
+				  document.getElementById("newCliente").placeholder ="El Id no puede contener caracteres especiales, por ejemplo: &";
 				  document.getElementById("divUser").className = "form-group has-error has-feedback";
 				  return false;
 				}

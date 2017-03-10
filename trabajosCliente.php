@@ -118,11 +118,17 @@ if (session_status() == PHP_SESSION_NONE) {
 									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd-m-Y').'</div></strong><div id="derecha">'.$trabajo['Descripcion'].'</div></a></h4></div><hr id="lineas">';
 									}
 								?>	<br>
+								<?php 
+							if($_SESSION["tipo"] != 1){
+									?>
 							<div class="form-group">
 								<div class="col-lg-offset-4 col-lg-11">
 									<div class="center-block"><a href="nuevoTrabajo.php?cliente=<?php echo $cliente ?>"><button id="botonCentrado" type="button" class="btn btn-primary"  value="Anadir"><strong>Añadir trabajo</strong></button></a></div>
 								</div>
 							</div>
+								<?php 
+							}
+									?>
 
 						</div>								
 							</form>

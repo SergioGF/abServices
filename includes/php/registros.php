@@ -70,7 +70,7 @@ function changePermission($params, $nick){
 		
 		if($ok){
 			$result[] = "Los permisos han sido cambiados con éxito.";
-			 header('Location: ./principalAdmin.php?userEdit=1');
+			 header('Location: ./gestionUsuarios.php?userEdit=1');
 		} else {
 			$result[] = "Los permisos no han podido ser modificados.";
 		}

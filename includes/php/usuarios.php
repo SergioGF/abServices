@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__.'/config.php';
 require_once __DIR__.'/usuariosBD.php';
+require_once __DIR__.'/password.php';
 
 function formLogin($params) {
 
@@ -23,7 +24,8 @@ function login($nombreUsuario, $password) {
   // Si existe el usuario
 	if ( $usuario ) {
 		//Si la contraseña es correcta
-		if($password == $usuario['Password']){
+	//	if($password == $usuario['Password']){
+		if(password_verify($password, $usuario['Password'])){
 		// Rescatar tipo de usuario y ver donde situarlo.	
 		  $_SESSION["usuario"] = $usuario['Usuario'];
 		  $_SESSION["password"] = $usuario['Password'];
@@ -55,7 +57,8 @@ function formPass($params, $nick) {
   
    $usuario = getInfoUser($nick);
 
-   if($usuario['Password'] == $passV){ //Si las contraseñas son iguales
+   if(password_verify($passV, $usuario['Password'])){
+   //if($usuario['Password'] == $passV){ //Si las contraseñas son iguales
 	 $ok = editPass($nick,$passN);
 	
 		if($ok == false){

@@ -103,9 +103,15 @@ require(__DIR__.'/includes/php/trabajos.php');
 										</div></div>
 						</div>
 						<div class="panel-footer">
+							<?php 
+							if($_SESSION["tipo"] != 1){
+									?>
 							<input  class="btn btn-primary" type="button" onclick="location.href='./modificarTrabajo.php?idTrabajo=<?php echo $id?>&cliente=<?php echo $client?>';" value="Modificar"></input>
 							<!--<button class="glyphicon glyphicon-remove" onclick="eliminarUs('<?php echo $us["Usuario"]?>')" data-toggle="modal" data-target="#myModal" id="deleteUser"></button>-->
 							<input  class="btn btn-primary" type="button" onClick="eliminarWk('<?php echo $id?>')" value="Eliminar" data-toggle="modal" data-target="#myModal" id="deleteTrabajo" ></input>
+								<?php 
+							}
+									?>
 							<a href="trabajosCliente.php?cliente=<?php echo $client ?>"><button style="float: right" id="botonCentrado" class="btn btn-primary"  value="Anadir"><strong>Volver a la lista de trabajos</strong></button></a>
 						</div>	
 						</div>

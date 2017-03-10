@@ -4,6 +4,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION["tipo"] != 3)
+		header('Location: ./login.php');
 $userEdit=$_GET['clienteToEdit'];
 $cliente = $userEdit;
 ?>
@@ -40,7 +42,7 @@ $cliente = $userEdit;
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="principalUser.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
+				<a class="navbar-brand" href="homeClientes.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse" id="navSupDerecha">
 			 
