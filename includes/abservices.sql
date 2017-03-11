@@ -1,38 +1,38 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-03-2017 a las 18:11:33
--- Versión del servidor: 10.1.19-MariaDB
--- Versión de PHP: 5.6.28
+-- Host: 127.0.0.1
+-- Generation Time: Mar 11, 2017 at 10:02 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `abservices`
+-- Database: `abservices`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clientes`
+-- Table structure for table `clientes`
 --
 
-CREATE TABLE `clientes` (
+CREATE TABLE IF NOT EXISTS `clientes` (
   `Id` varchar(30) NOT NULL,
   `Horas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `clientes`
+-- Dumping data for table `clientes`
 --
 
 INSERT INTO `clientes` (`Id`, `Horas`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `clientes` (`Id`, `Horas`) VALUES
 ('UXAMA', 20),
 ('PATRONES', 20),
 ('DOMOTECH', 20),
-('M&N', 20),
+('MN', 20),
 ('URBINGES', 20),
 ('DILUS_CLIMA', 20),
 ('FASPA', 20),
@@ -56,11 +56,11 @@ INSERT INTO `clientes` (`Id`, `Horas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `trabajos`
+-- Table structure for table `trabajos`
 --
 
-CREATE TABLE `trabajos` (
-  `Id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `trabajos` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `IdCliente` varchar(30) NOT NULL,
   `Trabajador` varchar(3) NOT NULL,
   `FVisita` date NOT NULL,
@@ -68,11 +68,12 @@ CREATE TABLE `trabajos` (
   `HoraS` time NOT NULL,
   `Descripcion` text NOT NULL,
   `DescripcionMat` text,
-  `Observaciones` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Observaciones` text,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Volcado de datos para la tabla `trabajos`
+-- Dumping data for table `trabajos`
 --
 
 INSERT INTO `trabajos` (`Id`, `IdCliente`, `Trabajador`, `FVisita`, `HoraE`, `HoraS`, `Descripcion`, `DescripcionMat`, `Observaciones`) VALUES
@@ -82,47 +83,26 @@ INSERT INTO `trabajos` (`Id`, `IdCliente`, `Trabajador`, `FVisita`, `HoraE`, `Ho
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `Usuario` varchar(10) NOT NULL,
-  `Password` varchar(10) NOT NULL,
+  `Password` varchar(72) NOT NULL,
   `Tipo` int(11) NOT NULL,
   `abServices` tinyint(1) NOT NULL,
   `EUROICO` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`Usuario`, `Password`, `Tipo`, `abServices`, `EUROICO`) VALUES
-('FGB', 'fgb', 3, 1, 1),
-('RPR', 'rpr', 3, 1, 1),
-('RS', 'rs', 3, 1, 1),
-('RRR', 'rrr', 1, 1, 0),
-('eee', 'eee', 2, 0, 1);
+('FGB', '$2y$10$ZHO/43AbZIT6UL0yrn2zsel4GtDXNhuBNhOtFdUPHN7zphArOoYFi', 3, 1, 0),
+('US2', '$2y$10$kxuUWw7i9n2zGVB1ZRQjCebbq2c0w4KDVJoTiqSJlyEDat8corhTO', 2, 1, 0),
+('US1', '$2y$10$ejTfv7ckq4NxAIKadbVcYOlYVvwezHUGC.MhZwOdUJzcRWosYoCEG', 1, 1, 0);
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `trabajos`
---
-ALTER TABLE `trabajos`
-  ADD PRIMARY KEY (`Id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `trabajos`
---
-ALTER TABLE `trabajos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
