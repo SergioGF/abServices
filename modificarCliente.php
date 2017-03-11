@@ -87,12 +87,12 @@ $cliente = $userEdit;
 						<div class="panel-body">
 							<div class="form-group" id="divUser">
 								<div class="container-fluid">
-								 <input id="newCliente"  name="cliente" required="required" class="form-control" value="<?php echo $cliente ?>" maxlength="30"/>
+								 <input id="newCliente"  name="cliente" required="required" class="form-control" placeholder="<?php echo $cliente ?>" maxlength="30"/>
 								</div>
 							</div>
 							<div class="form-group" id="divUser">
 								<div class="container-fluid">
-								 <input id="newCliente"  type="number" name="horas" required="required" class="form-control" value="<?php echo $horas ?>" maxlength="30"/>
+								 <input id="newCliente"  type="number" name="horas" required="required" class="form-control" placeholder="<?php echo $horas ?> horas contratadas" maxlength="30"/>
 								</div>
 							</div>
 						</div>

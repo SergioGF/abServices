@@ -104,7 +104,7 @@ if (session_status() == PHP_SESSION_NONE) {
 									$horasCliente = conseguirHoras($cliente).':00';
 									$horasUsadas = consAcumulados($cliente,$fIni,$fFin);
 									
-									echo '<center><div class="form-group"><strong><span>Horas contratadas: '.$horasCliente.' horas</span><br><span>Horas usadas: '.$horasUsadas.' horas</span></strong></div></center></br>';
+									echo '<center><br><div style="width:400px;height:100px;border:1px solid black; background-color:#D3F1EE;"><br><strong><span>Horas contratadas / mes: '.$horasCliente.' horas</span><br><span>Horas hechas en intervalo: '.$horasUsadas.' horas</span></strong></div></center></br>';
 									
 								} else if($tipo == 2){
 									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
