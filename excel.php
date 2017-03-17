@@ -27,6 +27,8 @@ $objPHPExcel->getProperties()
 	$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
 	$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
 	$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+	$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+	$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
 
 // Agregar Informacion
 
@@ -52,10 +54,12 @@ $objPHPExcel->getProperties()
 $objPHPExcel->setActiveSheetIndex(0)
 	->setCellValue('C1', $titulo)
 	->setCellValue('A3', 'Nº Trabajo')
-	->setCellValue('B3', 'Descripción')
-	->setCellValue('C3', 'Fecha visita')
-	->setCellValue('D3', 'Duración')
-	->setCellValue('E3', 'Materiales');
+	->setCellValue('B3', 'Fecha visita')
+	->setCellValue('C3', 'Ubicación')
+	->setCellValue('D3', 'Descripción')
+	->setCellValue('E3', 'Realizado por')
+	->setCellValue('F3', 'Duración')
+	->setCellValue('G3', 'Total horas');
 	
 	
 	$celda = 4; //Donde se empieza
@@ -69,10 +73,11 @@ foreach((array)$trabajos as $trabajo){
 	$totalHoras += $aux;
 $objPHPExcel->setActiveSheetIndex(0)
 	->setCellValue('A'.$celda, $index)
-	->setCellValue('B'.$celda, $trabajo['Descripcion'])
-	->setCellValue('C'.$celda, date_format(new DateTime($trabajo['FVisita']), 'd-m-Y'))
-	->setCellValue('D'.$celda, $duracion)
-	->setCellValue('E'.$celda, $trabajo['DescripcionMat']);
+	->setCellValue('B'.$celda, date_format(new DateTime($trabajo['FVisita']), 'd-m-Y'))
+	->setCellValue('C'.$celda, $trabajo['Ubicacion'])
+	->setCellValue('D'.$celda, $trabajo['Descripcion'])
+	->setCellValue('E'.$celda, $trabajo['Trabajador'])
+	->setCellValue('F'.$celda, $duracion);
 	
 	$index++;
 	$celda++;
@@ -80,7 +85,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 	$totalHoras =  conversorSegundosHoras($totalHoras);
 	
 $objPHPExcel->setActiveSheetIndex(0)
-	->setCellValue('E'.($celda+1), 'Total horas: '.$totalHoras);
+	->setCellValue('G'.$celda, $totalHoras);
 
 	//Bordes
 	$borders = array(
@@ -91,14 +96,14 @@ $objPHPExcel->setActiveSheetIndex(0)
         )
       ),
     );
-	$objPHPExcel->getActiveSheet()->getStyle('A3:E'.($celda-1).'')->applyFromArray($borders);
-	$objPHPExcel->getActiveSheet()->getStyle('E'.($celda+1))->applyFromArray($borders);
+	$objPHPExcel->getActiveSheet()->getStyle('A3:G'.($celda-1).'')->applyFromArray($borders);
+	$objPHPExcel->getActiveSheet()->getStyle('G'.($celda))->applyFromArray($borders);
 	$objPHPExcel->getActiveSheet()->getStyle('B1:D1')->applyFromArray($borders);
 	
 	//Colores
 	cellColor('B1:D1', 'D3F1EE');
-	cellColor('A3:E3', 'D3F1EE');
-	cellColor('E'.($celda+1), 'D3F1EE');
+	cellColor('A3:G3', 'D3F1EE');
+	cellColor('G'.$celda, 'D3F1EE');
 	
 	// Renombrar Hoja
 	$objPHPExcel->getActiveSheet()->setTitle('Consulta');

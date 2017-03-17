@@ -33,7 +33,7 @@ function formRegisterTrabajo($params, $cliente, $usuario) {
 	if($params['descmat'] == null) $descMat = null;
 	if($params['observaciones'] == null) $obs = null;
 		
-		$ok = registrarTrabajo($cliente, $usuario, $params['fvisita'],$params['horae'], $params['horas'], $params['descripcion'],
+		$ok = registrarTrabajo($cliente, $usuario, $params['ubicacion'], $params['fvisita'],$params['horae'], $params['horas'], $params['descripcion'],
 								$descMat, $obs); //Campo ID autocompletable.
 		
 		if($ok){
@@ -55,7 +55,7 @@ function formModTrabajo($params, $cliente, $id) {
 	if($params['descmat'] == null) $descMat = null;
 	if($params['observaciones'] == null) $obs = null;
 		
-		$ok = modificarTrabajo($cliente, $params['fvisita'],$params['horae'], $params['horas'], $params['descripcion'],
+		$ok = modificarTrabajo($cliente, $params['ubicacion'], $params['fvisita'],$params['horae'], $params['horas'], $params['descripcion'],
 								$descMat, $obs, $id); 
 		
 		if($ok){

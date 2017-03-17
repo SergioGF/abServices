@@ -36,7 +36,35 @@ if($_SESSION["tipo"] == 1)
             element.style.display='none';
         }
     }
-</script>
+	</script>
+	<script type="text/javascript">
+	function formTipo(t) {
+			document.getElementById("inputTipo").value=t;
+			if(t == "CC"){
+			document.getElementById("tipo1").style.backgroundColor = "#161e45";
+			document.getElementById("tipo2").style.backgroundColor = "#286090";
+			document.getElementById("tipo3").style.backgroundColor = "#286090";
+			document.getElementById("tipo4").style.backgroundColor = "#286090";
+			}
+			else if(t == "OF"){
+			document.getElementById("tipo1").style.backgroundColor = "#286090";
+			document.getElementById("tipo2").style.backgroundColor = "#161e45";
+			document.getElementById("tipo3").style.backgroundColor = "#286090";
+			document.getElementById("tipo4").style.backgroundColor = "#286090";
+			}
+			else if(t == "AR"{
+			document.getElementById("tipo1").style.backgroundColor = "#286090";
+			document.getElementById("tipo2").style.backgroundColor = "#286090";
+			document.getElementById("tipo3").style.backgroundColor = "#161e45";
+			document.getElementById("tipo4").style.backgroundColor = "#286090";
+			} else {
+			document.getElementById("tipo1").style.backgroundColor = "#286090";
+			document.getElementById("tipo2").style.backgroundColor = "#286090";
+			document.getElementById("tipo3").style.backgroundColor = "#286090";
+			document.getElementById("tipo4").style.backgroundColor = "#161e45";				
+			}
+		}
+	</script>
   </head>
   <?php
 	require(__DIR__.'/includes/php/trabajos.php');
@@ -89,6 +117,18 @@ if($_SESSION["tipo"] == 1)
 							<table border="0" cellpadding="0" cellspacing="2" width="50%">
 								<tr>
 								  <td width="70%"><strong id="nombresForm">Descripción:</strong></td> <td width="30%"><textarea id="cajas" name="descripcion" required="required" rows="5" cols="35"></textarea></td>
+								</tr>
+								<tr>
+								 <td width="70%"><strong>Ubicación:</strong></td>
+								 <td style="padding-bottom: 7px;">
+								    <div class="text-center btn-group">
+										<button type="button" class="btn btn-primary" id="tipo1" onClick="formTipo('CC')">CC</button>
+										<button type="button" class="btn btn-primary" id="tipo2" onClick="formTipo('OF')">OF</button>
+									    <button type="button" class="btn btn-primary" id="tipo3" onClick="formTipo('AR')">AR</button>
+										<button type="button" class="btn btn-primary" id="tipo4" onClick="formTipo('AT')">AT</button>
+										<input id="inputTipo"  name="ubicacion" required="required" class="form-control" value=" " style="display: none"/>
+									</div>
+								 </td>
 								</tr>
 								<tr>
 								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" name="fvisita" type="date" required="required" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></td>

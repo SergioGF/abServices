@@ -54,12 +54,12 @@ function getInfoWork($id){
 	return $info;     
 }
 
-function registrarTrabajo($cliente, $usuario, $fVisita, $horaE, $horaS, $desc, $descM, $obs){
+function registrarTrabajo($cliente, $usuario, $ubicacion, $fVisita, $horaE, $horaS, $desc, $descM, $obs){
 	global $mysqli;
-	$args = array($cliente,$usuario, $fVisita, $horaE, $horaS, $desc, $descM, $obs);
+	$args = array($cliente,$usuario,$ubicacion, $fVisita, $horaE, $horaS, $desc, $descM, $obs);
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("INSERT INTO trabajos VALUES (null,?,?,?,?,?,?,?,?);"); //null para el campo autoincrement
-	$pst->bind_param("ssssssss",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7]);
+	$pst = $mysqli->prepare("INSERT INTO trabajos VALUES (null,?,?,?,?,?,?,?,?,?);"); //null para el campo autoincrement
+	$pst->bind_param("sssssssss",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7],$args[8]);
 	$result = $pst->execute();
 	
 	$pst->close();
@@ -67,12 +67,12 @@ function registrarTrabajo($cliente, $usuario, $fVisita, $horaE, $horaS, $desc, $
 	return $result;
 }
 
-function modificarTrabajo($cliente, $fVisita, $horaE, $horaS, $desc, $descM, $obs, $id){
+function modificarTrabajo($cliente, $fVisita, $ubicacion, $horaE, $horaS, $desc, $descM, $obs, $id){
 	global $mysqli;
-	$args = array($cliente,$fVisita, $horaE, $horaS, $desc, $descM, $obs, $id);
+	$args = array($cliente, $ubicacion, $fVisita, $horaE, $horaS, $desc, $descM, $obs, $id);
 	sanitizeArgs($args);
-	$pst = $mysqli->prepare("UPDATE trabajos SET IdCliente = ?, FVisita = ?, HoraE = ?, HoraS = ?, Descripcion = ?, DescripcionMat = ?, Observaciones = ? WHERE Id = ?"); //null para el campo autoincrement
-	$pst->bind_param("ssssssss",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7]);
+	$pst = $mysqli->prepare("UPDATE trabajos SET IdCliente = ?, Ubicacion = ?, FVisita = ?, HoraE = ?, HoraS = ?, Descripcion = ?, DescripcionMat = ?, Observaciones = ? WHERE Id = ?"); //null para el campo autoincrement
+	$pst->bind_param("sssssssss",$args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7], $args[8]);
 	$result = $pst->execute();
 	
 	$pst->close();
