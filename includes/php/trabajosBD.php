@@ -149,6 +149,7 @@ function conversorSegundosHoras($tiempo_en_segundos) {
 	$minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
 	
 	if($minutos == 0) $minutos = $minutos.'0';
+	else if($minutos < 10) $minutos = '0'.$minutos;
 	
 	return $horas . ':' . $minutos;
 }
