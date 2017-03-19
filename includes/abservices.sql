@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2017 at 10:02 AM
+-- Generation Time: Mar 19, 2017 at 06:30 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -38,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 INSERT INTO `clientes` (`Id`, `Horas`) VALUES
 ('MACRIS', 20),
 ('CONSULTORES', 20),
-('REMAR', 20),
 ('ALFONSOXII', 20),
 ('MONASTERIO', 20),
 ('DILUS_SISTEM ', 20),
@@ -50,8 +49,9 @@ INSERT INTO `clientes` (`Id`, `Horas`) VALUES
 ('MN', 20),
 ('URBINGES', 20),
 ('DILUS_CLIMA', 20),
-('FASPA', 20),
-('VALDELUZ', 20);
+('FASPAtos', 20),
+('VALDELUZ', 20),
+('REMAR', 12);
 
 -- --------------------------------------------------------
 
@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `trabajos` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `IdCliente` varchar(30) NOT NULL,
   `Trabajador` varchar(3) NOT NULL,
+  `Ubicacion` varchar(2) NOT NULL DEFAULT 'CC',
   `FVisita` date NOT NULL,
   `HoraE` time NOT NULL,
   `HoraS` time NOT NULL,
@@ -70,15 +71,16 @@ CREATE TABLE IF NOT EXISTS `trabajos` (
   `DescripcionMat` text,
   `Observaciones` text,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `trabajos`
 --
 
-INSERT INTO `trabajos` (`Id`, `IdCliente`, `Trabajador`, `FVisita`, `HoraE`, `HoraS`, `Descripcion`, `DescripcionMat`, `Observaciones`) VALUES
-(2, 'ALFONSOXII', 'FGB', '2017-02-19', '17:00:00', '19:00:00', 'Consultas', '', ''),
-(3, 'ALFONSOXII', 'FGB', '2017-02-02', '15:25:00', '15:45:00', 'Arreglo de dominios', '', '');
+INSERT INTO `trabajos` (`Id`, `IdCliente`, `Trabajador`, `Ubicacion`, `FVisita`, `HoraE`, `HoraS`, `Descripcion`, `DescripcionMat`, `Observaciones`) VALUES
+(2, 'ALFONSOXII', 'FGB', 'CC', '2017-02-19', '17:00:00', '19:00:00', 'Consultas2', '', ''),
+(3, 'ALFONSOXII', 'FGB', 'CC', '2017-02-02', '15:25:00', '15:45:00', 'Arreglo de dominios', '', ''),
+(4, 'ALFONSOXII', 'FGB', 'CC', '2017-03-14', '01:01:00', '03:00:00', 'Consultas2', '', '');
 
 -- --------------------------------------------------------
 
@@ -99,9 +101,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`Usuario`, `Password`, `Tipo`, `abServices`, `EUROICO`) VALUES
-('FGB', '$2y$10$ZHO/43AbZIT6UL0yrn2zsel4GtDXNhuBNhOtFdUPHN7zphArOoYFi', 3, 1, 0),
+('FGB', '$2y$10$SMRLfcSvgIziPjkFza.4aewIuhbGHPx64BiswTQslUBE9GIdr9hyO', 3, 1, 0),
 ('US2', '$2y$10$kxuUWw7i9n2zGVB1ZRQjCebbq2c0w4KDVJoTiqSJlyEDat8corhTO', 2, 1, 0),
-('US1', '$2y$10$ejTfv7ckq4NxAIKadbVcYOlYVvwezHUGC.MhZwOdUJzcRWosYoCEG', 1, 1, 0);
+('US1', '$2y$10$I6ZVgKevz4EFgylvt9tN2eStd1uLbLsRV9RPDXr6.BXxGT/hZ8G0G', 1, 1, 0),
+('ADM', '$2y$10$2orjf8Nmv8GMp5wJVwlfFuqN7pFqDUvA7X.jhAhGY0SCs3Acm3lkS', 3, 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

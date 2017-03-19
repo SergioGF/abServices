@@ -67,7 +67,7 @@ function registrarTrabajo($cliente, $usuario, $ubicacion, $fVisita, $horaE, $hor
 	return $result;
 }
 
-function modificarTrabajo($cliente, $fVisita, $ubicacion, $horaE, $horaS, $desc, $descM, $obs, $id){
+function modificarTrabajo($cliente, $ubicacion, $fVisita,  $horaE, $horaS, $desc, $descM, $obs, $id){
 	global $mysqli;
 	$args = array($cliente, $ubicacion, $fVisita, $horaE, $horaS, $desc, $descM, $obs, $id);
 	sanitizeArgs($args);

@@ -53,12 +53,12 @@ if($_SESSION["tipo"] == 1)
 			document.getElementById("tipo3").style.backgroundColor = "#286090";
 			document.getElementById("tipo4").style.backgroundColor = "#286090";
 			}
-			else if(t == "AR"{
+			else if(t == "AR"){
 			document.getElementById("tipo1").style.backgroundColor = "#286090";
 			document.getElementById("tipo2").style.backgroundColor = "#286090";
 			document.getElementById("tipo3").style.backgroundColor = "#161e45";
 			document.getElementById("tipo4").style.backgroundColor = "#286090";
-			} else {
+			} else if(t == "AT") {
 			document.getElementById("tipo1").style.backgroundColor = "#286090";
 			document.getElementById("tipo2").style.backgroundColor = "#286090";
 			document.getElementById("tipo3").style.backgroundColor = "#286090";
@@ -136,6 +136,28 @@ if($_SESSION["tipo"] == 1)
 									</div>
 								 </td>
 								</tr>
+									<?php
+									if($trabajo["Ubicacion"] == "CC"){
+										echo "<script>";
+										echo "formTipo('CC');";
+										echo "</script>";
+									}
+									else if($trabajo["Ubicacion"] == "OF"){
+										echo "<script>";
+										echo "formTipo('OF');";
+										echo "</script>";
+									}
+									else if($trabajo["Ubicacion"] == "AR"){
+										echo "<script>";
+										echo "formTipo('AR');";
+										echo "</script>";
+									}
+									else if($trabajo["Ubicacion"] == "AT"){
+										echo "<script>";
+										echo "formTipo('AT');";
+										echo "</script>";
+									}
+									?>
 								<tr>
 								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" value="<?php echo $trabajo["FVisita"]?>" name="fvisita" type="date" required="required"/></td>
 								</tr>
