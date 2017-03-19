@@ -28,11 +28,27 @@ function getTrabajos($id){
 	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE IdCliente = ? ORDER BY FVisita DESC;");
 	$pst->bind_param("s",$args[0]);
 	$pst->execute();
-	$result = $pst->get_result();
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+	//$result = $pst->get_result();
+	$pst->bind_result($id, $idC, $t, $ub, $fv, $he, $hs, $d, $dm, $ob);
+	/*while($row = $result->fetch_array(MYSQLI_ASSOC)){
 		$trabajos[] = $row;
+	}*/
+	while($pst-> fetch()){
+		//$info = $row;
+	$row = array(
+    'Id' => $id,
+    'IdCliente' => $idC,
+	'Trabajador' => $t,
+	'Ubicacion' => $ub,
+	'FVisita' => $fv,
+	'HoraE' => $he,
+	'HoraS' => $hs,
+	'Descripcion' => $d,
+	'DescripcionMat' => $dm,
+	'Observaciones' => $ob,
+	);
+	$trabajos[] = $row;
 	}
-	
 	$pst->close();
 	return $trabajos;          
 }
@@ -46,12 +62,24 @@ function getInfoWork($id){
 	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE Id = ?");
 	$pst->bind_param("i",$args[0]);
 	$pst->execute();
-	$result = $pst->get_result();
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){
-		$info = $row;
+	$pst->bind_result($id, $idC, $t, $ub, $fv, $he, $hs, $d, $dm, $ob);
+	while($pst-> fetch()){
+		//$info = $row;
+	$result = array(
+    'Id' => $id,
+    'IdCliente' => $idC,
+	'Trabajador' => $t,
+	'Ubicacion' => $ub,
+	'FVisita' => $fv,
+	'HoraE' => $he,
+	'HoraS' => $hs,
+	'Descripcion' => $d,
+	'DescripcionMat' => $dm,
+	'Observaciones' => $ob,
+	);
 	}
 	$pst->close();
-	return $info;     
+	return $result;     
 }
 
 function registrarTrabajo($cliente, $usuario, $ubicacion, $fVisita, $horaE, $horaS, $desc, $descM, $obs){
@@ -121,9 +149,21 @@ function getHorasTrabajos($id){
 	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE IdCliente = ? AND (FVisita BETWEEN ? AND ?)");
 	$pst->bind_param("sss",$args[0],$args[1],$args[2]);
 	$pst->execute();
-	$result = $pst->get_result();
+	$pst->bind_result($id, $idC, $t, $ub, $fv, $he, $hs, $d, $dm, $ob);
 	$duracion = 0.0;
-	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+	while($pst-> fetch()){
+	$row = array(
+    'Id' => $id,
+    'IdCliente' => $idC,
+	'Trabajador' => $t,
+	'Ubicacion' => $ub, 
+	'FVisita' => $fv,
+	'HoraE' => $he,
+	'HoraS' => $hs,
+	'Descripcion' => $d,
+	'DescripcionMat' => $dm,
+	'Observaciones' => $ob,
+	);
 		$horas = $row;
 	$horai=substr($horas['HoraE'],0,2);
 	$mini=substr($horas['HoraE'],3,2);
@@ -149,7 +189,6 @@ function conversorSegundosHoras($tiempo_en_segundos) {
 	$minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
 	
 	if($minutos == 0) $minutos = $minutos.'0';
-	else if($minutos < 10) $minutos = '0'.$minutos;
 	
 	return $horas . ':' . $minutos;
 }
