@@ -30,6 +30,13 @@ function consByDateAndTechnician($tecnico, $fIni, $fFin){
 	return $result;
 }
 
+function consByDate($fIni,$fFin){
+	
+	$result = consultaPorFechas($fIni,$fFin);
+	
+	return $result;
+}
+
 function consAcumulados($cliente,$fIni,$fFin){
 	
 	$result = getAcumulados($cliente,$fIni,$fFin);

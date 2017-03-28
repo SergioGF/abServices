@@ -24,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		if($fIni == null){
 			$fIn = 'X';
 		} else {
-			$fIn = date_format(new DateTime($fIni), 'd-m-Y');
+			$fIn = date_format(new DateTime($fIni), 'd/m/y');
 		}
 	} else if($tipo == 2){
 		$cliente = $_GET['cliente'];
@@ -34,9 +34,19 @@ if (session_status() == PHP_SESSION_NONE) {
 		if($fIni == null){
 			$fIn = 'X';
 		} else {
-			$fIn = date_format(new DateTime($fIni), 'd-m-Y');
+			$fIn = date_format(new DateTime($fIni), 'd/m/y');
 		}
-	} else{
+	}  else if($tipo == 4){
+		$fIni = $_GET['fIni'];
+		$fFin = $_GET['fFin'];
+		
+		if($fIni == null){
+			$fIn = 'X';
+		} else {
+			$fIn = date_format(new DateTime($fIni), 'd/m/y');
+		}
+	}
+	else{
 		$tecnico = $_GET['tecnico'];
 		$fIni = $_GET['fIni'];
 		$fFin = $_GET['fFin'];
@@ -44,7 +54,7 @@ if (session_status() == PHP_SESSION_NONE) {
 		if($fIni == null){
 			$fIn = 'X';
 		} else {
-			$fIn = date_format(new DateTime($fIni), 'd-m-Y');
+			$fIn = date_format(new DateTime($fIni), 'd/m/y');
 		}
 	}
 	?>
@@ -95,7 +105,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			
 		<div class="container-fluid">
 						<div class="panel panel-primary" >
-						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Acumulados ('.$cliente.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else if($tipo == 2)  echo 'Fecha y Cliente (' .$cliente.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd-m-Y').')'; else echo 'Fecha y Técnico (' .$tecnico.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd-m-Y').')';?>'</strong></div></div>
+						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Consulta de tipo '<?php if($tipo == 1) echo 'Acumulados ('.$cliente.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd/m/y').')'; else if($tipo == 2)  echo 'Cliente (' .$cliente.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd/m/y').')'; else if($tipo == 4)  echo 'Fechas ( '.$fIn.' - '.date_format(new DateTime($fFin), 'd/m/y').')'; else echo 'Técnico (' .$tecnico.': '.$fIn.' - '.date_format(new DateTime($fFin), 'd/m/y').')';?>'</strong></div></div>
 						<div class="panel-body">
 							<?php 
 								$trabajos = [];
@@ -108,6 +118,11 @@ if (session_status() == PHP_SESSION_NONE) {
 									
 								} else if($tipo == 2){
 									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
+									foreach((array)$trabajos as $trabajo){
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
+									}
+								} else if($tipo == 4){
+									$trabajos = consByDate($fIni, $fFin);
 									foreach((array)$trabajos as $trabajo){
 										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
 									}
@@ -130,6 +145,8 @@ if (session_status() == PHP_SESSION_NONE) {
 								echo '<a href="excel.php?trabajos='.$tr.'&cliente='.$cliente.'&tipo='.$tipo.'&fIni='.$fIn.'&fFin='.date_format(new DateTime($fFin), 'd-m-Y').'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
 							} else if($tipo == 3){
 								echo '<a href="excel.php?trabajos='.$tr.'&tecnico='.$tecnico.'&tipo='.$tipo.'&fIni='.$fIn.'&fFin='.date_format(new DateTime($fFin), 'd-m-Y').'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
+							} else if($tipo == 4){
+								echo '<a href="excel.php?trabajos='.$tr.'&tipo='.$tipo.'&fIni='.$fIn.'&fFin='.date_format(new DateTime($fFin), 'd-m-Y').'"><input class="btn btn-primary" type="button" value="Generar informe"></input></a>';
 							}
 							?>
 							<?php

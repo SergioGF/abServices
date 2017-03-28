@@ -44,6 +44,9 @@ if (session_status() == PHP_SESSION_NONE) {
 				$ws2 = true;
 			}
 		}
+		else if(isset($_POST['formFechas'])) { //Habrá que comprobar primero si existe el cliente.
+			  header('Location: ./infoConsulta.php?fIni='.$_POST['consf1'].'&fFin='.$_POST['consf2'].'&tipo=4');
+		}
 		else if(isset($_POST['formTecnico'])) { //Habrá que comprobar primero si existe el técnico.
 			if(getTecnico($_POST['constecnico'])){
 			  header('Location: ./infoConsulta.php?tecnico='.$_POST['constecnico'].'&fIni='.$_POST['consf1'].'&fFin='.$_POST['consf2'].'&tipo=3');
@@ -95,8 +98,9 @@ if (session_status() == PHP_SESSION_NONE) {
 								<p> <strong>Consulta por: </strong></p>
 							</div>
 							<div class="col-md-3">
-								<a ><button name="b2" class="btn btn-primary" id="b2" onclick="showContent2()"><strong>Cliente y fecha</strong></button></a> </br></br>
-								<a ><button name="b3" class="btn btn-primary" id="b3" onclick="showContent3()"><strong>Técnico y fecha</strong></button></a><br><br>
+								<a ><button name="b2" class="btn btn-primary" id="b2" onclick="showContent2()"><strong>Cliente</strong></button></a> </br></br>
+								<a ><button name="b3" class="btn btn-primary" id="b3" onclick="showContent3()"><strong>Técnico</strong></button></a><br><br>
+								<a ><button name="b4" class="btn btn-primary" id="b4" onclick="showContent4()"><strong>Fechas</strong></button></a><br><br>
 								<a ><button name="b1" class="btn btn-primary" id="b1" onclick="showContent()"><strong>Acumulado de horas</strong></button></a></br></br>
 							</div>
 							<div class="col-md-7">
@@ -116,7 +120,7 @@ if (session_status() == PHP_SESSION_NONE) {
 										   document.getElementById("b2").click();
 										}
 									</script>
-									<strong>Error!</strong> No existe ningún cliente con ese Id en su consulta por Fecha y Cliente.
+									<strong>Error!</strong> No existe ningún cliente con ese Id.
 								</div>
 								<div class="alert alert-danger" style="display: none" id="infoWrongSearch3">
 									<script type="text/javascript">
@@ -143,9 +147,16 @@ if (session_status() == PHP_SESSION_NONE) {
 											 <button type="submit" id="sub3" style="float:right" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
+									<div id="content4" style="display: none;">
+										<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											 <button type="submit" id="sub4" style="float:right" class="btn btn-primary" name="formFechas" value="Sign in"><strong>Buscar</strong></button>
+										</form>								
+									</div>
 									<div id="content1" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-											 <div id="divUser"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/><br></div>
+										<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div> </br>
 											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
 											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub1" style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
@@ -162,28 +173,46 @@ if (session_status() == PHP_SESSION_NONE) {
 					document.getElementById("content1").style.display = "block";
 					document.getElementById("content2").style.display = "none";
 					document.getElementById("content3").style.display = "none";
+					document.getElementById("content4").style.display = "none";
 					document.getElementById("b1").style.backgroundColor = "#161e45";
 					document.getElementById("b2").style.backgroundColor = "#286090";
 					document.getElementById("b3").style.backgroundColor = "#286090";
+					document.getElementById("b4").style.backgroundColor = "#286090";
 				}
 				
 				function showContent2() {
 				   document.getElementById("content2").style.display = "block";
 				   document.getElementById("content1").style.display = "none";
 				   document.getElementById("content3").style.display = "none";
+				   document.getElementById("content4").style.display = "none";
 				   document.getElementById("b2").style.backgroundColor = "#161e45";
 					document.getElementById("b1").style.backgroundColor = "#286090";
 					document.getElementById("b3").style.backgroundColor = "#286090";
+					document.getElementById("b4").style.backgroundColor = "#286090";
 				}
 				
 				function showContent3() {
 				   document.getElementById("content3").style.display = "block";
 				   document.getElementById("content1").style.display = "none";
 				   document.getElementById("content2").style.display = "none";
+				   document.getElementById("content4").style.display = "none";
 				   document.getElementById("b3").style.backgroundColor = "#161e45";
 					document.getElementById("b2").style.backgroundColor = "#286090";
 					document.getElementById("b1").style.backgroundColor = "#286090";
+					document.getElementById("b4").style.backgroundColor = "#286090";
 				}
+				
+				function showContent4() {
+				   document.getElementById("content4").style.display = "block";
+				   document.getElementById("content1").style.display = "none";
+				   document.getElementById("content2").style.display = "none";
+				   document.getElementById("content3").style.display = "none";
+				   document.getElementById("b4").style.backgroundColor = "#161e45";
+					document.getElementById("b2").style.backgroundColor = "#286090";
+					document.getElementById("b1").style.backgroundColor = "#286090";
+					document.getElementById("b3").style.backgroundColor = "#286090";
+				}
+				
 				function validarDatos() {
 				var p1 = document.getElementById("conscliente").value;
 				var espacios1 = false;

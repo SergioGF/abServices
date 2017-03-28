@@ -109,4 +109,23 @@ function getAcumulados($id, $fIni, $fFin){
 	return $duracion;          
 }
 
+function consultaPorFechas($fIni, $fFin){
+	global $mysqli;
+	$trabajos = null;
+	
+	$args = array($fIni, $fFin);
+	sanitizeArgs($args);
+	
+	$pst = $mysqli->prepare("SELECT * FROM trabajos WHERE (FVisita BETWEEN ? AND ?) ORDER BY FVisita DESC;");
+	$pst->bind_param("ss",$args[0], $args[1]);
+	$pst->execute();
+	$result = $pst->get_result();
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$trabajos[] = $row;
+	}
+	
+	$pst->close();
+	return $trabajos;  
+}
+
 ?>
