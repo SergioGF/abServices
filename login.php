@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
+	<link rel="shortcut icon" href="./includes/css/abs_logo.jpg" />
 
     <title>abServices</title>
  
@@ -25,7 +25,7 @@
 		
 			<div class="jumbotron">
 				<div class="container">
-				<img src="./includes/css/logo2.jpg" class="img-responsive" alt="Imagen responsive" id="cab1">
+				<img src="./includes/css/abs.jpg" class="img-responsive" alt="Imagen responsive" id="cab1">
 				<h1 id="cab2">abServices</h1> 
 				<p>Asesoría, consultoría y servicios informáticos para empresas y centros educativos</p>
 				</div>

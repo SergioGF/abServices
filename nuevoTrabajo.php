@@ -13,7 +13,7 @@ if($_SESSION["tipo"] == 1)
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
+	<link rel="shortcut icon" href="./includes/css/abs_logo.jpg" />
 
 	<?php
 	$cliente= $_GET['cliente']; 
@@ -24,7 +24,35 @@ if($_SESSION["tipo"] == 1)
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
-	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		 $.datepicker.regional['es'] = {
+		 closeText: 'Cerrar',
+		 prevText: '< Ant',
+		 nextText: 'Sig >',
+		 currentText: 'Hoy',
+		 monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		 monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+		 dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		 dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+		 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+		 weekHeader: 'Sm',
+		// dateFormat: 'dd/mm/yy',
+		 dateFormat: 'yy-mm-dd',
+		 firstDay: 1,
+		 isRTL: false,
+		 showMonthAfterYear: false,
+		 yearSuffix: ''
+		 };
+		 $.datepicker.setDefaults($.datepicker.regional['es']);
+	</script>
+	<script>
+	  $( function() {
+		$( "#cajaFecha" ).datepicker();
+	  } );
+	</script>
 	<script type="text/javascript">
     function showContent() {
         element = document.getElementById("content");
@@ -110,7 +138,7 @@ if($_SESSION["tipo"] == 1)
 			<div class="panel panel-primary" >
 						<div class="panel-heading" id="panelHead"><div class="text-center"><strong>Añadir nuevo trabajo</strong></div></div>
 
-						<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+						<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
 					
 						<div class="panel-body">
 							<center>
@@ -131,13 +159,13 @@ if($_SESSION["tipo"] == 1)
 								 </td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajas" name="fvisita" type="date" required="required" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></td>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" name="fvisita" type="text" required="required" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Hora entrada:</strong></td><td width="30%"><input id="cajas" name="horae" type="time" required="required"/></td>
+								 <td width="70%"><strong>Hora entrada (hh:mm):</strong></td><td width="30%"><input id="horaE" name="horae" type="text" value="00:00" required="required"/></td>
 								</tr>
 								<tr>
-								  <td width="70%"><strong>Hora salida:</strong></td><td width="30%"><input id="cajas" name="horas" type="time" required="required"/></td>
+								  <td width="70%"><strong>Hora salida (hh:mm):</strong></td><td width="30%"><input id="horaS" name="horas" type="text" value="00:00" required="required"/></td>
 								</tr>
 								<tr>
 								<td width="70%"><strong>¿Se utilizó algun material?:</strong></td><td width="30%"><input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContent()" /></td>
@@ -158,7 +186,46 @@ if($_SESSION["tipo"] == 1)
 						</form>
 			</div>
 		</div>
-		<script src="http://code.jquery.com/jquery.js"></script>
+		<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+		<script type="text/javascript">
+				function validarDatos() {
+				var he = document.getElementById("horaE").value;
+				var hs = document.getElementById("horaS").value;
+				var format = false;
+				var cont = 0;
+				while (!format && (cont < he.length)) {
+				  if (he.charAt(cont) == ":")
+					format = true;
+				  cont++;
+				}
+				if(he.charAt(0) != "0" && he.charAt(0) != "1" && he.charAt(0) != "2")
+					format = false;
+				
+				if (!format) {
+				  //alert ("La contraseña no puede contener espacios en blanco");
+				  document.getElementById("horaE").value ="";
+				  document.getElementById("horaE").placeholder ="formato incorrecto";
+				  document.getElementById("horaE").style="border: 2px solid #ff1313";
+				  return false;
+				}
+				
+				var format2 = false;
+				var cont2 = 0;
+				while (!format2 && (cont2 < hs.length)) {
+				  if (hs.charAt(cont2) == ":")
+					format2 = true;
+				  cont2++;
+				}
+				if(hs.charAt(0) != "0" && hs.charAt(0) != "1" && hs.charAt(0) != "2")
+					format2 = false;
+				if (!format2) {
+				  document.getElementById("horaS").value ="";
+				  document.getElementById("horaS").placeholder ="formato incorrecto";
+				  document.getElementById("horaS").style="border: 2px solid #ff1313";
+				  return false;
+				}
+				}
+		</script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -11,15 +11,68 @@ if (session_status() == PHP_SESSION_NONE) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="./includes/css/logo2.jpg" />
+	<link rel="shortcut icon" href="./includes/css/abs_logo.jpg" />
 
     <title>abServices</title>
  
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
-	<script type="text/javascript" src="includes/jquery/jquery-3.1.1.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+// dateFormat: 'dd/mm/yy',
+ dateFormat: 'yy-mm-dd',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () {
+$("#fecha").datepicker();
+});
+</script>
+<script>
+  $( function() {
+    $( "#consf11" ).datepicker();
+  } );
+   $( function() {
+    $( "#consf12" ).datepicker();
+  } );
+   $( function() {
+    $( "#consf13" ).datepicker();
+  } );
+   $( function() {
+    $( "#consf14" ).datepicker();
+  } );
+  $( function() {
+    $( "#consf21" ).datepicker();
+  } );
+  $( function() {
+    $( "#consf22" ).datepicker();
+  } );
+  $( function() {
+    $( "#consf23" ).datepicker();
+  } );
+  $( function() {
+    $( "#consf24" ).datepicker();
+  } );
+  </script>
 	
+
   </head>
   	 <?php
 	require(__DIR__.'/includes/php/consultas.php');
@@ -97,13 +150,13 @@ if (session_status() == PHP_SESSION_NONE) {
 							<div class="col-md-2">
 								<p> <strong>Consulta por: </strong></p>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<a ><button name="b2" class="btn btn-primary" id="b2" onclick="showContent2()"><strong>Cliente</strong></button></a> </br></br>
 								<a ><button name="b3" class="btn btn-primary" id="b3" onclick="showContent3()"><strong>Técnico</strong></button></a><br><br>
 								<a ><button name="b4" class="btn btn-primary" id="b4" onclick="showContent4()"><strong>Fechas</strong></button></a><br><br>
 								<a ><button name="b1" class="btn btn-primary" id="b1" onclick="showContent()"><strong>Acumulado de horas</strong></button></a></br></br>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-5">
 								<div class="alert alert-danger" style="display: none" id="infoWrongSearch1">
 									<script type="text/javascript">
 										function wrongSearch1() {
@@ -133,35 +186,37 @@ if (session_status() == PHP_SESSION_NONE) {
 								</div>
 									<div id="content2" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos2()" class="form-horizontal" role="form">
-											<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div> </br>
-											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control"/></div></div>
-											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf11" type="text"  name="consf1" class="form-control"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf21" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											<button type="submit" id="sub2" style="float:right" class="btn btn-primary" name="formConsFyC" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>
 									<div id="content3" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos3()" class="form-horizontal" role="form">
-											<div id="divTec"> <input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/><br></div>
-											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group" id="divTec">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del técnico: </label> <div class="col-lg-8"><input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf12" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf22" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub3" style="float:right" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
 									<div id="content4" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
-											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf13" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf23" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub4" style="float:right" class="btn btn-primary" name="formFechas" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
 									<div id="content1" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-										<div id="divUser2"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div> </br>
-											<div class="form-group">  <label  class="col-lg-2 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-10"><input id="consf1" type="date"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-2 control-label">Fecha final: </label> <div class="col-lg-10"><input id="consf2" type="date"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
-											 <button type="submit" id="sub1" style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
+											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf14" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf24" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											 <button type="submit" id="sub1"  style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>								
+							</div>
+							<div class="col-md-1">
 							</div>
 							</div>
 						</div>
@@ -175,9 +230,9 @@ if (session_status() == PHP_SESSION_NONE) {
 					document.getElementById("content3").style.display = "none";
 					document.getElementById("content4").style.display = "none";
 					document.getElementById("b1").style.backgroundColor = "#161e45";
-					document.getElementById("b2").style.backgroundColor = "#286090";
-					document.getElementById("b3").style.backgroundColor = "#286090";
-					document.getElementById("b4").style.backgroundColor = "#286090";
+					document.getElementById("b2").style.backgroundColor = "#5284d4";
+					document.getElementById("b3").style.backgroundColor = "#5284d4";
+					document.getElementById("b4").style.backgroundColor = "#5284d4";
 				}
 				
 				function showContent2() {
@@ -186,9 +241,9 @@ if (session_status() == PHP_SESSION_NONE) {
 				   document.getElementById("content3").style.display = "none";
 				   document.getElementById("content4").style.display = "none";
 				   document.getElementById("b2").style.backgroundColor = "#161e45";
-					document.getElementById("b1").style.backgroundColor = "#286090";
-					document.getElementById("b3").style.backgroundColor = "#286090";
-					document.getElementById("b4").style.backgroundColor = "#286090";
+					document.getElementById("b1").style.backgroundColor = "#5284d4";
+					document.getElementById("b3").style.backgroundColor = "#5284d4";
+					document.getElementById("b4").style.backgroundColor = "#5284d4";
 				}
 				
 				function showContent3() {
@@ -197,9 +252,9 @@ if (session_status() == PHP_SESSION_NONE) {
 				   document.getElementById("content2").style.display = "none";
 				   document.getElementById("content4").style.display = "none";
 				   document.getElementById("b3").style.backgroundColor = "#161e45";
-					document.getElementById("b2").style.backgroundColor = "#286090";
-					document.getElementById("b1").style.backgroundColor = "#286090";
-					document.getElementById("b4").style.backgroundColor = "#286090";
+					document.getElementById("b2").style.backgroundColor = "#5284d4";
+					document.getElementById("b1").style.backgroundColor = "#5284d4";
+					document.getElementById("b4").style.backgroundColor = "#5284d4";
 				}
 				
 				function showContent4() {
@@ -208,9 +263,9 @@ if (session_status() == PHP_SESSION_NONE) {
 				   document.getElementById("content2").style.display = "none";
 				   document.getElementById("content3").style.display = "none";
 				   document.getElementById("b4").style.backgroundColor = "#161e45";
-					document.getElementById("b2").style.backgroundColor = "#286090";
-					document.getElementById("b1").style.backgroundColor = "#286090";
-					document.getElementById("b3").style.backgroundColor = "#286090";
+					document.getElementById("b2").style.backgroundColor = "#5284d4";
+					document.getElementById("b1").style.backgroundColor = "#5284d4";
+					document.getElementById("b3").style.backgroundColor = "#5284d4";
 				}
 				
 				function validarDatos() {
@@ -279,7 +334,7 @@ if (session_status() == PHP_SESSION_NONE) {
 			echo "</script>";
 		}
 		?>
-		<script src="http://code.jquery.com/jquery.js"></script>
+		<!--<script src="http://code.jquery.com/jquery.js"></script>-->
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>
 </html>

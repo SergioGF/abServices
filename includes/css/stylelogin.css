@@ -1,11 +1,17 @@
 .jumbotron{
-background-color: #161e45;
+background-color: #5284d4;
 color: #fff;
 max-height:200px;
 }
 .page-header{
-background-color: #161e45;
+background-color: #5284d4;
 color: #fff;
+}
+#panelHead{
+background-color: #5284d4;
+}
+.btn-primary{
+background-color: #5284d4;
 }
 body{
  background-image: url("fondo.jpg");
