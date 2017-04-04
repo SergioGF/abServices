@@ -35,8 +35,8 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
  dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
  dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
  weekHeader: 'Sm',
-// dateFormat: 'dd/mm/yy',
- dateFormat: 'yy-mm-dd',
+ dateFormat: 'dd/mm/yy',
+// dateFormat: 'yy-mm-dd',
  firstDay: 1,
  isRTL: false,
  showMonthAfterYear: false,
@@ -190,8 +190,8 @@ $("#fecha").datepicker();
 									<div id="content2" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos2()" class="form-horizontal" role="form">
 											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf11" type="text"  name="consf1" class="form-control"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf21" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf11" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf21" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											<button type="submit" id="sub2" style="float:right" class="btn btn-primary" name="formConsFyC" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>
@@ -199,22 +199,22 @@ $("#fecha").datepicker();
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos3()" class="form-horizontal" role="form">
 											<div class="form-group" id="divTec">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del técnico: </label> <div class="col-lg-8"><input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/></div></div>
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf12" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf22" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf22" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub3" style="float:right" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
 									<div id="content4" style="display: none;">
-										<form method = "POST" action="" autocomplete="on" class="form-horizontal" role="form">
+										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos4()" class="form-horizontal" role="form">
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf13" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf23" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf23" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub4" style="float:right" class="btn btn-primary" name="formFechas" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
 									<div id="content1" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
+											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf14" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf24" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf24" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub1"  style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>								
@@ -286,6 +286,34 @@ $("#fecha").datepicker();
 				  document.getElementById("divUser").className = "form-group has-error has-feedback";
 				  return false;
 				}
+				var orig = document.getElementById("consf14").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf14").value = format;
+				
+				var orig = document.getElementById("consf24").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf24").value = format;
+				
 				}
 				function validarDatos2() {
 				var p1 = document.getElementById("conscliente2").value;
@@ -302,6 +330,33 @@ $("#fecha").datepicker();
 				  document.getElementById("divUser2").className = "form-group has-error has-feedback";
 				  return false;
 				}
+				var orig = document.getElementById("consf21").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf21").value = format;
+				
+				var orig = document.getElementById("consf11").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf11").value = format;
 				}
 				function validarDatos3() {
 				var p1 = document.getElementById("constecnico").value;
@@ -318,6 +373,62 @@ $("#fecha").datepicker();
 				  document.getElementById("divTec").className = "form-group has-error has-feedback";
 				  return false;
 				}
+				var orig = document.getElementById("consf12").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf12").value = format;
+				
+				var orig = document.getElementById("consf22").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf22").value = format;
+				}
+				function validarDatos4() {
+				var orig = document.getElementById("consf13").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf13").value = format;
+				
+				var orig = document.getElementById("consf23").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("consf23").value = format;
 				}
 		</script>
 		<?php

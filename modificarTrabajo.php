@@ -43,8 +43,8 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 		 dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
 		 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
 		 weekHeader: 'Sm',
-		// dateFormat: 'dd/mm/yy',
-		 dateFormat: 'yy-mm-dd',
+		 dateFormat: 'dd/mm/yy',
+		 //dateFormat: 'yy-mm-dd',
 		 firstDay: 1,
 		 isRTL: false,
 		 showMonthAfterYear: false,
@@ -191,7 +191,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 									}
 									?>
 								<tr>
-								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" value="<?php echo $trabajo["FVisita"]?>" name="fvisita" type="text" required="required"/></td>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" value="<?php echo $trabajo["FVisita"]?>"  name="fvisita" type="text" required="required"/></td>
 								</tr>
 								<tr>
 								 <td width="70%"><strong>Hora entrada (hh:mm):</strong></td><td width="30%"><input id="horaE" value="<?php echo $trabajo["HoraE"]?>" name="horae" type="text" required="required"/></td>
@@ -251,6 +251,22 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 				  document.getElementById("horaS").placeholder ="formato incorrecto";
 				  document.getElementById("horaS").style="border: 2px solid #ff1313";
 				  return false;
+				}
+				
+				var orig = document.getElementById("cajaFecha").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				if(orig.charAt(4) != "-"){
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("cajaFecha").value = format;
 				}
 				}
 		</script>

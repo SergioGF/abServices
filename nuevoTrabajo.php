@@ -41,8 +41,8 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 		 dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
 		 dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
 		 weekHeader: 'Sm',
-		// dateFormat: 'dd/mm/yy',
-		 dateFormat: 'yy-mm-dd',
+		 dateFormat: 'dd/mm/yy',
+		 //dateFormat: 'yy-mm-dd',
 		 firstDay: 1,
 		 isRTL: false,
 		 showMonthAfterYear: false,
@@ -162,7 +162,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 								 </td>
 								</tr>
 								<tr>
-								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" name="fvisita" type="text" required="required" value="<?php $ahora = time(); $formateado= date('Y-m-d', $ahora); echo $formateado?>"/></td>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" name="fvisita" type="text" required="required" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></td>
 								</tr>
 								<tr>
 								 <td width="70%"><strong>Hora entrada (hh:mm):</strong></td><td width="30%"><input id="horaE" name="horae" type="text" value="00:00" required="required"/></td>
@@ -227,6 +227,20 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 				  document.getElementById("horaS").style="border: 2px solid #ff1313";
 				  return false;
 				}
+				
+				var orig = document.getElementById("cajaFecha").value; // 23/04/2017 --> 2017-04-23 
+				var format = "";
+				format = format.concat(orig.charAt(6));
+				format = format.concat(orig.charAt(7));
+				format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(3));
+				format = format.concat(orig.charAt(4));
+				format = format.concat("-");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				document.getElementById("cajaFecha").value = format;
 				}
 		</script>
 		<script src="includes/js/bootstrap.min.js"></script>
