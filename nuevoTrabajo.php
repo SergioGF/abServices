@@ -6,6 +6,8 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 if($_SESSION["tipo"] == 1)
 		header('Location: ./login.php');
+if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
+		header('Location: ./login.php');
 ?>
 <html lang="en">
   <head>
@@ -111,7 +113,8 @@ if($_SESSION["tipo"] == 1)
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="homeClientes.php"><span class="glyphicon glyphicon-home"></span> abServices</a>
+				<!--<a class="navbar-brand" href="homeClientes.php"><span class="glyphicon glyphicon-home"></span> abServices</a>-->
+				<a class="navbar-brand" href="homeClientes.php"><img src="./includes/css/home.jpg" class="img-responsive" alt="Imagen responsive"></a>
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse" id="navSupDerecha">
 			 
