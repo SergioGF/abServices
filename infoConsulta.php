@@ -23,7 +23,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 		$fIni = $_GET['fIni']; 
 		$fFin = $_GET['fFin']; 
 		
-		if($fIni == null){
+		if($fIni == '--'){
 			$fIn = 'X';
 		} else {
 			$fIn = date_format(new DateTime($fIni), 'd/m/y');
@@ -33,7 +33,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 		$fIni = $_GET['fIni'];
 		$fFin = $_GET['fFin'];
 		
-		if($fIni == null){
+		if($fIni == '--'){
 			$fIn = 'X';
 		} else {
 			$fIn = date_format(new DateTime($fIni), 'd/m/y');
@@ -42,7 +42,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 		$fIni = $_GET['fIni'];
 		$fFin = $_GET['fFin'];
 		
-		if($fIni == null){
+		if($fIni == '--'){
 			$fIn = 'X';
 		} else {
 			$fIn = date_format(new DateTime($fIni), 'd/m/y');
@@ -53,7 +53,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 		$fIni = $_GET['fIni'];
 		$fFin = $_GET['fFin'];
 		
-		if($fIni == null){
+		if($fIni == '--'){
 			$fIn = 'X';
 		} else {
 			$fIn = date_format(new DateTime($fIni), 'd/m/y');
