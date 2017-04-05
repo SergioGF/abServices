@@ -122,17 +122,31 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 								} else if($tipo == 2){
 									$trabajos = consByDateAndClient($cliente, $fIni, $fFin);
 									foreach((array)$trabajos as $trabajo){
-										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
+										//$trabajo['FVisita'] = "formatoFecha()";
+										$feV = $trabajo['FVisita'];
+										$feN = $trabajo['FVisita'];
+										$feN[0] = $feV[8];
+										$feN[1] = $feV[9];
+										$feN[2] = '/';
+										$feN[3] = $feV[5];
+										$feN[4] = $feV[6];
+										$feN[5] = '/';
+										$feN[6] = $feV[0];
+										$feN[7] = $feV[1];
+										$feN[8] = $feV[2];
+										$feN[9] = $feV[3];
+										
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$feN.'</div></strong></a></h4></div><hr id="lineas">';
 									}
 								} else if($tipo == 4){
 									$trabajos = consByDate($fIni, $fFin);
 									foreach((array)$trabajos as $trabajo){
-										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$feN.'</div></strong></a></h4></div><hr id="lineas">';
 									}
 								} else{
 									$trabajos = consByDateAndTechnician($tecnico, $fIni, $fFin);
 									foreach((array)$trabajos as $trabajo){
-										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$trabajo['FVisita'].'</div></strong></a></h4></div><hr id="lineas">';
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$trabajo['Descripcion'].'<strong></div><div id="derecha">'.$feN.'</div></strong></a></h4></div><hr id="lineas">';
 									}
 								}
 									
@@ -168,6 +182,24 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 					</div>
 		</div>
 		</div>
+				<script type="text/javascript">
+			/*function formatoFecha(orig){
+				 var orig = "<?php echo $trabajo["FVisita"]?>"; //2017-04-05 --> 05/04/2017
+				 var format ="";
+				 format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("/");
+				format = format.concat(orig.charAt(5));
+				format = format.concat(orig.charAt(6));
+				format = format.concat("/");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				format = format.concat(orig.charAt(2));
+				format = format.concat(orig.charAt(3));
+				//document.getElementById("derechaFecha").value =format;
+				document.getElementById("derechaFecha").innerHTML = format;
+				}*/
+		</script>
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="includes/js/bootstrap.min.js"></script>
   </body>

@@ -191,7 +191,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 									}
 									?>
 								<tr>
-								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" value="<?php echo $trabajo["FVisita"]?>"  name="fvisita" type="text" required="required"/></td>
+								 <td width="70%"><strong>Fecha visita:</strong></td><td width="30%"><input id="cajaFecha" value=""  name="fvisita" type="text" required="required"/></td>
 								</tr>
 								<tr>
 								 <td width="70%"><strong>Hora entrada (hh:mm):</strong></td><td width="30%"><input id="horaE" value="<?php echo $trabajo["HoraE"]?>" name="horae" type="text" required="required"/></td>
@@ -216,6 +216,19 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 			</div>
 		</div>
 		<script type="text/javascript">
+				 var orig = "<?php echo $trabajo["FVisita"]?>"; //2017-04-05 --> 05/04/2017
+				 var format ="";
+				 format = format.concat(orig.charAt(8));
+				format = format.concat(orig.charAt(9));
+				format = format.concat("/");
+				format = format.concat(orig.charAt(5));
+				format = format.concat(orig.charAt(6));
+				format = format.concat("/");
+				format = format.concat(orig.charAt(0));
+				format = format.concat(orig.charAt(1));
+				format = format.concat(orig.charAt(2));
+				format = format.concat(orig.charAt(3));
+				document.getElementById("cajaFecha").value =format;
 				function validarDatos() {
 				var he = document.getElementById("horaE").value;
 				var hs = document.getElementById("horaS").value;
