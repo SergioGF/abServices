@@ -189,32 +189,56 @@ $("#fecha").datepicker();
 								</div>
 									<div id="content2" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos2()" class="form-horizontal" role="form">
-											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente2"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
+											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Cliente: </label> <div class="col-lg-8">
+												<select id="conscliente2"  name="conscliente" required="required" class="form-control">
+														<?php 
+															$clientes = conseguirClientes();				
+															foreach((array)$clientes as $cliente){
+																echo "<option value=".$cliente['Id'].">".$cliente['Id']."</option>\n"; 
+															}
+														?>	
+												</select></div></div>
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf11" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf21" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha final: </label> <div class="col-lg-8"><input id="consf21" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											<button type="submit" id="sub2" style="float:right" class="btn btn-primary" name="formConsFyC" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>
 									<div id="content3" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos3()" class="form-horizontal" role="form">
-											<div class="form-group" id="divTec">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del técnico: </label> <div class="col-lg-8"><input id="constecnico"  name="constecnico" required="required" class="form-control" placeholder="Id del tecnico" maxlength="3"/></div></div>
+											<div class="form-group" id="divTec">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Técnico: </label> <div class="col-lg-8">
+											<select id="constecnico"  name="constecnico" required="required" class="form-control">
+											<?php 
+															$tecnicos = getUsuarios();				
+															foreach((array)$tecnicos as $tecnico){
+																echo "<option value=".$tecnico['Usuario'].">".$tecnico['Usuario']."</option>\n"; 
+															}
+											?>	
+											</select></div></div>
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf12" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf22" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha final: </label> <div class="col-lg-8"><input id="consf22" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub3" style="float:right" class="btn btn-primary" name="formTecnico" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
 									<div id="content4" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos4()" class="form-horizontal" role="form">
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf13" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf23" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha final: </label> <div class="col-lg-8"><input id="consf23" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub4" style="float:right" class="btn btn-primary" name="formFechas" value="Sign in"><strong>Buscar</strong></button>
 										</form>								
 									</div>
 									<div id="content1" style="display: none;">
 										<form method = "POST" action="" autocomplete="on" onSubmit="return validarDatos()" class="form-horizontal" role="form">
-											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Id del cliente: </label> <div class="col-lg-8"><input id="conscliente"  name="conscliente" required="required" class="form-control" placeholder="Id del cliente" maxlength="30"/></div></div>
+											<div class="form-group" id="divUser2">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Cliente: </label> <div class="col-lg-8">
+											<select id="conscliente"  name="conscliente" required="required" class="form-control">
+														<?php 
+															$clientes = conseguirClientes();				
+															foreach((array)$clientes as $cliente){
+																echo "<option value=".$cliente['Id'].">".$cliente['Id']."</option>\n"; 
+															}
+														?>	
+											</select></div></div>
 											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha inicial: </label> <div class="col-lg-8"><input id="consf14" type="text"  name="consf1" class="form-control" placeholder="Fecha inicial"/></div></div>
-											<div class="form-group">  <label  class="col-lg-4 control-label">Fecha final: </label> <div class="col-lg-8"><input id="consf24" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
+											<div class="form-group">  <label  class="col-lg-4 control-label" style="padding-right: 4px;">Fecha final: </label> <div class="col-lg-8"><input id="consf24" type="text"  name="consf2" class="form-control" value="<?php $ahora = time(); $formateado= date('d/m/Y', $ahora); echo $formateado?>"/></div></div><br>
 											 <button type="submit" id="sub1"  style="float:right" class="btn btn-primary" name="formAcumulados" value="Sign in"><strong>Buscar</strong></button>
 										</form>
 									</div>								
@@ -281,8 +305,8 @@ $("#fecha").datepicker();
 				  cont++;
 				}
 				if (espacios1) {
-				  document.getElementById("conscliente").value ="";
-				  document.getElementById("conscliente").placeholder ="El Id no puede contener espacios en blanco";
+				  document.getElementById("conscliente2").value ="";
+				  document.getElementById("conscliente2").placeholder ="El Id no puede contener espacios en blanco";
 				  document.getElementById("divUser").className = "form-group has-error has-feedback";
 				  return false;
 				}
