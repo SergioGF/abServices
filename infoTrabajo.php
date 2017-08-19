@@ -25,7 +25,6 @@ require(__DIR__.'/includes/php/trabajos.php');
 	?>
 
     <title>Trabajo</title>
- 
     <!-- CSS de Bootstrap -->
     <link href="includes/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
 	<link rel="stylesheet" type="text/css" href="includes/css/style.css"> 
@@ -94,23 +93,25 @@ require(__DIR__.'/includes/php/trabajos.php');
 								$trabajos = conseguirInfoTrabajo($id);
 								$descripcion = str_replace(array('\r\n','\r','\n','rn'),'<br>', $trabajos['Descripcion']);
 								 ?>
-									<div class="form-group"><div class="container-fluid">
-										<ul>
-										<li> <span id="negrita">Hecho por:</span> <?php echo $trabajos["Trabajador"]?></li><br>
-										<li> <span id="negrita">Descripción:</span> <?php echo $descripcion?></li><br>
-										<li> <span id="negrita">Ubicación:</span> <?php echo $trabajos["Ubicacion"]?></li><br>
-										<li> <span id="negrita">Fecha visita:</span> <?php echo  date_format(new DateTime($trabajos["FVisita"]), 'd/m/y')?></li><br>
-										<li> <span id="negrita">Hora entrada:</span> <?php echo $trabajos["HoraE"]?></li><br>
-										<li> <span id="negrita">Hora salida:</span> <?php echo $trabajos["HoraS"]?></li><br>
-										<li> <span id="negrita">Materiales:</span> <?php echo $trabajos["DescripcionMat"]?></li><br>
-										<li> <span id="negrita">Observaciones:</span> <?php echo $trabajos["Observaciones"]?></li><br>
-										</ul>
-									<?php
-										$tr = serialize($trabajos); 
-										$tr = urlencode($tr);  									
-										echo '<center><a href="excelTrabajo.php?trabajo='.$tr.'&cliente='.$client.'"><input class="btn btn-primary" value="Generar informe"></input></a></center>'	
-									?>
-										</div></div>
+									<div class="form-group">
+										<div class="container-fluid">
+											<ul>
+											<li> <span id="negrita">Hecho por:</span> <?php echo $trabajos["Trabajador"]?></li><br>
+											<li><span id="negrita">Descripción:</span><div style="width:100%; word-wrap: break-word;"> <?php echo $descripcion?></div></li><br>
+											<li> <span id="negrita">Ubicación:</span> <?php echo $trabajos["Ubicacion"]?></li><br>
+											<li> <span id="negrita">Fecha visita:</span> <?php echo  date_format(new DateTime($trabajos["FVisita"]), 'd/m/y')?></li><br>
+											<li> <span id="negrita">Hora entrada:</span> <?php echo $trabajos["HoraE"]?></li><br>
+											<li> <span id="negrita">Hora salida:</span> <?php echo $trabajos["HoraS"]?></li><br>
+											<li> <span id="negrita">Materiales:</span> <?php echo $trabajos["DescripcionMat"]?></li><br>
+											<li> <span id="negrita">Observaciones:</span> <?php echo $trabajos["Observaciones"]?></li><br>
+											</ul>
+											<?php
+												$tr = serialize($trabajos); 
+												$tr = urlencode($tr);  									
+												echo '<center><a href="excelTrabajo.php?trabajo='.$tr.'&cliente='.$client.'"><input class="btn btn-primary" value="Generar informe"></input></a></center>'	
+											?>
+										</div>
+									</div>
 						</div>
 						<div class="panel-footer">
 							<?php 
