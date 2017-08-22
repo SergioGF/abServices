@@ -80,6 +80,10 @@ $objPHPExcel->setActiveSheetIndex(0)
 	->setCellValue('F'.$celda, $trabajo['Trabajador'])
 	->setCellValue('G'.$celda, $duracion);
 	
+	$length = strlen($trabajo['Descripcion']);
+	if($length >= 20){
+			$objPHPExcel->getActiveSheet()->getStyle('E'.($celda))->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_FILL);
+	}
 	$index++;
 	$celda++;
 }

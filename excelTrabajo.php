@@ -17,6 +17,7 @@ $objPHPExcel->getProperties()
             'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
         )
     );
+	
     $objPHPExcel->getDefaultStyle()->applyFromArray($style);
 	$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
 	$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
@@ -66,10 +67,24 @@ $objPHPExcel->setActiveSheetIndex(0)
 	->setCellValue('D'.$celda, $trabajo['Ubicacion'])
 	->setCellValue('E'.$celda, $trabajo['Descripcion'])
 	->setCellValue('F'.$celda, $trabajo['Trabajador'])
-	->setCellValue('G'.$celda, $trabajo['Descripcion'])
+	->setCellValue('G'.$celda, $trabajo['DescripcionMat'])
 	->setCellValue('H'.$celda, $trabajo['Observaciones'])
 	->setCellValue('I'.$celda, $duracion);
 
+	$length = strlen($trabajo['Descripcion']);
+	if($length >= 20){
+			$objPHPExcel->getActiveSheet()->getStyle('E4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_FILL);
+	}
+	
+	$length = strlen($trabajo['DescripcionMat']);
+	if($length >= 20){
+			$objPHPExcel->getActiveSheet()->getStyle('G4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_FILL);
+	}
+	
+	$length = strlen($trabajo['Observaciones']);
+	if($length >= 20){
+			$objPHPExcel->getActiveSheet()->getStyle('H4')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_FILL);
+	}
 	$celda++;
 	
 $objPHPExcel->setActiveSheetIndex(0);
