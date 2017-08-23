@@ -120,7 +120,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 
 									foreach((array)$trabajos as $trabajo){
 										$descripcion = str_replace(array('\r\n','\r','\n','rn'),'<br>', $trabajo['Descripcion']);
-									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd/m/y').'</div></strong><div id="derecha">'.$descripcion.'</div></a></h4></div><hr id="lineas">';
+									echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$cliente.'"><strong><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'. date_format(new DateTime($trabajo['FVisita']), 'd/m/y').'</div></strong><div id="derecha" style="width:100%; word-wrap: break-word;">'.$descripcion.'</div></a></h4></div><hr id="lineas">';
 									}
 								?>	<br>
 								<?php 

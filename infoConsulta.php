@@ -136,7 +136,7 @@ if($_SESSION["tipo"] != 1 && $_SESSION["tipo"] != 2 && $_SESSION["tipo"] != 3)
 										$feN[8] = $feV[2];
 										$feN[9] = $feV[3];
 										$descripcion = str_replace(array('\r\n','\r','\n','rn'),'<br>', $trabajo['Descripcion']);
-										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid"><img id="margenIm" src="./includes/css/trabajo.png">'.$descripcion.'<strong></div><div id="derecha">'.$feN.'</div></strong></a></h4></div><hr id="lineas">';
+										echo '<div class="form-group"><h4><a href = "./infoTrabajo.php?id='.$trabajo['Id'].'&cliente='.$trabajo['IdCliente'].'"><div class="container-fluid" style="width:100%; word-wrap: break-word;"><img id="margenIm" src="./includes/css/trabajo.png">'.$descripcion.'<strong></div><div id="derecha">'.$feN.'</div></strong></a></h4></div><hr id="lineas">';
 									}
 								} else if($tipo == 4){
 									$trabajos = consByDate($fIni, $fFin);
